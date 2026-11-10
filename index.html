@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>document.documentElement.classList.add("js")</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madina Mart &amp; Clothing Store,Food,ect</title>
+<meta name="description" content="Vesta is a premium, free Bootstrap 5 fashion e-commerce template — product grid, category tiles, product detail page and a slide-in cart drawer. No jQuery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ===== Announcement ===== -->
+<div class="announce">
+  Free express shipping on orders over <strong>$150</strong> &nbsp;·&nbsp; 30-day easy returns
+</div>
+
+<!-- ===== Header ===== -->
+<header class="site-header" id="siteHeader">
+    <div class="container-x">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">CampusBite<span class="dot">.</span></a>
+
+            <nav aria-label="Primary">
+                <ul class="nav-links">
+                    <li><a href="index.html" aria-current="page">Beranda</a></li>
+                    <li><a href="product.html">Menu Kuliner</a></li>
+                    <li><a href="product.html">Thrift & Aksesori</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+  <!-- Search panel -->
+  <div class="search-panel" id="searchPanel" role="dialog" aria-label="Search products">
+    <div class="container-x">
+      <form class="search-form" role="search" onsubmit="return false;">
+        <svg viewBox="0 0 24 24" width="26" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="text" placeholder="Cari ayam geprek, kopi, atau thrift..." class="search-input">
+        <button type="button" class="icon-btn" id="searchClose" aria-label="Close search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Mobile nav ===== -->
+<div class="scrim" id="scrim"></div>
+<aside class="mobile-nav" id="mobileNav" aria-label="Mobile menu">
+  <div class="mobile-nav-head">
+    <span class="brand">CampusBite<span class="dot">.</span></span>
+    <button class="icon-btn" id="navClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="index.html#new">New In</a></li>
+    <li><a href="index.html#shop">Women</a></li>
+    <li><a href="index.html#shop">Men</a></li>
+    <li><a href="index.html#shop">Accessories</a></li>
+    <li><a href="index.html#shop">Shoes</a></li>
+    <li><a href="index.html#lookbook">Lookbook</a></li>
+    <li><a href="index.html#sale" class="text-wine">Sale</a></li>
+  </ul>
+  <div class="mobile-nav-foot">
+    <p>Free shipping over $150 · 30-day returns</p>
+    <p>hello@vesta-studio.com</p>
+  </div>
+</aside>
+
+<main id="main">
+
+  <!-- ===== Hero ===== -->
+ <section class="hero-section py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <span class="badge bg-danger mb-2">Khusus Warga Kampus</span>
+                <h1 class="display-5 fw-bold text-dark">Lapar di Jam Kosong? Pesan Jajanan Teman Sekampus!</h1>
+                <p class="lead text-muted">Solusi jajan praktis tanpa harus keluar gerbang. Mulai dari makanan berat, camilan, hingga kopi kekinian siap diantar ke gedung kuliahmu.</p>
+                <div class="d-flex gap-2">
+                    <a href="product.html" class="btn btn-success btn-lg">Pesan Makanan Sekarang</a>
+                    <a href="#kategori" class="btn btn-outline-secondary btn-lg">Lihat Kategori</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <!-- gambar buat hero/baner utamanya belum ada -->
+                <img src="img/hero.jpg" alt="Kuliner Kampus" class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- ===== Categories ===== -->
+ <section id="kategori" class="py-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Kategori Favorit</h2>
+            <p class="text-muted">Pilih kategori jajanan atau barang yang lagi hits di kampus</p>
+        </div>
+        <div class="row g-4 text-center">
+            <!-- Kategori 1 -->
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm p-3 h-100">
+                    <img src="Makanan_Berat.png" class="card-img-top rounded mb-3" alt="Makanan Berat">
+                    <h5 class="card-title fs-6 fw-bold">Makanan Berat</h5>
+                    <small class="text-muted">Nasi Geprek, Bento, Mie</small>
+                </div>
+            </div>
+            <!-- Kategori 2 -->
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm p-3 h-100">
+                    <img src="Camilan&Snack.png" class="card-img-top rounded mb-3" alt="Camilan">
+                    <h5 class="card-title fs-6 fw-bold">Camilan & Snack</h5>
+                    <small class="text-muted">Makaroni, Dessert, Cookies</small>
+                </div>
+            </div>
+            <!-- Kategori 3 -->
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm p-3 h-100">
+                    <img src="Minuman.png" class="card-img-top rounded mb-3" alt="Minuman">
+                    <h5 class="card-title fs-6 fw-bold">Minuman Segar</h5>
+                    <small class="text-muted">Kopi Literan, Boba, Es</small>
+                </div>
+            </div>
+            <!-- Kategori 4 -->
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm p-3 h-100">
+                    <img src="Aksesoris.png" class="card-img-top rounded mb-3" alt="Thrift & Aksesori">
+                    <h5 class="card-title fs-6 fw-bold">Thrift & Aksesori</h5>
+                    <small class="text-muted">Preloved Outfit, Totebag</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- ===== Featured product grid ===== -->
+ <section class="py-5 bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold m-0">Makanan & Minuman</h2>
+                <p class="text-muted m-0">Menu favorit buatan tenant mahasiswa minggu ini</p>
+            </div>
+            <a href="product.html" class="btn btn-outline-success">Lihat Semua Menu</a>
+        </div>
+
+        <div class="row g-4">
+            <!-- Produk 1 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-success position-absolute m-2">Ready Stock</span>
+                    <img src="nasi_ayam_geprek.png" class="card-img-top" alt="Nasi Ayam Geprek" onerror="this.src='https://via.placeholder.com/250x200?text=Ayam+Geprek'">
+                    <div class="card-body">
+                        <small class="text-muted">Kantin Gedung D</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Nasi Ayam Geprek Sambal Ijo</h5>
+                        <p class="text-success fw-bold m-0">Rp 15.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 2 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-warning text-dark position-absolute m-2">Pre-Order (PO)</span>
+                    <img src="Kopi_Susu_Gula_Aren.png" class="card-img-top" alt="Kopi Susu Literan" onerror="this.src='https://via.placeholder.com/250x200?text=Kopi+Susu'">
+                    <div class="card-body">
+                        <small class="text-muted">Kopi Kantin BCA</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Kopi Susu Gula Aren 500ml</h5>
+                        <p class="text-success fw-bold m-0">Rp 18.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 3 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-success position-absolute m-2">Ready Stock</span>
+                    <img src="Dimsum_Mentai.png" class="card-img-top" alt="Dimsum Mentai" onerror="this.src='https://via.placeholder.com/250x200?text=Dimsum+Mentai'">
+                    <div class="card-body">
+                        <small class="text-muted">Kantin BCA</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Dimsum Mentai Mozzarella</h5>
+                        <p class="text-success fw-bold m-0">Rp 12.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 4 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-info text-dark position-absolute m-2">Ready Stock</span>
+                    <img src="Mie_Ayam.png" class="card-img-top" alt="Mie Ayam" onerror="this.src='https://via.placeholder.com/250x200?text=Mie+Ayam'">
+                    <div class="card-body">
+                        <small class="text-muted">Mie Ayam</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Mie Ayam Bakso</h5>
+                        <p class="text-success fw-bold m-0">Rp 15.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- ===== SECTION: MENU & BARANG TERBARU (NEW ARRIVALS) ===== -->
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold m-0">Baru Rilis di Kampus 🚀</h2>
+                <p class="text-muted m-0">Menu kuliner dan tenant baru yang wajib kamu coba minggu ini</p>
+            </div>
+            <a href="product.html" class="btn btn-outline-success">Lihat Semua</a>
+        </div>
+
+        <div class="row g-4">
+            <!-- Produk Baru 1 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-danger position-absolute m-2">Menu Baru ✨</span>
+                    <img src="img/p5.jpg" class="card-img-top" alt="Menu Baru" onerror="this.src='https://via.placeholder.com/250x200?text=Menu+Baru'">
+                    <div class="card-body">
+                        <small class="text-muted">Roti Bakar Station (FMIPA)</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Roti Bakar Keju Lumer Extra Crunchy</h5>
+                        <p class="text-success fw-bold m-0">Rp 13.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk Baru 2 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-danger position-absolute m-2">Tenant Baru 🎉</span>
+                    <img src="img/p6.jpg" class="card-img-top" alt="Tenant Baru" onerror="this.src='https://via.placeholder.com/250x200?text=Tenant+Baru'">
+                    <div class="card-body">
+                        <small class="text-muted">Salad Buah Segar (FK)</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Salad Buah Keju Melimpah 300ml</h5>
+                        <p class="text-success fw-bold m-0">Rp 16.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk Baru 3 (Thrift) -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-info text-dark position-absolute m-2">Preloved / Thrift</span>
+                    <img src="img/p7.jpg" class="card-img-top" alt="Thrift Baru" onerror="this.src='https://via.placeholder.com/250x200?text=Thrift+Kampus'">
+                    <div class="card-body">
+                        <small class="text-muted">Anak Sastra (FIB)</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Totebag Kanvas Estetik (Kondisi 99%)</h5>
+                        <p class="text-success fw-bold m-0">Rp 25.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk Baru 4 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-danger position-absolute m-2">Limited ⚡</span>
+                    <img src="img/p8.jpg" class="card-img-top" alt="Minuman Baru" onerror="this.src='https://via.placeholder.com/250x200?text=Es+Teh+Jumbo'">
+                    <div class="card-body">
+                        <small class="text-muted">Teh Poci Kampus (FISIP)</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Es Teh Jumbo Melati Refresh</h5>
+                        <p class="text-success fw-bold m-0">Rp 5.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  <!-- ===== Lookbook ===== -->
+  <section class="section lookbook" id="lookbook" aria-labelledby="look-h">
+    <div class="container-x">
+      <div class="section-head center reveal">
+        <span class="eyebrow center">The AW journal</span>
+        <h2 class="section-title" id="look-h">Two ways to wear winter</h2>
+      </div>
+      <div class="look-grid">
+        <article class="look-card reveal">
+          <img src="img/look-1.jpg" alt="Editorial look: layered wool coat over knit and wide trousers" width="640" height="800" loading="lazy">
+          <div class="look-body">
+            <h3>The City Layer</h3>
+            <p>Structured tailoring softened with heavyweight knits — built for grey mornings and long commutes.</p>
+            <a href="#shop" class="btn-v btn-light">Shop the look</a>
+          </div>
+        </article>
+        <article class="look-card reveal reveal-d1">
+          <img src="img/look-2.jpg" alt="Editorial look: waxed jacket with cable cardigan and boots" width="640" height="800" loading="lazy">
+          <div class="look-body">
+            <h3>The Weekend Away</h3>
+            <p>Waxed cotton, cable knits and leather boots — pieces that earn their keep off the beaten track.</p>
+            <a href="#shop" class="btn-v btn-light">Shop the look</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Promo / countdown ===== -->
+  <section class="section-tight promo-strip" id="sale" aria-labelledby="promo-h">
+    <div class="container-x">
+      <div class="promo-inner">
+        <div>
+          <span class="eyebrow center" style="color:#f3d6da; justify-content:flex-start;">Winter private sale</span>
+          <h2 id="promo-h">Up to 30% off outerwear</h2>
+          <p>Members-only pricing on coats, jackets and knitwear. Ends when the clock runs out.</p>
+        </div>
+        <div class="countdown" id="countdown" role="timer" aria-label="Sale countdown">
+          <div class="cd-unit"><span class="num" data-cd="days">02</span><span class="lab">Days</span></div>
+          <div class="cd-unit"><span class="num" data-cd="hours">00</span><span class="lab">Hours</span></div>
+          <div class="cd-unit"><span class="num" data-cd="mins">00</span><span class="lab">Mins</span></div>
+          <div class="cd-unit"><span class="num" data-cd="secs">00</span><span class="lab">Secs</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Brand values ===== -->
+  <section class="section" aria-labelledby="values-h">
+    <div class="container-x">
+      <div class="section-head center reveal">
+        <span class="eyebrow center">Why Vesta</span>
+        <h2 class="section-title" id="values-h">Made to be worn for years</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h13v8H3zM16 11h3l2 3v2h-5z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg></div>
+          <h3>Free carbon-neutral shipping</h3>
+          <p>Complimentary express delivery on every order over $150, offset at the source and tracked door to door.</p>
+        </div>
+        <div class="value-card reveal reveal-d1">
+          <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v4h4"/></svg></div>
+          <h3>30-day easy returns</h3>
+          <p>Changed your mind? Send it back within 30 days, tags on, for a full refund. Prepaid label in every box.</p>
+        </div>
+        <div class="value-card reveal reveal-d2">
+          <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>Secure encrypted checkout</h3>
+          <p>Pay with confidence — every transaction is protected by bank-grade encryption and trusted providers.</p>
+        </div>
+      </div>
+
+      <div class="stats-row reveal" style="margin-top:clamp(3rem,6vw,5rem);" id="stats">
+        <div class="stat"><div class="num" data-count="42">0</div><div class="lab">Countries shipped</div></div>
+        <div class="stat"><div class="num" data-count="18" data-suffix="K">0</div><div class="lab">Five-star reviews</div></div>
+        <div class="stat"><div class="num" data-count="96" data-suffix="%">0</div><div class="lab">Would buy again</div></div>
+        <div class="stat"><div class="num" data-count="12">0</div><div class="lab">Years in the making</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Testimonials ===== -->
+  <section class="section" style="background:var(--paper-2);" aria-labelledby="testi-h">
+    <div class="container-x">
+      <div class="section-head center reveal">
+        <span class="eyebrow center">Loved by customers</span>
+        <h2 class="section-title" id="testi-h">Worn and reviewed</h2>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-track" id="testiTrack">
+          <div class="testi-slide active">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="testi-quote">The Marlowe coat is the best thing I've bought in years — the wool is heavy in the right way and the cut actually flatters. Three winters in and it still looks new.</p>
+            <div class="testi-who"><img src="img/review-1.jpg" alt="Portrait of Elena Whitfield" width="46" height="46" loading="lazy"><div><div class="n">Elena Whitfield</div><div class="r">Verified buyer · London</div></div></div>
+          </div>
+          <div class="testi-slide">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="testi-quote">Everything arrives beautifully packed and the returns are genuinely effortless. I've reordered the Sutton shirt in every colour they make.</p>
+            <div class="testi-who"><img src="img/review-2.jpg" alt="Portrait of Marcus Reyes" width="46" height="46" loading="lazy"><div><div class="n">Marcus Reyes</div><div class="r">Verified buyer · Toronto</div></div></div>
+          </div>
+          <div class="testi-slide">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="testi-quote">Sizing is spot on and the quality punches well above the price. Vesta has quietly replaced most of my wardrobe.</p>
+            <div class="testi-who"><img src="img/review-3.jpg" alt="Portrait of Priya Anand" width="46" height="46" loading="lazy"><div><div class="n">Priya Anand</div><div class="r">Verified buyer · Melbourne</div></div></div>
+          </div>
+        </div>
+        <div class="testi-dots" id="testiDots" role="tablist" aria-label="Choose testimonial">
+          <button class="active" aria-label="Testimonial 1"></button>
+          <button aria-label="Testimonial 2"></button>
+          <button aria-label="Testimonial 3"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Newsletter ===== -->
+  <section class="section newsletter" aria-labelledby="nl-h">
+    <div class="container-x">
+      <div class="nl-inner reveal">
+        <span class="eyebrow center">Join the list</span>
+        <h2 class="section-title" id="nl-h">Get $15 off your first order</h2>
+        <p class="lede mx-auto" style="margin-top:0.8rem;">Early access to new drops, private sales and styling notes — straight to your inbox, never more than twice a month.</p>
+        <form class="nl-form" id="nlForm" novalidate>
+          <input type="email" id="nlEmail" placeholder="Your email address" required aria-label="Email address">
+          <button type="submit" class="btn-v btn-wine">Subscribe</button>
+        </form>
+        <p class="nl-ok" id="nlOk">Thanks — check your inbox to confirm and claim your code.</p>
+        <p class="nl-note">By subscribing you agree to our privacy policy. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <div class="container-x">
+    <div class="footer-top">
+      <div>
+        <span class="brand">Vesta<span class="dot">.</span></span>
+        <p class="footer-about">Considered, small-batch clothing in natural materials — designed in Copenhagen, made to be worn for years, not seasons.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Vesta on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Vesta on Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 20c1-3 2-6 2-6M12 3a7 7 0 0 0-3 13c-.2-1 .1-2 .4-3 .3-1 1-4 1-4a2.4 2.4 0 0 1-.2-1c0-1 .6-1.8 1.4-1.8.7 0 1 .5 1 1.1 0 .7-.4 1.7-.7 2.7-.2.8.4 1.5 1.2 1.5 1.5 0 2.5-1.9 2.5-4.1C16.6 6.6 15 5 12.8 5"/></svg></a>
+          <a href="#" aria-label="Vesta on TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M15 4c.4 2.3 1.9 3.8 4 4v3c-1.7 0-3-.5-4-1.2V16a5 5 0 1 1-5-5v3a2 2 0 1 0 2 2V4z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="index.html#new">New Arrivals</a></li>
+          <li><a href="index.html#shop">Women</a></li>
+          <li><a href="index.html#shop">Men</a></li>
+          <li><a href="index.html#shop">Accessories</a></li>
+          <li><a href="index.html#sale">Sale</a></li>
+          <li><a href="#">Gift Cards</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Shipping &amp; Delivery</a></li>
+          <li><a href="#">Returns &amp; Exchanges</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Track Your Order</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 6l8 6 8-6M4 6h16v12H4z"/></svg><span>hello@vesta-studio.com</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 4l3 1 1 4-2 1a11 11 0 0 0 5 5l1-2 4 1 1 3a2 2 0 0 1-2 2A15 15 0 0 1 4 6a2 2 0 0 1 2-2z"/></svg><span>+45 32 14 09 88</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Studio 4, Vesterbro, Copenhagen</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Vesta Studio. All rights reserved.</p>
+      <div class="footer-pay">
+        <span>Visa</span><span>Mastercard</span><span>Amex</span><span>PayPal</span><span>Klarna</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Cart drawer (shared markup) ===== -->
+<div class="scrim" id="cartScrim"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" role="dialog" aria-modal="true">
+  <div class="cart-head">
+    <h2>Your Bag <span class="qty-note" id="cartQtyNote">0 items</span></h2>
+    <button class="icon-btn" id="cartClose" aria-label="Close cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="cart-free">
+    <span id="cartFreeMsg"><strong>$150</strong> away from free express shipping</span>
+    <div class="cart-progress"><span id="cartProgress"></span></div>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <p>Your bag is empty.<br>Time to find something lovely.</p>
+      <button class="btn-v btn-ghost" id="cartEmptyShop">Start shopping</button>
+    </div>
+  </div>
+  <div class="cart-foot" id="cartFoot" hidden>
+    <div class="cart-sub"><span class="l">Subtotal</span><span class="v" id="cartSubtotal">$0</span></div>
+    <p class="cart-ship-note">Shipping &amp; taxes calculated at checkout.</p>
+    <button class="btn-v btn-wine btn-block btn-lg">Checkout</button>
+    <div class="cart-continue"><button id="cartContinue">Continue shopping</button></div>
+  </div>
+</aside>
+
+<!-- ===== Toast ===== -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toastMsg">Added to bag</span>
+</div>
+
+<script src="js/vendor/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
