@@ -7,3 +7,5 @@ cart drawer, a swappable product gallery, colour and size pickers, tabs and a
 lightbox — all powered by clean vanilla JavaScript. It is built on Bootstrap 5
 (self-hosted, no CDN), uses no jQuery, and is responsive and accessible out of
 the box. Vesta is free for both personal and commercial use.
+
+lolooolo
