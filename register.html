@@ -5,58 +5,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daftar Akun — CampusBite</title>
-  <meta name="description" content="Daftar akun baru di CampusBite kantin dan marketplace kampus.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    .auth-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 3rem 1rem; background: var(--paper-2); }
-    .auth-card { width: 100%; max-width: 440px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow); }
-    .auth-title { font-size: 2.2rem; margin-bottom: 0.5rem; text-align: center; font-family: var(--f-display); }
-    .auth-subtitle { text-align: center; color: var(--muted); font-size: 0.92rem; margin-bottom: 2rem; }
-    .form-group { margin-bottom: 1.2rem; }
-    .form-group label { display: block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; color: var(--ink); }
-    .form-control-v { width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); font-family: var(--f-sans); font-size: 0.95rem; color: var(--ink); transition: border-color 0.25s; }
-    .form-control-v:focus { outline: none; border-color: var(--wine); background: var(--white); }
-    .auth-foot { text-align: center; margin-top: 1.5rem; font-size: 0.88rem; color: var(--muted); }
-    .auth-foot a { color: var(--wine); font-weight: 600; text-decoration: underline; }
-  </style>
 </head>
-<body>
+<body class="bg-light d-flex align-items-center justify-content-center" style="min-height: 100vh;">
 
-  <main class="auth-section">
-    <div class="auth-card">
-      <div style="text-align: center; margin-bottom: 1rem;">
-        <a href="index.html" class="brand" style="font-size: 2rem;">CampusBite<span class="dot">.</span></a>
-      </div>
-      <h1 class="auth-title">Buat Akun</h1>
-      <p class="auth-subtitle">Bergabung dengan ekosistem jajan & marketplace kampus</p>
-
-      <form onsubmit="event.preventDefault(); alert('Registrasi berhasil! Silakan masuk.'); window.location.href='login.html';">
-        <div class="form-group">
-          <label for="name">Nama Lengkap</label>
-          <input type="text" id="name" class="form-control-v" placeholder="cth: Budi Santoso" required>
-        </div>
-        <div class="form-group">
-          <label for="regemail">Email Kampus</label>
-          <input type="email" id="regemail" class="form-control-v" placeholder="nama@student.univ.ac.id" required>
-        </div>
-        <div class="form-group">
-          <label for="regpass">Kata Sandi</label>
-          <input type="password" id="regpass" class="form-control-v" placeholder="••••••••" required>
-        </div>
-        <button type="submit" class="btn-v btn-success btn-block btn-lg" style="margin-top: 1rem; width:100%;">Daftar Akun</button>
-      </form>
-
-      <div class="auth-foot">
-        Sudah punya akun? <a href="login.html">Masuk di sini</a>
-      </div>
+  <div class="card border-0 shadow-sm p-4" style="width: 100%; max-width: 420px;">
+    <div class="text-center mb-3">
+      <a href="index.html" class="brand fs-3 text-dark text-decoration-none">CampusBite<span class="text-success">.</span></a>
+      <p class="text-muted small mt-1">Buat akun untuk beli & jajan di kampus</p>
     </div>
-  </main>
+
+    <form onsubmit="event.preventDefault(); alert('Registrasi Berhasil! Silakan masuk.'); window.location.href='login.html';">
+      <div class="mb-3">
+        <label class="form-label small fw-bold">NAMA LENGKAP</label>
+        <input type="text" class="form-control" placeholder="Cth: Budi Santoso" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label small fw-bold">EMAIL KAMPUS</label>
+        <input type="email" class="form-control" placeholder="nama@student.univ.ac.id" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label small fw-bold">KATA SANDI</label>
+        <input type="password" class="form-control" placeholder="••••••••" required>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="isSellerCheck">
+        <label class="form-check-label small" for="isSellerCheck">Saya juga ingin <strong>membuka tenant / berjualan</strong> makanan & thrift</label>
+      </div>
+      <button type="submit" class="btn btn-success w-100 fw-bold py-2">Daftar Sekarang</button>
+    </form>
+
+    <div class="text-center mt-3 small text-muted">
+      Sudah punya akun? <a href="login.html" class="text-success fw-bold">Masuk di sini</a>
+    </div>
+  </div>
 
 <script src="js/vendor/bootstrap.bundle.min.js"></script>
-<script src="js/main.js"></script>
 </body>
 </html>
