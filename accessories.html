@@ -48,7 +48,7 @@
         <p class="text-muted">Lengkapi OOTD ngampusmu dengan atribut keren karya mahasiswa</p>
     </div>
 
-    <div class="row g-4">
+    <div class="row g-4" id="accessoriesGrid">
         <!-- Produk 1 -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
@@ -110,11 +110,11 @@
             </div>
         </div>
 
-        <!-- Produk 5: Gelang Manik-Manik -->
+        <!-- Produk 5: Gelang Manik -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
                 <span class="badge bg-primary position-absolute m-2">Handmade</span>
-                <img src="gelang_manik.png" class="card-img-top" alt="Gelang Manik-Manik" onerror="this.src='https://via.placeholder.com/250x200?text=Gelang+Manik'">
+                <img src="gelang_manik.png" class="card-img-top" alt="Gelang Manik" onerror="this.src='https://via.placeholder.com/250x200?text=Gelang+Manik'">
                 <div class="card-body">
                     <small class="text-muted">Handicraft (FSRD)</small>
                     <h5 class="card-title fs-6 fw-bold mt-1">Gelang Manik-Manik Estetik</h5>
@@ -125,7 +125,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Produk 6: Gelang Titanium -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
@@ -141,7 +140,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Produk 7: Kalung Liontin -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
@@ -157,7 +155,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Produk 8: Stiker Pack -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
@@ -176,6 +173,44 @@
     </div>
 </main>
 
+<!-- ===== MODAL JUAL / TAMBAH PRODUK UNTUK USER ===== -->
+<div class="modal fade" id="modalJualBarang" tabindex="-1" aria-labelledby="modalJualLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title fs-6 fw-bold" id="modalJualLabel">🛍️ Mulai Jual Barang / Jajanan di CampusBite</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="userAddProductForm">
+          <div class="mb-2">
+            <label class="small fw-bold">Nama Makanan / Produk</label>
+            <input type="text" id="uProdName" class="form-control form-control-sm" placeholder="Cth: Gelang Manik Custom" required>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Kategori</label>
+            <select id="uProdCat" class="form-select form-select-sm">
+              <option value="makanan">Makanan Berat</option>
+              <option value="camilan">Camilan & Snack</option>
+              <option value="minuman">Minuman Segar</option>
+              <option value="aksesoris" selected>Thrift & Aksesori</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Harga (Rp)</label>
+            <input type="number" id="uProdPrice" class="form-control form-control-sm" placeholder="15000" required>
+          </div>
+          <div class="mb-3">
+            <label class="small fw-bold">Nama File Gambar (Pastikan ada di folder img/)</label>
+            <input type="text" id="uProdImg" class="form-control form-control-sm" value="gelang_manik.png" required>
+          </div>
+          <button type="submit" class="btn btn-success w-100 fw-bold btn-sm">Terbitkan Produk Jualanmu</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Cart Drawer & Script -->
 <div class="scrim" id="cartScrim"></div>
 <aside class="cart-drawer" id="cartDrawer" aria-label="Keranjang Belanja">
@@ -184,7 +219,7 @@
         <button class="icon-btn" id="cartClose">✕</button>
     </div>
     <div class="cart-free p-2 bg-light text-center small border-bottom">
-        <span>Bebas ongkir antar gedung khusus area kampus!</span>
+        <span>🚀 Bebas ongkir antar gedung khusus area kampus!</span>
     </div>
     <div class="cart-items p-3" id="cartItems" style="flex: 1; overflow-y: auto;">
         <div class="cart-empty text-center py-5 text-muted" id="cartEmpty">
@@ -204,5 +239,78 @@
 
 <script src="js/vendor/bootstrap.bundle.min.js"></script>
 <script src="js/main.js"></script>
+<script>
+  // Fungsi render produk aksesoris baru ke HTML
+  function renderAksesorisBaru(nama, kategori, harga, gambar) {
+    const grid = document.getElementById('accessoriesGrid');
+    if (!grid) return;
+
+    const hargaFormatted = parseInt(harga).toLocaleString('id-ID');
+    const col = document.createElement('div');
+    col.className = 'col-md-3 col-6';
+    col.innerHTML = `
+      <div class="card h-100 border-0 shadow-sm">
+        <span class="badge bg-primary position-absolute m-2">Baru</span>
+        <img src="${gambar}" class="card-img-top" alt="${nama}" onerror="this.src='https://via.placeholder.com/250x200?text=${encodeURIComponent(nama)}'">
+        <div class="card-body">
+          <small class="text-muted">Tenant Mahasiswa</small>
+          <h5 class="card-title fs-6 fw-bold mt-1">${nama}</h5>
+          <p class="text-success fw-bold m-0">Rp ${hargaFormatted}</p>
+        </div>
+        <div class="card-footer bg-white border-0 pt-0">
+          <button class="btn btn-sm btn-outline-success w-100 js-add" 
+                  data-id="acc-${Date.now()}" 
+                  data-name="${nama}" 
+                  data-price="${harga}" 
+                  data-img="${gambar}">
+            + Tambah ke Keranjang
+          </button>
+        </div>
+      </div>
+    `;
+
+    // Sisipkan produk baru di bagian paling atas grid
+    grid.prepend(col);
+  }
+
+  // Load produk yang tersimpan di localStorage saat halaman dimuat
+  document.addEventListener('DOMContentLoaded', function() {
+    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+    saved.forEach(prod => {
+      // Tampilkan jika kategorinya 'aksesoris'
+      if (prod.kategori === 'aksesoris') {
+        renderAksesorisBaru(prod.nama, prod.kategori, prod.harga, prod.gambar);
+      }
+    });
+  });
+
+  // Listener Submit Form Modal "+ Jual Barang"
+  document.getElementById('userAddProductForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('uProdName').value;
+    const cat = document.getElementById('uProdCat').value;
+    const price = document.getElementById('uProdPrice').value;
+    const img = document.getElementById('uProdImg').value;
+
+    // 1. Simpan ke LocalStorage
+    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+    saved.push({ nama: name, kategori: cat, harga: price, gambar: img });
+    localStorage.setItem('user_products', JSON.stringify(saved));
+
+    // 2. Render ke tampilan jika kategori adalah aksesoris
+    if (cat === 'aksesoris') {
+      renderAksesorisBaru(name, cat, price, img);
+    }
+
+    // 3. Feedback & Tutup Modal
+    alert('Hore! Produk "' + name + '" berhasil dipublikasikan!');
+    const modalEl = document.getElementById('modalJualBarang');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
+
+    this.reset();
+  });
+</script>
 </body>
 </html>
