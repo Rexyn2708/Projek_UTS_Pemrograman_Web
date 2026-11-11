@@ -1,17 +1,15 @@
 /* ==========================================================================
-   Vesta — main.js
-   Vanilla JS. One function per feature, guard clauses, reduced-motion aware.
+   CampusBite — main.js (Updated for Rupiah & Campus Canteen)
    ========================================================================== */
 (function () {
   "use strict";
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var FREE_SHIP = 150;
 
-  /* ---------- Helpers ---------- */
+  /* ---------- Helpers (Rupiah Formatter) ---------- */
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function $all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
-  function money(n) { return "$" + (Math.round(n * 100) / 100).toLocaleString("en-US"); }
+  function money(n) { return "Rp " + Math.round(n).toLocaleString("id-ID"); }
   function lockScroll(on) { document.body.classList.toggle("body-lock", !!on); }
 
   /* ---------- Toast ---------- */
@@ -114,19 +112,19 @@
         e.preventDefault();
         var on = btn.classList.toggle("active");
         btn.setAttribute("aria-pressed", on ? "true" : "false");
-        showToast(on ? "Saved to wishlist" : "Removed from wishlist");
+        showToast(on ? "Disimpan ke favorit" : "Dihapus dari favorit");
       });
     });
     var big = $("#pdpWish");
     if (big) big.addEventListener("click", function () {
       var on = big.classList.toggle("active");
       big.setAttribute("aria-pressed", on ? "true" : "false");
-      showToast(on ? "Saved to wishlist" : "Removed from wishlist");
+      showToast(on ? "Disimpan ke favorit" : "Dihapus dari favorit");
     });
   }
 
   /* ==========================================================================
-     Cart
+     Cart (Keranjang Belanja)
      ========================================================================== */
   var cart = [];
 
@@ -190,25 +188,22 @@
           '<div><div class="cl-name">' + c.name + '</div>' +
           '<div class="cl-meta">' + (c.variant || "") + '</div>' +
           '<div class="cl-price">' + money(c.price) + '</div>' +
-          '<button class="cl-remove" type="button" data-key="' + key + '">Remove</button></div>' +
+          '<button class="cl-remove" type="button" data-key="' + key + '">Hapus</button></div>' +
           '<div class="cl-right"><div class="qty-stepper">' +
-          '<button type="button" class="q-minus" data-key="' + key + '" aria-label="Decrease quantity"' + (c.qty <= 1 ? " disabled" : "") + '>&minus;</button>' +
+          '<button type="button" class="q-minus" data-key="' + key + '" aria-label="Kurangi jumlah"' + (c.qty <= 1 ? " disabled" : "") + '>&minus;</button>' +
           '<span class="q">' + c.qty + '</span>' +
-          '<button type="button" class="q-plus" data-key="' + key + '" aria-label="Increase quantity">+</button>' +
+          '<button type="button" class="q-plus" data-key="' + key + '" aria-label="Tambah jumlah">+</button>' +
           '</div></div>';
         wrap.appendChild(line);
       });
     }
 
-    // subtotal + free-ship progress
+    // subtotal + free-ship info kampus
     if (subEl) subEl.textContent = money(t.sub);
-    var remaining = Math.max(0, FREE_SHIP - t.sub);
     if (freeMsg) {
-      freeMsg.innerHTML = remaining > 0
-        ? "<strong>" + money(remaining) + "</strong> away from free express shipping"
-        : "You've unlocked <strong>free express shipping</strong> 🎉";
+      freeMsg.innerHTML = "🚀 <strong>Bebas ongkir</strong> antar gedung khusus area kampus!";
     }
-    if (progress) progress.style.width = Math.min(100, (t.sub / FREE_SHIP) * 100) + "%";
+    if (progress) progress.style.width = "100%";
   }
 
   function initCart() {
@@ -241,7 +236,7 @@
       var plus = e.target.closest(".q-plus");
       var rm = e.target.closest(".cl-remove");
       if (minus) changeQty(minus.getAttribute("data-key"), -1);
-      else if (plus) changeQty(plus.getAttribute("data-key"), 1);
+      else if (plus) changeQty(minus ? minus.getAttribute("data-key") : plus.getAttribute("data-key"), 1);
       else if (rm) removeFromCart(rm.getAttribute("data-key"));
     });
 
@@ -257,12 +252,12 @@
           variant: btn.getAttribute("data-variant") || "",
           qty: 1
         });
-        showToast(btn.getAttribute("data-name") + " added to bag");
+        showToast(btn.getAttribute("data-name") + " masuk keranjang jajan");
         open();
       });
     });
 
-    // PDP add-to-bag (reads live colour/size/qty)
+    // PDP add-to-bag
     var pdpAdd = $("#pdpAdd");
     if (pdpAdd) {
       pdpAdd.addEventListener("click", function () {
@@ -278,7 +273,7 @@
           variant: [colour, size].filter(Boolean).join(" · "),
           qty: qty
         });
-        showToast(pdpAdd.getAttribute("data-name") + " added to bag");
+        showToast(pdpAdd.getAttribute("data-name") + " masuk keranjang jajan");
         open();
       });
     }
@@ -286,140 +281,7 @@
     renderCart();
   }
 
-  /* ---------- New arrivals scroll-snap nav ---------- */
-  function initSnapNav() {
-    var row = $("#snapRow"), prev = $("#snapPrev"), next = $("#snapNext");
-    if (!row) return;
-    function step() {
-      var item = row.querySelector(".snap-item");
-      return item ? item.getBoundingClientRect().width + 22 : 280;
-    }
-    if (prev) prev.addEventListener("click", function () { row.scrollBy({ left: -step(), behavior: reduceMotion ? "auto" : "smooth" }); });
-    if (next) next.addEventListener("click", function () { row.scrollBy({ left: step(), behavior: reduceMotion ? "auto" : "smooth" }); });
-  }
-
-  /* ---------- Countdown ---------- */
-  function initCountdown() {
-    var box = $("#countdown");
-    if (!box) return;
-    var units = {
-      days: box.querySelector('[data-cd="days"]'),
-      hours: box.querySelector('[data-cd="hours"]'),
-      mins: box.querySelector('[data-cd="mins"]'),
-      secs: box.querySelector('[data-cd="secs"]')
-    };
-    // Target: 2 days 8 hours from load (front-end demo)
-    var target = Date.now() + (2 * 24 * 60 * 60 + 8 * 60 * 60) * 1000;
-    function pad(n) { return (n < 10 ? "0" : "") + n; }
-    function tick() {
-      var diff = Math.max(0, target - Date.now());
-      var s = Math.floor(diff / 1000);
-      var d = Math.floor(s / 86400); s -= d * 86400;
-      var h = Math.floor(s / 3600); s -= h * 3600;
-      var m = Math.floor(s / 60); s -= m * 60;
-      if (units.days) units.days.textContent = pad(d);
-      if (units.hours) units.hours.textContent = pad(h);
-      if (units.mins) units.mins.textContent = pad(m);
-      if (units.secs) units.secs.textContent = pad(s);
-    }
-    tick();
-    setInterval(tick, 1000);
-  }
-
-  /* ---------- Count-up stats ---------- */
-  function initCounters() {
-    var nums = $all("[data-count]");
-    if (!nums.length) return;
-    function run(el) {
-      var target = parseFloat(el.getAttribute("data-count"));
-      var suffix = el.getAttribute("data-suffix") || "";
-      if (reduceMotion) { el.textContent = target + suffix; return; }
-      var start = null, dur = 1500;
-      function frame(ts) {
-        if (!start) start = ts;
-        var p = Math.min(1, (ts - start) / dur);
-        var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(target * eased) + suffix;
-        if (p < 1) requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { run(en.target); io.unobserve(en.target); }
-      });
-    }, { threshold: 0.4 });
-    nums.forEach(function (n) { io.observe(n); });
-  }
-
-  /* ---------- Reveal on scroll ---------- */
-  function initReveal() {
-    var els = $all(".reveal");
-    if (!els.length) return;
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      els.forEach(function (el) { el.classList.add("in"); });
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    els.forEach(function (el) { io.observe(el); });
-  }
-
-  /* ---------- Testimonial slider ---------- */
-  function initTestimonials() {
-    var track = $("#testiTrack"), dotsWrap = $("#testiDots");
-    if (!track) return;
-    var slides = $all(".testi-slide", track);
-    var dots = dotsWrap ? $all("button", dotsWrap) : [];
-    if (slides.length < 2) return;
-    var i = 0, timer;
-    function go(n) {
-      i = (n + slides.length) % slides.length;
-      slides.forEach(function (s, k) { s.classList.toggle("active", k === i); });
-      dots.forEach(function (d, k) { d.classList.toggle("active", k === i); });
-    }
-    function auto() {
-      if (reduceMotion) return;
-      clearInterval(timer);
-      timer = setInterval(function () { go(i + 1); }, 6000);
-    }
-    dots.forEach(function (d, k) { d.addEventListener("click", function () { go(k); auto(); }); });
-    go(0); auto();
-  }
-
-  /* ---------- Newsletter ---------- */
-  function initNewsletter() {
-    var form = $("#nlForm"), ok = $("#nlOk"), input = $("#nlEmail");
-    if (!form) return;
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (input && !input.checkValidity()) { input.reportValidity(); return; }
-      if (ok) ok.classList.add("show");
-      form.reset();
-      showToast("You're on the list — welcome to Vesta");
-    });
-  }
-
-  /* ---------- Smooth-scroll anchors (respect reduced motion) ---------- */
-  function initSmoothScroll() {
-    $all('a[href^="#"]').forEach(function (a) {
-      var id = a.getAttribute("href");
-      if (id === "#" || id.length < 2) return;
-      a.addEventListener("click", function (e) {
-        var target = document.querySelector(id);
-        if (!target) return;
-        e.preventDefault();
-        target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
-      });
-    });
-  }
-
-  /* ==========================================================================
-     Product detail page
-     ========================================================================== */
+  /* ---------- Gallery & Lightbox ---------- */
   function initGallery() {
     var thumbs = $all(".pdp-thumb"), mainImg = $("#pdpMainImg");
     if (!thumbs.length || !mainImg) return;
@@ -483,7 +345,7 @@
     function setPrice() {
       if (!add) return;
       var base = parseFloat(add.getAttribute("data-price"));
-      add.textContent = "Add to bag — " + money(base * get());
+      add.textContent = "+ Masukkan Keranjang — " + money(base * get());
     }
     function set(n) { val.textContent = Math.max(1, n); if (minus) minus.disabled = get() <= 1; setPrice(); }
     if (minus) minus.addEventListener("click", function () { set(get() - 1); });
@@ -514,7 +376,6 @@
         activate(tabs[n].getAttribute("data-tab"));
       });
     });
-    // deep links to reviews / size guide
     var jumpR = $("#jumpReviews"), jumpS = $("#jumpSize");
     if (jumpR) jumpR.addEventListener("click", function () { activate("reviews"); });
     if (jumpS) jumpS.addEventListener("click", function (e) { e.preventDefault(); activate("size"); var el = $("#sizeguide"); if (el) el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); });
@@ -528,13 +389,6 @@
     initFilter();
     initWishlist();
     initCart();
-    initSnapNav();
-    initCountdown();
-    initCounters();
-    initTestimonials();
-    initNewsletter();
-    initSmoothScroll();
-    // PDP
     initGallery();
     initLightbox();
     initSwatches();
@@ -542,7 +396,4 @@
     initQtyStepper();
     initTabs();
   });
-
-  // Reveal runs immediately so above-the-fold isn't stuck hidden
-  initReveal();
 })();
