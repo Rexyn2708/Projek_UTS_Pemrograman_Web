@@ -27,7 +27,7 @@
             <nav aria-label="Primary">
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="product.html" aria-current="page">Culinary Menu</a></li>
+                    <li><a href="kuliner.html" aria-current="page">Culinary Menu</a></li>
                     <li><a href="accessories.html">Thrift & Accessories</a></li>
                     <li><a href="index.html#lookbook">Bazar & Kampus</a></li>
                 </ul>
@@ -109,8 +109,108 @@
                 </div>
             </div>
         </div>
+
+        <!-- ===== PRODUK TAMBAHAN BARU ===== -->
+        <!-- Produk 5: Mie Goreng -->
+        <div class="col-md-3 col-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <span class="badge bg-success position-absolute m-2">Ready</span>
+                <img src="https://via.placeholder.com/250x200?text=Mie+Goreng" class="card-img-top" alt="Mie Goreng Spesial">
+                <div class="card-body">
+                    <small class="text-muted">Kantin Gedung C</small>
+                    <h5 class="card-title fs-6 fw-bold mt-1">Mie Goreng Spesial Telur Kornet</h5>
+                    <p class="text-success fw-bold m-0">Rp 13.000</p>
+                </div>
+                <div class="card-footer bg-white border-0 pt-0">
+                    <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="mie-goreng" data-name="Mie Goreng Spesial Telur Kornet" data-price="13000" data-img="https://via.placeholder.com/250x200?text=Mie+Goreng">+ Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 6: Es Teh Jumbo -->
+        <div class="col-md-3 col-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <span class="badge bg-success position-absolute m-2">Ready</span>
+                <img src="https://via.placeholder.com/250x200?text=Es+Teh+Jumbo" class="card-img-top" alt="Es Teh Jumbo">
+                <div class="card-body">
+                    <small class="text-muted">Kantin Utama</small>
+                    <h5 class="card-title fs-6 fw-bold mt-1">Es Teh Manis Jumbo Melati</h5>
+                    <p class="text-success fw-bold m-0">Rp 5.000</p>
+                </div>
+                <div class="card-footer bg-white border-0 pt-0">
+                    <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="es-teh" data-name="Es Teh Manis Jumbo Melati" data-price="5000" data-img="https://via.placeholder.com/250x200?text=Es+Teh+Jumbo">+ Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 7: Pisang Goreng Keju -->
+        <div class="col-md-3 col-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <span class="badge bg-warning text-dark position-absolute m-2">Hangat</span>
+                <img src="https://via.placeholder.com/250x200?text=Pisang+Goreng" class="card-img-top" alt="Pisang Goreng Keju">
+                <div class="card-body">
+                    <small class="text-muted">Pojok Snack Fikom</small>
+                    <h5 class="card-title fs-6 fw-bold mt-1">Pisang Goreng Keju Cokelat</h5>
+                    <p class="text-success fw-bold m-0">Rp 10.000</p>
+                </div>
+                <div class="card-footer bg-white border-0 pt-0">
+                    <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="pisang-goreng" data-name="Pisang Goreng Keju Cokelat" data-price="10000" data-img="https://via.placeholder.com/250x200?text=Pisang+Goreng">+ Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 8: Sosis Bakar -->
+        <div class="col-md-3 col-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <span class="badge bg-success position-absolute m-2">Ready</span>
+                <img src="https://via.placeholder.com/250x200?text=Sosis+Bakar" class="card-img-top" alt="Sosis Bakar">
+                <div class="card-body">
+                    <small class="text-muted">Kantin Gedung D</small>
+                    <h5 class="card-title fs-6 fw-bold mt-1">Sosis Bakar Jumbo Saus Madu</h5>
+                    <p class="text-success fw-bold m-0">Rp 12.000</p>
+                </div>
+                <div class="card-footer bg-white border-0 pt-0">
+                    <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="sosis-bakar" data-name="Sosis Bakar Jumbo Saus Madu" data-price="12000" data-img="https://via.placeholder.com/250x200?text=Sosis+Bakar">+ Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
+
+<!-- ===== MODAL JUAL / TAMBAH PRODUK UNTUK USER ===== -->
+<div class="modal fade" id="modalJualBarang" tabindex="-1" aria-labelledby="modalJualLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title fs-6 fw-bold" id="modalJualLabel">🛍️ Mulai Jual Barang / Jajanan di CampusBite</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="userAddProductForm">
+          <div class="mb-2">
+            <label class="small fw-bold">Nama Makanan / Produk</label>
+            <input type="text" id="uProdName" class="form-control form-control-sm" placeholder="Cth: Risoles Mayo Kampus" required>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Kategori</label>
+            <select id="uProdCat" class="form-select form-select-sm">
+              <option value="makanan">Makanan Berat</option>
+              <option value="camilan">Camilan & Snack</option>
+              <option value="minuman">Minuman Segar</option>
+              <option value="aksesoris">Thrift & Aksesori</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Harga (Rp)</label>
+            <input type="number" id="uProdPrice" class="form-control form-control-sm" placeholder="10000" required>
+          </div>
+          <div class="mb-3">
+            <label class="small fw-bold">Nama File Gambar (Pastikan ada di folder img/)</label>
+            <input type="text" id="uProdImg" class="form-control form-control-sm" value="nasi_ayam_geprek.png" required>
+          </div>
+          <button type="submit" class="btn btn-success w-100 fw-bold btn-sm">Terbitkan Produk Jualanmu</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Cart Drawer & Script -->
 <div class="scrim" id="cartScrim"></div>
@@ -120,7 +220,7 @@
         <button class="icon-btn" id="cartClose">✕</button>
     </div>
     <div class="cart-free p-2 bg-light text-center small border-bottom">
-        <span>Bebas ongkir antar gedung khusus area kampus!</span>
+        <span>🚀 Bebas ongkir antar gedung khusus area kampus!</span>
     </div>
     <div class="cart-items p-3" id="cartItems" style="flex: 1; overflow-y: auto;">
         <div class="cart-empty text-center py-5 text-muted" id="cartEmpty">
@@ -140,5 +240,16 @@
 
 <script src="js/vendor/bootstrap.bundle.min.js"></script>
 <script src="js/main.js"></script>
+<script>
+  document.getElementById('userAddProductForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var name = document.getElementById('uProdName').value;
+    alert('Hore! Produk "' + name + '" berhasil dipublikasikan dan sekarang tampil di katalog marketplace kampus!');
+    var modalEl = document.getElementById('modalJualBarang');
+    var modal = bootstrap.Modal.getInstance(modalEl);
+    modal.hide();
+    this.reset();
+  });
+</script>
 </body>
 </html>
