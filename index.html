@@ -36,10 +36,6 @@
             </nav>
 
             <div class="nav-actions d-flex align-items-center gap-2">
-                <button class="btn btn-sm btn-success fw-bold px-3 d-none d-md-inline-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalJualBarang" style="font-size: 0.8rem;">
-                    + Jual Barang
-                </button>
-
                 <!-- ===== DROPDOWN INFO AKUN & DASHBOARD ===== -->
                 <div class="dropdown">
                   <button class="icon-btn border-0 bg-transparent" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Info Akun & Dashboard">
@@ -113,7 +109,6 @@
         <li><a href="#lookbook">Bazzar & Kampus</a></li>
         <li class="border-top pt-2 mt-2"><a href="dashboard-seller.html" class="text-success fw-bold">🏪 Dashboard Seller</a></li>
         <li><a href="dashboard-admin.html" class="text-danger fw-bold">⚙️ Dashboard Admin</a></li>
-        <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Jual Barang / Buka Tenant</a></li>
         <li><a href="login.html">Masuk / Daftar Akun</a></li>
     </ul>
     <div class="mobile-nav-foot">
@@ -134,7 +129,7 @@
                   <a href="kuliner.html" class="btn btn-lg fw-bold" style="background-color: #8FA583; color: #ffffff; border: none;">
                    Pesan Sekarang
                   </a>
-                  <button class="btn btn-dark btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Mulai Jualan</button>              
+                  <a href="dashboard-seller.html" class="btn btn-dark btn-lg fw-bold">🏪 Panel Seller</a>              
                   <a href="#kategori" class="btn btn-outline-secondary btn-lg">Lihat Kategori</a>
               </div>
             </div>
@@ -335,7 +330,7 @@
   <section class="py-5 bg-light" id="lookbook">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Bazzar/Event</h2>
+            <h2 class="fw-bold">Bazzar & Kampus</h2>
             <p class="text-muted">Keseruan tenant mahasiswa saat melayani pesanan dan meramaikan event kampus</p>
         </div>
 
@@ -379,7 +374,7 @@
                     <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
                     <li class="mb-2"><a href="kuliner.html" class="text-white-50 text-decoration-none">Culinary Menu</a></li>
                     <li class="mb-2"><a href="accessories.html" class="text-white-50 text-decoration-none">Thrift & Accessories</a></li>
-                    <li class="mb-2"><a href="#" data-bs-toggle="modal" data-bs-target="#modalJualBarang" class="text-white-50 text-decoration-none">+ Jual Jajanan / Tenant</a></li>
+                    <li class="mb-2"><a href="dashboard-seller.html" class="text-white-50 text-decoration-none">🏪 Dashboard Seller</a></li>
                     <li class="mb-2"><a href="login.html" class="text-white-50 text-decoration-none">Masuk / Daftar Akun</a></li>
                 </ul>
             </div>
@@ -427,83 +422,6 @@
     </div>
 </aside>
 
-<!-- ===== MODAL TAMBAH PRODUK ===== -->
-<div class="modal fade" id="modalJualBarang" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-success text-white">
-        <h5 class="modal-title fs-6 fw-bold">🛍️ Mulai Jual Barang / Jajanan di CampusBite</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="userAddProductForm">
-          <div class="mb-2">
-            <label class="small fw-bold">Nama Makanan / Produk</label>
-            <input type="text" id="uProdName" class="form-control form-control-sm" placeholder="Cth: Risoles Mayo Kampus" required>
-          </div>
-          <div class="mb-2">
-            <label class="small fw-bold">Kategori</label>
-            <select id="uProdCat" class="form-select form-select-sm">
-              <option value="makanan">Makanan Berat</option>
-              <option value="camilan">Camilan & Snack</option>
-              <option value="minuman">Minuman Segar</option>
-              <option value="aksesoris">Thrift & Aksesori</option>
-            </select>
-          </div>
-          <div class="mb-2">
-            <label class="small fw-bold">Harga (Rp)</label>
-            <input type="number" id="uProdPrice" class="form-control form-control-sm" placeholder="10000" required>
-          </div>
-          <div class="mb-3">
-            <label class="small fw-bold">Nama File Gambar (Pastikan ada di folder img/)</label>
-            <input type="text" id="uProdImg" class="form-control form-control-sm" placeholder="cth: Americano.png">
-          </div>
-          <button type="submit" class="btn btn-success w-100 fw-bold btn-sm">Terbitkan Produk Jualanmu</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== MODAL EDIT PRODUK ===== -->
-<div class="modal fade" id="modalEditBarang" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
-        <h5 class="modal-title fs-6 fw-bold">✏️ Edit Produk Jualan</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="userEditProductForm">
-          <input type="hidden" id="editIndex">
-          <div class="mb-2">
-            <label class="small fw-bold">Nama Makanan / Produk</label>
-            <input type="text" id="editProdName" class="form-control form-control-sm" required>
-          </div>
-          <div class="mb-2">
-            <label class="small fw-bold">Kategori</label>
-            <select id="editProdCat" class="form-select form-select-sm">
-              <option value="makanan">Makanan Berat</option>
-              <option value="camilan">Camilan & Snack</option>
-              <option value="minuman">Minuman Segar</option>
-              <option value="aksesoris">Thrift & Aksesori</option>
-            </select>
-          </div>
-          <div class="mb-2">
-            <label class="small fw-bold">Harga (Rp)</label>
-            <input type="number" id="editProdPrice" class="form-control form-control-sm" required>
-          </div>
-          <div class="mb-3">
-            <label class="small fw-bold">Nama File Gambar (Pastikan di folder img/)</label>
-            <input type="text" id="editProdImg" class="form-control form-control-sm">
-          </div>
-          <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">Simpan Perubahan</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Toast Notification -->
 <div class="toast" id="toast" role="status" aria-live="polite">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
@@ -547,7 +465,6 @@
           <span class="badge bg-primary position-absolute m-2">Jualan Saya</span>
           
           <div class="position-absolute top-0 end-0 m-2 d-flex gap-1 z-3">
-            <button class="btn btn-sm btn-light border shadow-sm px-2 py-0" onclick="openEditModal(${index})" title="Edit Produk">✏️</button>
             <button class="btn btn-sm btn-danger shadow-sm px-2 py-0" onclick="deleteProduct(${index})" title="Hapus Produk">🗑️</button>
           </div>
 
@@ -601,23 +518,6 @@
     });
   }
 
-  // Buka Modal Edit Produk
-  function openEditModal(index) {
-    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-    const item = saved[index];
-    if (!item) return;
-
-    document.getElementById('editIndex').value = index;
-    document.getElementById('editProdName').value = item.nama;
-    document.getElementById('editProdCat').value = item.kategori;
-    document.getElementById('editProdPrice').value = item.harga;
-    document.getElementById('editProdImg').value = item.gambar || '';
-
-    const modalEl = document.getElementById('modalEditBarang');
-    const modal = new bootstrap.Modal(modalEl);
-    modal.show();
-  }
-
   // Hapus Produk
   function deleteProduct(index) {
     if (confirm('Apakah Anda yakin ingin menghapus produk jualan ini?')) {
@@ -632,56 +532,6 @@
   document.addEventListener('DOMContentLoaded', function() {
     refreshProductList();
     refreshAdminEvents();
-  });
-
-  // Submit Form Tambah Produk
-  document.getElementById('userAddProductForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('uProdName').value;
-    const cat = document.getElementById('uProdCat').value;
-    const price = document.getElementById('uProdPrice').value;
-    let img = document.getElementById('uProdImg').value;
-
-    if (img && !img.startsWith('img/') && !img.startsWith('http')) {
-      img = 'img/' + img;
-    }
-
-    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-    saved.push({ nama: name, kategori: cat, harga: price, gambar: img });
-    localStorage.setItem('user_products', JSON.stringify(saved));
-
-    refreshProductList();
-
-    alert('Hore! Produk "' + name + '" berhasil dipublikasikan!');
-    const modalEl = document.getElementById('modalJualBarang');
-    const modal = bootstrap.Modal.getInstance(modalEl);
-    if (modal) modal.hide();
-    this.reset();
-  });
-
-  // Submit Form Edit Produk
-  document.getElementById('userEditProductForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const index = document.getElementById('editIndex').value;
-    const name = document.getElementById('editProdName').value;
-    const cat = document.getElementById('editProdCat').value;
-    const price = document.getElementById('editProdPrice').value;
-    let img = document.getElementById('editProdImg').value;
-
-    if (img && !img.startsWith('img/') && !img.startsWith('http')) {
-      img = 'img/' + img;
-    }
-
-    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-    saved[index] = { nama: name, kategori: cat, harga: price, gambar: img };
-    localStorage.setItem('user_products', JSON.stringify(saved));
-
-    refreshProductList();
-
-    alert('Produk "' + name + '" berhasil diperbarui!');
-    const modalEl = document.getElementById('modalEditBarang');
-    const modal = bootstrap.Modal.getInstance(modalEl);
-    if (modal) modal.hide();
   });
 </script>
 </body>
