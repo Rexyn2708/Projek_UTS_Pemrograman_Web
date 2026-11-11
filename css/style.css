@@ -1065,3 +1065,12 @@ p { margin: 0 0 1rem; }
     object-fit: cover !important; /* Gambar dipotong otomatis agar tidak gepeng/lonjong */
     width: 100% !important;
 }
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px !important;
+    width: auto;
+    flex: 0 0 auto;
+}
