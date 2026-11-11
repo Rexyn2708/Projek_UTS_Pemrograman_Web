@@ -9,11 +9,11 @@
 </head>
 <body class="bg-light">
 
-  <!-- ===== Header Navigasi Panel Admin ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-danger px-4 shadow-sm">
+  <!-- ===== Header Navigasi Panel Admin (Warna Cokelat Khas Tema Web) ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark px-4 shadow-sm" style="background-color: #7c2b3b;">
     <div class="container-fluid p-0">
       <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
-        CampusBite <span class="badge bg-light text-danger fs-6">Panel Admin Kampus</span>
+        CampusBite <span class="badge bg-light text-dark fs-6">Panel Admin Kampus</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
@@ -101,7 +101,7 @@
       </p>
 
       <div class="d-flex gap-2 flex-wrap">
-        <button class="btn btn-danger btn-sm px-4 fw-bold" onclick="alert('Kebijakan kampus berhasil disimpan!')">Simpan Kebijakan Kampus</button>
+        <button class="btn btn-sm px-4 fw-bold text-white" style="background-color: #7c2b3b;" onclick="alert('Kebijakan kampus berhasil disimpan!')">Simpan Kebijakan Kampus</button>
         <a href="dashboard-seller.html" class="btn btn-outline-dark btn-sm px-4">Buka Panel Seller</a>
       </div>
     </div>
@@ -123,7 +123,6 @@
       const statContainer = document.getElementById('totalProductStat');
       const saved = JSON.parse(localStorage.getItem('user_products')) || [];
 
-      // Update angka statistik
       statContainer.textContent = saved.length + ' Produk';
 
       if (saved.length === 0) {
@@ -175,7 +174,6 @@
       listContainer.innerHTML = html;
     }
 
-    // Admin Hapus Produk Tenant
     function adminDeleteProduct(index) {
       if (confirm('Admin Caution: Apakah Anda yakin ingin menghapus/menarik produk ini dari marketplace?')) {
         const saved = JSON.parse(localStorage.getItem('user_products')) || [];
@@ -187,7 +185,6 @@
       }
     }
 
-    // Admin Reset Semua Produk
     function clearAllProducts() {
       if (confirm('PERINGATAN ADMIN: Apakah Anda yakin ingin MENGHAPUS SEMUA produk buatan user dari localStorage?')) {
         localStorage.removeItem('user_products');
@@ -196,7 +193,6 @@
       }
     }
 
-    // Initial Load
     document.addEventListener('DOMContentLoaded', renderAdminTable);
   </script>
 </body>
