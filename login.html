@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script>document.documentElement.classList.add("js")</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Masuk — CampusBite</title>
@@ -10,28 +11,27 @@
 <body class="bg-light d-flex align-items-center justify-content-center" style="min-height: 100vh;">
 
   <div class="card border-0 shadow-sm p-4" style="width: 100%; max-width: 420px;">
-    <div class="text-center mb-4">
+    <div class="text-center mb-3">
       <a href="index.html" class="brand fs-3 text-dark text-decoration-none">CampusBite<span class="text-success">.</span></a>
-      <p class="text-muted small mt-1">Silakan masuk sesuai peran/role kamu</p>
+      <p class="text-muted small mt-1">Silakan masuk ke akun kamu</p>
     </div>
 
     <form id="loginForm">
       <div class="mb-3">
-        <label class="form-label small fw-bold">PILIH ROLE / AKSES</label>
+        <label class="form-label small fw-bold">PILIH AKSES / ROLE</label>
         <select id="userRole" class="form-select" required>
-          <option value="buyer">Pembeli (Mahasiswa)</option>
-          <option value="seller">Penjual / Tenant Kantin</option>
-          <option value="admin">Admin Kampus</option>
+          <option value="user">User (Mahasiswa - Bisa Beli & Jual)</option>
+          <option value="admin">Admin Kampus (Pengelola Sistem)</option>
         </select>
       </div>
 
       <div class="mb-3">
-        <label class="form-label small fw-bold">Email Kampus / NIM</label>
+        <label class="form-label small fw-bold">EMAIL KAMPUS / NIM</label>
         <input type="text" id="loginEmail" class="form-control" placeholder="nama@student.univ.ac.id" required>
       </div>
 
       <div class="mb-3">
-        <label class="form-label small fw-bold">Kata Sandi</label>
+        <label class="form-label small fw-bold">KATA SANDI</label>
         <input type="password" id="loginPass" class="form-control" placeholder="••••••••" required>
       </div>
 
@@ -48,13 +48,11 @@
       e.preventDefault();
       var role = document.getElementById('userRole').value;
       
-      // Simpan role ke localStorage agar halaman lain tahu siapa yang login
+      // Simpan role ke localStorage
       localStorage.setItem('campusbite_role', role);
 
-      // Arahkan berdasarkan role yang dipilih
-      if (role === 'seller') {
-        window.location.href = 'dashboard-seller.html';
-      } else if (role === 'admin') {
+      // Jika admin masuk ke dashboard admin, jika user masuk ke index utama
+      if (role === 'admin') {
         window.location.href = 'dashboard-admin.html';
       } else {
         window.location.href = 'index.html';
