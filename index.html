@@ -32,19 +32,8 @@
                     <li><a href="kuliner.html">Culinary Menu</a></li>
                     <li><a href="accessories.html">Thrift & Acc</a></li>
                     <li><a href="index.html#lookbook">Bazar</a></li>
-        
-        <!-- ===== TAMBAHAN MENU DASHBOARD ===== -->
-                      <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle text-warning fw-bold" href="#" id="dashboardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Dashboard ▾
-                          </a>
-                          <ul class="dropdown-menu shadow border-0" aria-labelledby="dashboardDropdown">
-                              <li><a class="dropdown-item fw-semibold" href="dashboard-seller.html">🏪 Dashboard Seller</a></li>
-                              <li><a class="dropdown-item fw-semibold text-danger" href="dashboard-admin.html">⚙️ Dashboard Admin</a></li>
-                          </ul>
-                      </li>
-                  </ul>
-              </nav>
+                </ul>
+            </nav>
 
             <div class="nav-actions d-flex align-items-center gap-2">
                 <button class="btn btn-sm btn-success fw-bold px-3 d-none d-md-inline-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalJualBarang" style="font-size: 0.8rem;">
@@ -55,9 +44,37 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
                 </button>
 
-                <a href="login.html" class="icon-btn" aria-label="Masuk Akun" title="Masuk / Daftar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-                </a>
+                <!-- ===== DROPDOWN INFO AKUN & DASHBOARD ===== -->
+                <div class="dropdown">
+                  <button class="icon-btn border-0 bg-transparent" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Info Akun & Dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="24" height="24" aria-hidden="true">
+                      <circle cx="12" cy="8" r="4"/>
+                      <path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>
+                    </svg>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="accountDropdown" style="min-width: 220px;">
+                    <li class="px-3 py-2 bg-light border-bottom">
+                      <div class="fw-bold text-dark small">Info Akun Saya</div>
+                      <div class="text-muted" style="font-size: 0.75rem;">Mahasiswa / Tenant</div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item py-2 fw-semibold text-dark" href="dashboard-seller.html">
+                        🏪 Dashboard Seller / Penjual
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item py-2 fw-semibold text-danger" href="dashboard-admin.html">
+                        ⚙️ Dashboard Admin Kampus
+                      </a>
+                    </li>
+                    <li><hr class="dropdown-divider m-0"></li>
+                    <li>
+                      <a class="dropdown-item py-2 text-muted small" href="login.html">
+                        🔑 Masuk / Ganti Akun
+                      </a>
+                    </li>
+                  </ul>
+                </div>
 
                 <button class="icon-btn cart-pill" id="cartOpen" aria-label="Buka Keranjang">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
@@ -98,6 +115,8 @@
         <li><a href="kuliner.html">Culinary Menu</a></li>
         <li><a href="accessories.html">Thrift & Accessories</a></li>
         <li><a href="#lookbook">Bazar & Kampus</a></li>
+        <li class="border-top pt-2 mt-2"><a href="dashboard-seller.html" class="text-success fw-bold">🏪 Dashboard Seller</a></li>
+        <li><a href="dashboard-admin.html" class="text-danger fw-bold">⚙️ Dashboard Admin</a></li>
         <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Jual Barang / Buka Tenant</a></li>
         <li><a href="login.html">Masuk / Daftar Akun</a></li>
     </ul>
@@ -183,7 +202,7 @@
         </div>
 
         <div class="row g-4" id="indexKulinerRow">
-            <!-- Produk bawaan -->
+            <!-- Produk bawaan 1 -->
             <div class="col-md-3 col-6">
                 <div class="card h-100 border-0 shadow-sm">
                     <span class="badge bg-success position-absolute m-2">Ready Stock</span>
@@ -198,6 +217,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Produk bawaan 2 -->
             <div class="col-md-3 col-6">
                 <div class="card h-100 border-0 shadow-sm">
                     <span class="badge bg-warning text-dark position-absolute m-2">PO</span>
@@ -212,6 +232,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Produk bawaan 3 -->
             <div class="col-md-3 col-6">
                 <div class="card h-100 border-0 shadow-sm">
                     <span class="badge bg-success position-absolute m-2">Ready Stock</span>
@@ -226,6 +247,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Produk bawaan 4 -->
             <div class="col-md-3 col-6">
                 <div class="card h-100 border-0 shadow-sm">
                     <span class="badge bg-info text-dark position-absolute m-2">Ready Stock</span>
@@ -469,7 +491,7 @@
             <input type="number" id="uProdPrice" class="form-control form-control-sm" placeholder="10000" required>
           </div>
           <div class="mb-3">
-            <label class="small fw-bold">Nama File Gambar (Pastikan di folder img/)</label>
+            <label class="small fw-bold">Nama File Gambar (Pastikan ada di folder img/)</label>
             <input type="text" id="uProdImg" class="form-control form-control-sm" placeholder="cth: nasi_ayam_geprek.png">
           </div>
           <button type="submit" class="btn btn-success w-100 fw-bold btn-sm">Terbitkan Produk Jualanmu</button>
