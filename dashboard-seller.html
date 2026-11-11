@@ -265,6 +265,64 @@
       }
     }
 
+    // Fungsi Utama: Membaca data 'user_products' dari localStorage
+    function renderSellerTable() {
+      const listContainer = document.getElementById('sellerProductList');
+      const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+
+      if (saved.length === 0) {
+        listContainer.innerHTML = '<p class="text-muted small m-0 py-3 text-center">Belum ada produk yang ditambahkan. Yuk isi form di samping untuk mulai berjualan!</p>';
+        return;
+      }
+
+      let html = `
+        <table class="table table-hover align-middle mb-0 small">
+          <thead class="table-light">
+            <tr>
+              <th>Gambar</th>
+              <th>Nama Produk</th>
+              <th>Kategori</th>
+              <th>Harga</th>
+              <th class="text-center">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      saved.forEach((prod, index) => {
+        const hargaFormatted = parseInt(prod.harga || 0).toLocaleString('id-ID');
+        const fallbackImg = `https://via.placeholder.com/50?text=${encodeURIComponent(prod.nama)}`;
+        
+        // Otomatis cek jika user lupa mengetik 'img/' di depan nama file gambar
+        let imgSrc = prod.gambar ? prod.gambar : fallbackImg;
+        if (prod.gambar && !prod.gambar.startsWith('img/') && !prod.gambar.startsWith('http')) {
+          imgSrc = 'img/' + prod.gambar;
+        }
+
+        html += `
+          <tr>
+            <td>
+              <img src="${imgSrc}" width="45" height="45" class="rounded object-fit-cover" alt="${prod.nama}" onerror="this.src='${fallbackImg}'">
+            </td>
+            <td class="fw-bold text-dark">${prod.nama}</td>
+            <td><span class="badge bg-secondary text-capitalize">${prod.kategori}</span></td>
+            <td class="text-success fw-bold">Rp ${hargaFormatted}</td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-outline-primary py-0 px-2 me-1" onclick="openEditModal(${index})" title="Edit">✏️</button>
+              <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="deleteProduct(${index})" title="Hapus">🗑️</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += `
+          </tbody>
+        </table>
+      `;
+
+      listContainer.innerHTML = html;
+    }
+
     // Otomatis Render saat Halaman Selesai Dimuat
     document.addEventListener('DOMContentLoaded', renderSellerTable);
   </script>
