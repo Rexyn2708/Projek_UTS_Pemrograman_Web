@@ -147,7 +147,7 @@
       }
     }
 
-    // Fungsi Utama: Membaca data 'user_products' dari localStorage
+    // Membaca data 'user_products' dari localStorage
     function renderSellerTable() {
       const listContainer = document.getElementById('sellerProductList');
       const saved = JSON.parse(localStorage.getItem('user_products')) || [];
@@ -174,7 +174,12 @@
       saved.forEach((prod, index) => {
         const hargaFormatted = parseInt(prod.harga || 0).toLocaleString('id-ID');
         const fallbackImg = `https://via.placeholder.com/50?text=${encodeURIComponent(prod.nama)}`;
-        const imgSrc = prod.gambar ? prod.gambar : fallbackImg;
+        
+        // Pengecekan otomatis folder img/
+        let imgSrc = prod.gambar ? prod.gambar : fallbackImg;
+        if (prod.gambar && !prod.gambar.startsWith('img/') && !prod.gambar.startsWith('http')) {
+          imgSrc = 'img/' + prod.gambar;
+        }
 
         html += `
           <tr>
@@ -206,7 +211,11 @@
       const name = document.getElementById('prodName').value;
       const cat = document.getElementById('prodCat').value;
       const price = document.getElementById('prodPrice').value;
-      const img = document.getElementById('prodImg').value;
+      let img = document.getElementById('prodImg').value;
+
+      if (img && !img.startsWith('img/') && !img.startsWith('http')) {
+        img = 'img/' + img;
+      }
 
       const saved = JSON.parse(localStorage.getItem('user_products')) || [];
       saved.push({ nama: name, kategori: cat, harga: price, gambar: img });
@@ -241,7 +250,11 @@
       const name = document.getElementById('editProdName').value;
       const cat = document.getElementById('editProdCat').value;
       const price = document.getElementById('editProdPrice').value;
-      const img = document.getElementById('editProdImg').value;
+      let img = document.getElementById('editProdImg').value;
+
+      if (img && !img.startsWith('img/') && !img.startsWith('http')) {
+        img = 'img/' + img;
+      }
 
       const saved = JSON.parse(localStorage.getItem('user_products')) || [];
       saved[index] = { nama: name, kategori: cat, harga: price, gambar: img };
@@ -265,15 +278,7 @@
       }
     }
 
-      html += `
-          </tbody>
-        </table>
-      `;
-
-      listContainer.innerHTML = html;
-    }
-
-    // Otomatis Render saat Halaman Selesai Dimuat
+    // Render Otomatis saat Halaman Dimuat
     document.addEventListener('DOMContentLoaded', renderSellerTable);
   </script>
 </body>
