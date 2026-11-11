@@ -170,7 +170,12 @@
       saved.forEach((prod, index) => {
         const hargaFormatted = parseInt(prod.harga || 0).toLocaleString('id-ID');
         const fallbackImg = `https://via.placeholder.com/50?text=${encodeURIComponent(prod.nama)}`;
-        const imgSrc = prod.gambar ? prod.gambar : fallbackImg;
+        
+        // Pengecekan jalur folder img/ otomatis
+        let imgSrc = prod.gambar ? prod.gambar : fallbackImg;
+        if (prod.gambar && !prod.gambar.startsWith('img/') && !prod.gambar.startsWith('http')) {
+          imgSrc = 'img/' + prod.gambar;
+        }
 
         html += `
           <tr>
@@ -240,7 +245,11 @@
       e.preventDefault();
       const title = document.getElementById('evTitle').value;
       const desc = document.getElementById('evDesc').value;
-      const img = document.getElementById('evImg').value;
+      let img = document.getElementById('evImg').value;
+
+      if (img && !img.startsWith('img/') && !img.startsWith('http')) {
+        img = 'img/' + img;
+      }
 
       const events = JSON.parse(localStorage.getItem('campus_events')) || [];
       events.push({ judul: title, deskripsi: desc, gambar: img });
