@@ -566,7 +566,7 @@
     });
   }
 
-  // 2. Render Event Buatan Admin di Section Lookbook / Bazar
+  // Render Event Buatan Admin di Section Lookbook / Bazar
   function refreshAdminEvents() {
     document.querySelectorAll('.admin-event-card').forEach(el => el.remove());
 
@@ -577,7 +577,12 @@
 
     events.forEach(ev => {
       const fallbackImg = `https://via.placeholder.com/400x300?text=${encodeURIComponent(ev.judul)}`;
-      const imgSrc = ev.gambar ? ev.gambar : fallbackImg;
+      
+      // Otomatis cek jika user lupa mengetik 'img/' di depan nama gambar
+      let imgSrc = ev.gambar ? ev.gambar : fallbackImg;
+      if (ev.gambar && !ev.gambar.startsWith('img/') && !ev.gambar.startsWith('http')) {
+        imgSrc = 'img/' + ev.gambar;
+      }
 
       const col = document.createElement('div');
       col.className = 'col-md-4 col-12 admin-event-card';
