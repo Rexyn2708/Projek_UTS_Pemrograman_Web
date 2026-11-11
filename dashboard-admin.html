@@ -9,45 +9,195 @@
 </head>
 <body class="bg-light">
 
-  <nav class="navbar navbar-dark bg-danger px-4">
-    <a class="navbar-brand fw-bold" href="#">CampusBite <span class="badge bg-light text-danger">Panel Admin Kampus</span></a>
-    <button class="btn btn-outline-light btn-sm" onclick="logout()">Keluar</button>
+  <!-- ===== Header Navigasi Panel Admin ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-danger px-4 shadow-sm">
+    <div class="container-fluid p-0">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+        CampusBite <span class="badge bg-light text-danger fs-6">Panel Admin Kampus</span>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="adminNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3 gap-1">
+          <li class="nav-item">
+            <a class="nav-link text-white fw-semibold" href="index.html">🏠 Lihat Website Utama</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white-50" href="kuliner.html">Culinary Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white-50" href="accessories.html">Thrift & Acc</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-warning fw-semibold" href="dashboard-seller.html">🏪 Dashboard Seller</a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-2">
+          <span class="text-white-50 small d-none d-md-inline">Halo, Administrator</span>
+          <button class="btn btn-outline-light btn-sm fw-bold px-3" onclick="logout()">Keluar / Logout</button>
+        </div>
+      </div>
+    </div>
   </nav>
 
+  <!-- ===== Konten Utama Dashboard Admin ===== -->
   <div class="container my-5">
-    <div class="row g-4">
+    
+    <!-- Tombol Navigasi Cepat -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h4 class="fw-bold m-0 text-dark">Ringkasan & Moderasi Marketplace</h4>
+        <p class="text-muted m-0 small">Pantau statistik operasional kantin dan produk yang dipublikasikan tenant</p>
+      </div>
+      <a href="index.html" class="btn btn-sm btn-outline-secondary">← Kembali ke Beranda</a>
+    </div>
+
+    <!-- Dynamic Metric Cards -->
+    <div class="row g-4 mb-4">
       <div class="col-md-4">
-        <div class="card border-0 shadow-sm p-3 text-center">
-          <h6 class="text-muted">Total Tenant Aktif</h6>
-          <h2 class="fw-bold text-success">12 Tenant</h2>
+        <div class="card border-0 shadow-sm p-4 text-center h-100">
+          <h6 class="text-muted text-uppercase small fw-bold">Total Produk Ditambahkan</h6>
+          <h2 class="fw-bold text-success display-6 my-2" id="totalProductStat">0 Produk</h2>
+          <small class="text-muted">Tersimpan di Sistem Kampus</small>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card border-0 shadow-sm p-3 text-center">
-          <h6 class="text-muted">Total Pesanan Hari Ini</h6>
-          <h2 class="fw-bold text-primary">48 Transaksi</h2>
+        <div class="card border-0 shadow-sm p-4 text-center h-100">
+          <h6 class="text-muted text-uppercase small fw-bold">Total Pesanan Hari Ini</h6>
+          <h2 class="fw-bold text-primary display-6 my-2">48 Transaksi</h2>
+          <small class="text-muted">Pengiriman Area Kampus</small>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card border-0 shadow-sm p-3 text-center">
-          <h6 class="text-muted">Status Pengiriman</h6>
-          <h2 class="fw-bold text-warning">Lancar (Antar Gedung)</h2>
+        <div class="card border-0 shadow-sm p-4 text-center h-100">
+          <h6 class="text-muted text-uppercase small fw-bold">Status Pengiriman</h6>
+          <h2 class="fw-bold text-warning display-6 my-2">Lancar</h2>
+          <small class="text-muted">Bebas Ongkir Antar Gedung</small>
         </div>
       </div>
     </div>
 
-    <div class="card border-0 shadow-sm p-4 mt-4">
-      <h5 class="fw-bold mb-3">Kontrol Sistem Marketplace</h5>
-      <p class="text-muted small">Admin dapat memantau seluruh transaksi kantin, memverifikasi akun mahasiswa yang mendaftar sebagai penjual, serta mengatur kebijakan bebas ongkir antar gedung.</p>
-      <button class="btn btn-outline-danger btn-sm w-25" onclick="alert('Pengaturan disimpan!')">Simpan Kebijakan Kampus</button>
+    <!-- Tabel Pengawasan Produk Tenant -->
+    <div class="card border-0 shadow-sm p-4 mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold m-0 fs-6">🔍 Pengawasan Produk Jualan Tenant</h5>
+        <button class="btn btn-sm btn-outline-danger" onclick="clearAllProducts()">⚠️ Reset / Clear Semua Produk User</button>
+      </div>
+      
+      <div id="adminProductTable" class="table-responsive">
+        <!-- Tabel dirender otomatis via JS -->
+      </div>
     </div>
+
+    <!-- Panel Pengaturan Admin -->
+    <div class="card border-0 shadow-sm p-4">
+      <h5 class="fw-bold mb-2">Kontrol Kebijakan Kampus</h5>
+      <p class="text-muted small mb-3">
+        Sebagai Administrator, Anda memiliki wewenang untuk menghapus produk tenant yang menyalahi aturan kampus atau mengubah pengaturan sistem marketplace.
+      </p>
+
+      <div class="d-flex gap-2 flex-wrap">
+        <button class="btn btn-danger btn-sm px-4 fw-bold" onclick="alert('Kebijakan kampus berhasil disimpan!')">Simpan Kebijakan Kampus</button>
+        <a href="dashboard-seller.html" class="btn btn-outline-dark btn-sm px-4">Buka Panel Seller</a>
+      </div>
+    </div>
+
   </div>
 
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
   <script>
     function logout() {
-      localStorage.removeItem('campusbite_role');
-      window.location.href = 'login.html';
+      if (confirm('Apakah Anda yakin ingin keluar dari Panel Admin?')) {
+        localStorage.removeItem('campusbite_role');
+        window.location.href = 'login.html';
+      }
     }
+
+    // Render Tabel Pengawasan Admin dari localStorage 'user_products'
+    function renderAdminTable() {
+      const listContainer = document.getElementById('adminProductTable');
+      const statContainer = document.getElementById('totalProductStat');
+      const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+
+      // Update angka statistik
+      statContainer.textContent = saved.length + ' Produk';
+
+      if (saved.length === 0) {
+        listContainer.innerHTML = '<p class="text-muted small m-0 py-3 text-center">Belum ada produk jualan buatan mahasiswa/tenant yang terdaftar di localStorage.</p>';
+        return;
+      }
+
+      let html = `
+        <table class="table table-hover align-middle mb-0 small">
+          <thead class="table-light">
+            <tr>
+              <th>No</th>
+              <th>Gambar</th>
+              <th>Nama Produk</th>
+              <th>Kategori</th>
+              <th>Harga</th>
+              <th class="text-center">Aksi Moderasi</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      saved.forEach((prod, index) => {
+        const hargaFormatted = parseInt(prod.harga || 0).toLocaleString('id-ID');
+        const fallbackImg = `https://via.placeholder.com/50?text=${encodeURIComponent(prod.nama)}`;
+        const imgSrc = prod.gambar ? prod.gambar : fallbackImg;
+
+        html += `
+          <tr>
+            <td>${index + 1}</td>
+            <td>
+              <img src="${imgSrc}" width="40" height="40" class="rounded object-fit-cover" alt="${prod.nama}" onerror="this.src='${fallbackImg}'">
+            </td>
+            <td class="fw-bold text-dark">${prod.nama}</td>
+            <td><span class="badge bg-secondary text-capitalize">${prod.kategori}</span></td>
+            <td class="text-success fw-bold">Rp ${hargaFormatted}</td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="adminDeleteProduct(${index})" title="Hapus Produk Tenant">🗑️ Take Down</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += `
+          </tbody>
+        </table>
+      `;
+
+      listContainer.innerHTML = html;
+    }
+
+    // Admin Hapus Produk Tenant
+    function adminDeleteProduct(index) {
+      if (confirm('Admin Caution: Apakah Anda yakin ingin menghapus/menarik produk ini dari marketplace?')) {
+        const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+        const itemNama = saved[index] ? saved[index].nama : '';
+        saved.splice(index, 1);
+        localStorage.setItem('user_products', JSON.stringify(saved));
+        renderAdminTable();
+        alert('Produk "' + itemNama + '" telah berhasil ditarik oleh Admin.');
+      }
+    }
+
+    // Admin Reset Semua Produk
+    function clearAllProducts() {
+      if (confirm('PERINGATAN ADMIN: Apakah Anda yakin ingin MENGHAPUS SEMUA produk buatan user dari localStorage?')) {
+        localStorage.removeItem('user_products');
+        renderAdminTable();
+        alert('Seluruh data produk tambahan berhasil dibersihkan.');
+      }
+    }
+
+    // Initial Load
+    document.addEventListener('DOMContentLoaded', renderAdminTable);
   </script>
 </body>
 </html>
