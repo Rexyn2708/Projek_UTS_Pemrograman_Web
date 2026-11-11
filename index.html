@@ -53,23 +53,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
                     <span class="cart-count" id="cartCount" aria-hidden="true">0</span>
                 </button>
-
-                <button class="icon-btn nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-                </button>
             </div>
-        </div>
-    </div>
-
-    <div class="search-panel" id="searchPanel" role="dialog" aria-label="Search products">
-        <div class="container-x">
-            <form class="search-form" role="search" onsubmit="return false;">
-                <svg viewBox="0 0 24 24" width="26" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-                <input type="text" id="searchInput" placeholder="Cari ayam geprek, kopi, atau thrift..." class="search-input">
-                <button type="button" class="icon-btn" id="searchClose" aria-label="Close search">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-                </button>
-            </form>
         </div>
     </div>
 </header>
@@ -86,7 +70,6 @@
                 <div class="d-flex gap-2 flex-wrap">
                   <a href="kuliner.html" class="btn btn-success btn-lg">Pesan Sekarang</a>
                   <button class="btn btn-dark btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Mulai Jualan</button>              
-                  <a href="#kategori" class="btn btn-outline-secondary btn-lg">Lihat Kategori</a>
               </div>
             </div>
             <div class="col-lg-6">
@@ -110,6 +93,7 @@
         </div>
 
         <div class="row g-4" id="indexKulinerRow">
+            <!-- Produk bawaan -->
             <div class="col-md-3 col-6">
                 <div class="card h-100 border-0 shadow-sm">
                     <span class="badge bg-success position-absolute m-2">Ready Stock</span>
@@ -126,7 +110,7 @@
             </div>
             <div class="col-md-3 col-6">
                 <div class="card h-100 border-0 shadow-sm">
-                    <span class="badge bg-warning text-dark position-absolute m-2">Pre-Order (PO)</span>
+                    <span class="badge bg-warning text-dark position-absolute m-2">PO</span>
                     <img src="Kopi_Susu_Gula_Aren.png" class="card-img-top" alt="Kopi Susu Literan" onerror="this.src='https://via.placeholder.com/250x200?text=Kopi+Susu'">
                     <div class="card-body">
                         <small class="text-muted">Kopi Kantin BCA</small>
@@ -135,34 +119,6 @@
                     </div>
                     <div class="card-footer bg-white border-0 pt-0">
                         <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="kopi-aren" data-name="Kopi Susu Gula Aren 500ml" data-price="18000" data-img="Kopi_Susu_Gula_Aren.png">+ Tambah ke Keranjang</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="card h-100 border-0 shadow-sm">
-                    <span class="badge bg-success position-absolute m-2">Ready Stock</span>
-                    <img src="Dimsum_Mentai.png" class="card-img-top" alt="Dimsum Mentai" onerror="this.src='https://via.placeholder.com/250x200?text=Dimsum+Mentai'">
-                    <div class="card-body">
-                        <small class="text-muted">Kantin BCA</small>
-                        <h5 class="card-title fs-6 fw-bold mt-1">Dimsum Mentai Mozzarella</h5>
-                        <p class="text-success fw-bold m-0">Rp 12.000</p>
-                    </div>
-                    <div class="card-footer bg-white border-0 pt-0">
-                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="dimsum-mentai" data-name="Dimsum Mentai Mozzarella" data-price="12000" data-img="Dimsum_Mentai.png">+ Tambah ke Keranjang</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="card h-100 border-0 shadow-sm">
-                    <span class="badge bg-info text-dark position-absolute m-2">Ready Stock</span>
-                    <img src="Mie_Ayam.png" class="card-img-top" alt="Mie Ayam" onerror="this.src='https://via.placeholder.com/250x200?text=Mie+Ayam'">
-                    <div class="card-body">
-                        <small class="text-muted">Mie Ayam</small>
-                        <h5 class="card-title fs-6 fw-bold mt-1">Mie Ayam Bakso</h5>
-                        <p class="text-success fw-bold m-0">Rp 15.000</p>
-                    </div>
-                    <div class="card-footer bg-white border-0 pt-0">
-                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="mie-ayam" data-name="Mie Ayam Bakso" data-price="15000" data-img="Mie_Ayam.png">+ Tambah ke Keranjang</button>
                     </div>
                 </div>
             </div>
@@ -196,59 +152,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-6">
-                <div class="card h-100 border-0 shadow-sm">
-                    <span class="badge bg-info text-dark position-absolute m-2">New Arrival</span>
-                    <img src="Kalung_rantai_silver.png" class="card-img-top" alt="Kalung Estetik" onerror="this.src='https://via.placeholder.com/250x200?text=Kalung+Y2K'">
-                    <div class="card-body">
-                        <small class="text-muted">Accessory Hub (FIB)</small>
-                        <h5 class="card-title fs-6 fw-bold mt-1">Y2K Silver Necklace Series</h5>
-                        <p class="text-success fw-bold m-0">Rp 20.000</p>
-                    </div>
-                    <div class="card-footer bg-white border-0 pt-0">
-                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="y2k-necklace" data-name="Y2K Silver Necklace Series" data-price="20000" data-img="Kalung_rantai_silver.png">+ Tambah ke Keranjang</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="card h-100 border-0 shadow-sm">
-                    <span class="badge bg-warning text-dark position-absolute m-2">Lucu & Unik</span>
-                    <img src="Gantungan_Kunci_Akrilik.png" class="card-img-top" alt="Gantungan Kunci" onerror="this.src='https://via.placeholder.com/250x200?text=Gantungan+Kunci'">
-                    <div class="card-body">
-                        <small class="text-muted">Craft Corner (DKV)</small>
-                        <h5 class="card-title fs-6 fw-bold mt-1">Gantungan Kunci Maskot Kampus</h5>
-                        <p class="text-success fw-bold m-0">Rp 10.000</p>
-                    </div>
-                    <div class="card-footer bg-white border-0 pt-0">
-                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="ganci-akrilik" data-name="Gantungan Kunci Maskot Kampus" data-price="10000" data-img="Gantungan_Kunci_Akrilik.png">+ Tambah ke Keranjang</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="card h-100 border-0 shadow-sm">
-                    <span class="badge bg-danger position-absolute m-2">Limited</span>
-                    <img src="piinpanel_broslogo.png" class="card-img-top" alt="Pin Enamel" onerror="this.src='https://via.placeholder.com/250x200?text=Pin+Enamel'">
-                    <div class="card-body">
-                        <small class="text-muted">Merch Hub (FEB)</small>
-                        <h5 class="card-title fs-6 fw-bold mt-1">Pin Enamel / Bros Logo Premium</h5>
-                        <p class="text-success fw-bold m-0">Rp 15.000</p>
-                    </div>
-                    <div class="card-footer bg-white border-0 pt-0">
-                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="pin-enamel" data-name="Pin Enamel / Bros Logo Premium" data-price="15000" data-img="piinpanel_broslogo.png">+ Tambah ke Keranjang</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
   </section>
 </main>
 
-<!-- ===== MODAL JUAL BARANG ===== -->
-<div class="modal fade" id="modalJualBarang" tabindex="-1" aria-labelledby="modalJualLabel" aria-hidden="true">
+<!-- ===== MODAL TAMBAH PRODUK ===== -->
+<div class="modal fade" id="modalJualBarang" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-success text-white">
-        <h5 class="modal-title fs-6 fw-bold" id="modalJualLabel">🛍️ Mulai Jual Barang / Jajanan di CampusBite</h5>
+        <h5 class="modal-title fs-6 fw-bold">🛍️ Mulai Jual Barang / Jajanan di CampusBite</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -271,8 +185,8 @@
             <input type="number" id="uProdPrice" class="form-control form-control-sm" placeholder="10000" required>
           </div>
           <div class="mb-3">
-            <label class="small fw-bold">Nama File Gambar (Pastikan ada di folder img/)</label>
-            <input type="text" id="uProdImg" class="form-control form-control-sm" value="nasi_ayam_geprek.png" required>
+            <label class="small fw-bold">Nama File Gambar (Opsional/Pastikan di folder img/)</label>
+            <input type="text" id="uProdImg" class="form-control form-control-sm" placeholder="cth: nasi_ayam_geprek.png">
           </div>
           <button type="submit" class="btn btn-success w-100 fw-bold btn-sm">Terbitkan Produk Jualanmu</button>
         </form>
@@ -281,49 +195,131 @@
   </div>
 </div>
 
+<!-- ===== MODAL EDIT PRODUK ===== -->
+<div class="modal fade" id="modalEditBarang" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title fs-6 fw-bold">✏️ Edit Produk Jualan</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="userEditProductForm">
+          <input type="hidden" id="editIndex">
+          <div class="mb-2">
+            <label class="small fw-bold">Nama Makanan / Produk</label>
+            <input type="text" id="editProdName" class="form-control form-control-sm" required>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Kategori</label>
+            <select id="editProdCat" class="form-select form-select-sm">
+              <option value="makanan">Makanan Berat</option>
+              <option value="camilan">Camilan & Snack</option>
+              <option value="minuman">Minuman Segar</option>
+              <option value="aksesoris">Thrift & Aksesori</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Harga (Rp)</label>
+            <input type="number" id="editProdPrice" class="form-control form-control-sm" required>
+          </div>
+          <div class="mb-3">
+            <label class="small fw-bold">Nama File Gambar (Pastikan di folder img/)</label>
+            <input type="text" id="editProdImg" class="form-control form-control-sm">
+          </div>
+          <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">Simpan Perubahan</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="js/vendor/bootstrap.bundle.min.js"></script>
 <script src="js/main.js"></script>
+
 <script>
-  function renderIndexProduct(nama, kategori, harga, gambar) {
-    const targetRow = (kategori === 'aksesoris') 
-      ? document.getElementById('indexAccRow') 
-      : document.getElementById('indexKulinerRow');
+  // Render Ulang Seluruh Produk Tambahan dari localStorage
+  function refreshProductList() {
+    // Hapus kartu produk buatan pengguna sebelumnya dari DOM
+    document.querySelectorAll('.user-card-item').forEach(el => el.remove());
 
-    if (!targetRow) return;
+    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
 
-    const hargaFormatted = parseInt(harga).toLocaleString('id-ID');
-    const col = document.createElement('div');
-    col.className = 'col-md-3 col-6';
-    col.innerHTML = `
-      <div class="card h-100 border-0 shadow-sm">
-        <span class="badge bg-primary position-absolute m-2">Baru</span>
-        <img src="${gambar}" class="card-img-top" alt="${nama}" onerror="this.src='https://via.placeholder.com/250x200?text=${encodeURIComponent(nama)}'">
-        <div class="card-body">
-          <small class="text-muted">Tenant Mahasiswa</small>
-          <h5 class="card-title fs-6 fw-bold mt-1">${nama}</h5>
-          <p class="text-success fw-bold m-0">Rp ${hargaFormatted}</p>
+    saved.forEach((prod, index) => {
+      const targetRow = (prod.kategori === 'aksesoris') 
+        ? document.getElementById('indexAccRow') 
+        : document.getElementById('indexKulinerRow');
+
+      if (!targetRow) return;
+
+      const hargaFormatted = parseInt(prod.harga || 0).toLocaleString('id-ID');
+      const fallbackImg = `https://via.placeholder.com/250x200?text=${encodeURIComponent(prod.nama)}`;
+      const imgSrc = prod.gambar ? prod.gambar : fallbackImg;
+
+      const col = document.createElement('div');
+      col.className = 'col-md-3 col-6 user-card-item';
+      col.innerHTML = `
+        <div class="card h-100 border-0 shadow-sm position-relative">
+          <span class="badge bg-primary position-absolute m-2">Jualan Saya</span>
+          
+          <!-- Tombol Aksi Edit & Hapus -->
+          <div class="position-absolute top-0 end-0 m-2 d-flex gap-1 z-3">
+            <button class="btn btn-sm btn-light border shadow-sm px-2 py-0" onclick="openEditModal(${index})" title="Edit Produk">✏️</button>
+            <button class="btn btn-sm btn-danger shadow-sm px-2 py-0" onclick="deleteProduct(${index})" title="Hapus Produk">🗑️</button>
+          </div>
+
+          <img src="${imgSrc}" class="card-img-top" alt="${prod.nama}" onerror="this.src='${fallbackImg}'">
+          <div class="card-body">
+            <small class="text-muted">Tenant Mahasiswa</small>
+            <h5 class="card-title fs-6 fw-bold mt-1">${prod.nama}</h5>
+            <p class="text-success fw-bold m-0">Rp ${hargaFormatted}</p>
+          </div>
+          <div class="card-footer bg-white border-0 pt-0">
+            <button class="btn btn-sm btn-outline-success w-100 js-add" 
+                    data-id="user-${index}" 
+                    data-name="${prod.nama}" 
+                    data-price="${prod.harga}" 
+                    data-img="${imgSrc}">
+              + Tambah ke Keranjang
+            </button>
+          </div>
         </div>
-        <div class="card-footer bg-white border-0 pt-0">
-          <button class="btn btn-sm btn-outline-success w-100 js-add" 
-                  data-id="idx-${Date.now()}" 
-                  data-name="${nama}" 
-                  data-price="${harga}" 
-                  data-img="${gambar}">
-            + Tambah ke Keranjang
-          </button>
-        </div>
-      </div>
-    `;
-    targetRow.prepend(col);
+      `;
+      targetRow.prepend(col);
+    });
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
+  // Buka Modal Edit & Isi Data
+  function openEditModal(index) {
     const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-    saved.forEach(prod => {
-      renderIndexProduct(prod.nama, prod.kategori, prod.harga, prod.gambar);
-    });
-  });
+    const item = saved[index];
+    if (!item) return;
 
+    document.getElementById('editIndex').value = index;
+    document.getElementById('editProdName').value = item.nama;
+    document.getElementById('editProdCat').value = item.kategori;
+    document.getElementById('editProdPrice').value = item.harga;
+    document.getElementById('editProdImg').value = item.gambar || '';
+
+    const modalEl = document.getElementById('modalEditBarang');
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+  }
+
+  // Hapus Produk
+  function deleteProduct(index) {
+    if (confirm('Apakah Anda yakin ingin menghapus produk jualan ini?')) {
+      const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+      saved.splice(index, 1);
+      localStorage.setItem('user_products', JSON.stringify(saved));
+      refreshProductList();
+    }
+  }
+
+  // Inisialisasi saat Halaman Dimuat
+  document.addEventListener('DOMContentLoaded', refreshProductList);
+
+  // Submit Form Tambah Produk
   document.getElementById('userAddProductForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const name = document.getElementById('uProdName').value;
@@ -335,13 +331,34 @@
     saved.push({ nama: name, kategori: cat, harga: price, gambar: img });
     localStorage.setItem('user_products', JSON.stringify(saved));
 
-    renderIndexProduct(name, cat, price, img);
+    refreshProductList();
 
     alert('Hore! Produk "' + name + '" berhasil dipublikasikan!');
     const modalEl = document.getElementById('modalJualBarang');
     const modal = bootstrap.Modal.getInstance(modalEl);
     if (modal) modal.hide();
     this.reset();
+  });
+
+  // Submit Form Edit Produk
+  document.getElementById('userEditProductForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const index = document.getElementById('editIndex').value;
+    const name = document.getElementById('editProdName').value;
+    const cat = document.getElementById('editProdCat').value;
+    const price = document.getElementById('editProdPrice').value;
+    const img = document.getElementById('editProdImg').value;
+
+    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+    saved[index] = { nama: name, kategori: cat, harga: price, gambar: img };
+    localStorage.setItem('user_products', JSON.stringify(saved));
+
+    refreshProductList();
+
+    alert('Produk "' + name + '" berhasil diperbarui!');
+    const modalEl = document.getElementById('modalEditBarang');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
   });
 </script>
 </body>
