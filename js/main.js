@@ -201,7 +201,7 @@
     // subtotal + free-ship info kampus
     if (subEl) subEl.textContent = money(t.sub);
     if (freeMsg) {
-      freeMsg.innerHTML = "🚀 <strong>Bebas ongkir</strong> antar gedung khusus area kampus!";
+      freeMsg.innerHTML = "<strong>Bebas ongkir</strong> antar gedung khusus area kampus!";
     }
     if (progress) progress.style.width = "100%";
   }
