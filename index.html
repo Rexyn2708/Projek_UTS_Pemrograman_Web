@@ -1,58 +1,513 @@
-<div class="hero-button-group">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script>document.documentElement.classList.add("js")</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusBite — Kantin &amp; Marketplace Mahasiswa</title>
+  <meta name="description" content="CampusBite adalah marketplace khusus mahasiswa untuk membeli makanan, minuman, thrift, dan aksesori kampus.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
 
-    <!-- Tombol Jelajahi Menu -->
-    <a href="kuliner.html" class="hero-button hero-button-menu">
-        <span class="hero-button-icon">
-            <svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 3v7a3 3 0 0 0 6 0V3"/>
-                <path d="M7 3v18M17 3v18"/>
-                <path d="M17 3c3 2 3 7 0 9"/>
-            </svg>
-        </span>
-        <span class="hero-button-divider"></span>
-        <span>Jelajahi Menu</span>
-        <span class="hero-button-arrow">→</span>
-    </a>
-
-    <!-- Tombol Mulai Jualan -->
-    <button type="button" class="hero-button hero-button-seller"
-        data-bs-toggle="modal"
-        data-bs-target="#modalJualBarang">
-
-        <span class="hero-button-icon">
-            <svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 10h18l-1.5 11h-15L3 10Z"/>
-                <path d="m4 10 2-6h12l2 6"/>
-                <path d="M9 10V7m6 3V7"/>
-            </svg>
-        </span>
-
-        <span class="hero-button-divider"></span>
-        <span>+ Buka Toko</span>
-        <span class="hero-button-accent">✦</span>
-    </button>
-
-    <!-- Tombol Jelajahi Kategori -->
-    <a href="#indexKulinerRow"
-        class="hero-button hero-button-category">
-
-        <span class="hero-button-icon">
-            <svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="7" height="7" rx="1"/>
-                <rect x="14" y="3" width="7" height="7" rx="1"/>
-                <rect x="3" y="14" width="7" height="7" rx="1"/>
-                <rect x="14" y="14" width="7" height="7" rx="1"/>
-            </svg>
-        </span>
-
-        <span class="hero-button-divider"></span>
-        <span>Jelajahi Kategori</span>
-    </a>
-
+<!-- ===== Announcement ===== -->
+<div class="announce">
+    Bebas ongkir antar gedung khusus area kampus &nbsp;·&nbsp; Pesan sekarang, siap antar jam istirahat!
 </div>
+
+<!-- ===== Header / Menu Bar ===== -->
+<header class="site-header" id="siteHeader">
+    <div class="container-x">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">CampusBite<span class="dot">.</span></a>
+
+            <nav aria-label="Primary">
+                <ul class="nav-links">
+                    <li><a href="index.html" aria-current="page">Home</a></li>
+                    <li><a href="kuliner.html">Culinary Menu</a></li>
+                    <li><a href="accessories.html">Thrift & Acc</a></li>
+                    <li><a href="#lookbook">Bazar</a></li>
+                    <li><a href="#promo" class="text-wine">Promo</a></li>
+                </ul>
+            </nav>
+
+            <!-- Aksi Navigasi Kanan -->
+            <div class="nav-actions d-flex align-items-center gap-2">
+                <!-- Tombol Jual Barang -->
+                <button class="btn btn-sm btn-success fw-bold px-3 d-none d-md-inline-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalJualBarang" style="font-size: 0.8rem;">
+                    + Jual Barang
+                </button>
+
+                <!-- Tombol Search -->
+                <button class="icon-btn" id="searchToggle" aria-label="Cari produk" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                </button>
+
+                <!-- Tombol Akun / Login -->
+                <a href="login.html" class="icon-btn" aria-label="Masuk Akun" title="Masuk / Daftar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+                </a>
+
+                <!-- Tombol Keranjang Jajanan -->
+                <button class="icon-btn cart-pill" id="cartOpen" aria-label="Buka Keranjang">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+                    <span class="cart-count" id="cartCount" aria-hidden="true">0</span>
+                </button>
+
+                <!-- Tombol Menu Mobile -->
+                <button class="icon-btn nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Panel Pop-up -->
+    <div class="search-panel" id="searchPanel" role="dialog" aria-label="Search products">
+        <div class="container-x">
+            <form class="search-form" role="search" onsubmit="return false;">
+                <svg viewBox="0 0 24 24" width="26" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <input type="text" id="searchInput" placeholder="Cari ayam geprek, kopi, atau thrift..." class="search-input">
+                <button type="button" class="icon-btn" id="searchClose" aria-label="Close search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<!-- ===== Mobile nav ===== -->
+<div class="scrim" id="scrim"></div>
+<aside class="mobile-nav" id="mobileNav" aria-label="Mobile menu">
+    <div class="mobile-nav-head">
+        <span class="brand">CampusBite<span class="dot">.</span></span>
+        <button class="icon-btn" id="navClose" aria-label="Close menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+    </div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Culinary Menu</a></li>
+        <li><a href="accessories.html">Thrift & Accessories</a></li>
+        <li><a href="#lookbook">Bazar & Kampus</a></li>
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Jual Barang / Buka Tenant</a></li>
+        <li><a href="login.html">Masuk / Daftar Akun</a></li>
+    </ul>
+    <div class="mobile-nav-foot">
+        <p>Antar cepat antar gedung kampus</p>
+        <p>support@campusbite.ac.id</p>
+    </div>
+</aside>
+
+<main id="main">
+
+  <!-- ===== Hero ===== -->
+ <section class="hero-section py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <span class="badge bg-danger mb-2">Khusus Warga Kampus</span>
+                <h1 class="display-5 fw-bold text-dark">Lapar di Jam Kosong? Pesan Jajanan Teman Sekampus!</h1>
+                <p class="lead text-muted">Solusi jajan praktis tanpa harus keluar gerbang. Mulai dari makanan berat, camilan, hingga kopi kekinian siap diantar ke gedung kuliahmu.</p>
+                <div class="d-flex gap-2 flex-wrap">
+                  <a href="kuliner.html" class="btn btn-success btn-lg">Pesan Sekarang</a>
+                  <button class="btn btn-dark btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Mulai Jualan</button>             
+                  <a href="#kategori" class="btn btn-outline-secondary btn-lg">Lihat Kategori</a>
+              </div>
+            </div>
+            <div class="col-lg-6">
+                <div style="height: 380px; overflow: hidden;" class="rounded shadow-lg">
+                    <img src="img/cookies_yena.png" alt="Kuliner Kampus" class="w-100 h-100" style="object-fit: cover;" onerror="this.src='https://via.placeholder.com/600x400?text=CampusBite+Hero'">
+                </div>
+        </div>
+    </div>
+</section>
+
+  <!-- ===== Categories ===== -->
+ <section id="kategori" class="py-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Kategori Favorit</h2>
+            <p class="text-muted">Pilih kategori jajanan atau barang yang lagi hits di kampus</p>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm p-3 h-100">
+                    <img src="Makanan_Berat.png" class="card-img-top rounded mb-3" alt="Makanan Berat" onerror="this.src='https://via.placeholder.com/200x150?text=Makanan+Berat'">
+                    <h5 class="card-title fs-6 fw-bold">Makanan Berat</h5>
+                    <small class="text-muted">Nasi Geprek, Bento, Mie</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm p-3 h-100">
+                    <img src="Camilan&Snack.png" class="card-img-top rounded mb-3" alt="Camilan" onerror="this.src='https://via.placeholder.com/200x150?text=Camilan'">
+                    <h5 class="card-title fs-6 fw-bold">Camilan & Snack</h5>
+                    <small class="text-muted">Makaroni, Dessert, Cookies</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm p-3 h-100">
+                    <img src="Minuman.png" class="card-img-top rounded mb-3" alt="Minuman" onerror="this.src='https://via.placeholder.com/200x150?text=Minuman'">
+                    <h5 class="card-title fs-6 fw-bold">Minuman Segar</h5>
+                    <small class="text-muted">Kopi Literan, Boba, Es</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm p-3 h-100">
+                    <img src="Aksesoris.png" class="card-img-top rounded mb-3" alt="Thrift & Aksesori" onerror="this.src='https://via.placeholder.com/200x150?text=Aksesoris'">
+                    <h5 class="card-title fs-6 fw-bold">Thrift & Aksesori</h5>
+                    <small class="text-muted">Preloved Outfit, Totebag</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- ===== Featured product grid ===== -->
+ <section class="py-5 bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold m-0">Makanan & Minuman</h2>
+                <p class="text-muted m-0">Menu favorit buatan tenant mahasiswa minggu ini</p>
+            </div>
+            <a href="kuliner.html" class="btn btn-outline-success">Lihat Semua Menu</a>
+        </div>
+
+        <div class="row g-4">
+            <!-- Produk 1 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-success position-absolute m-2">Ready Stock</span>
+                    <img src="nasi_ayam_geprek.png" class="card-img-top" alt="Nasi Ayam Geprek" onerror="this.src='https://via.placeholder.com/250x200?text=Ayam+Geprek'">
+                    <div class="card-body">
+                        <small class="text-muted">Kantin Gedung D</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Nasi Ayam Geprek Sambal Ijo</h5>
+                        <p class="text-success fw-bold m-0">Rp 15.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="ayam-geprek" data-name="Nasi Ayam Geprek Sambal Ijo" data-price="15000" data-img="nasi_ayam_geprek.png">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 2 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-warning text-dark position-absolute m-2">Pre-Order (PO)</span>
+                    <img src="Kopi_Susu_Gula_Aren.png" class="card-img-top" alt="Kopi Susu Literan" onerror="this.src='https://via.placeholder.com/250x200?text=Kopi+Susu'">
+                    <div class="card-body">
+                        <small class="text-muted">Kopi Kantin BCA</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Kopi Susu Gula Aren 500ml</h5>
+                        <p class="text-success fw-bold m-0">Rp 18.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="kopi-aren" data-name="Kopi Susu Gula Aren 500ml" data-price="18000" data-img="Kopi_Susu_Gula_Aren.png">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 3 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-success position-absolute m-2">Ready Stock</span>
+                    <img src="Dimsum_Mentai.png" class="card-img-top" alt="Dimsum Mentai" onerror="this.src='https://via.placeholder.com/250x200?text=Dimsum+Mentai'">
+                    <div class="card-body">
+                        <small class="text-muted">Kantin BCA</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Dimsum Mentai Mozzarella</h5>
+                        <p class="text-success fw-bold m-0">Rp 12.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="dimsum-mentai" data-name="Dimsum Mentai Mozzarella" data-price="12000" data-img="Dimsum_Mentai.png">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 4 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-info text-dark position-absolute m-2">Ready Stock</span>
+                    <img src="Mie_Ayam.png" class="card-img-top" alt="Mie Ayam" onerror="this.src='https://via.placeholder.com/250x200?text=Mie+Ayam'">
+                    <div class="card-body">
+                        <small class="text-muted">Mie Ayam</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Mie Ayam Bakso</h5>
+                        <p class="text-success fw-bold m-0">Rp 15.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="mie-ayam" data-name="Mie Ayam Bakso" data-price="15000" data-img="Mie_Ayam.png">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECTION: AKSESORIS & MERCHANDISE KAMPUS ===== -->
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold m-0">Aksesori & Merchandise Kampus</h2>
+                <p class="text-muted m-0">Lengkapi atribut kuliahmu dengan produk keren buatan sesama mahasiswa</p>
+            </div>
+            <a href="accessories.html" class="btn btn-outline-success">Lihat Semua</a>
+        </div>
+
+        <div class="row g-4">
+           <!-- Produk 1 -->
+           <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-danger position-absolute m-2">Terlaris</span>
+                    <img src="Modular_Charm_Ring.png" class="card-img-top" alt="Cincin Charm" onerror="this.src='https://via.placeholder.com/250x200?text=Cincin+Charm'">
+                    <div class="card-body">
+                        <small class="text-muted">Aksesoris Kampus (DKV)</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Modular Charm Ring Stainless</h5>
+                        <p class="text-success fw-bold m-0">Rp 15.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="charm-ring" data-name="Modular Charm Ring Stainless" data-price="15000" data-img="Modular_Charm_Ring.png">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Produk 2 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-info text-dark position-absolute m-2">New Arrival</span>
+                    <img src="Kalung_rantai_silver.png" class="card-img-top" alt="Kalung Estetik" onerror="this.src='https://via.placeholder.com/250x200?text=Kalung+Y2K'">
+                    <div class="card-body">
+                        <small class="text-muted">Accessory Hub (FIB)</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Y2K Silver Necklace Series</h5>
+                        <p class="text-success fw-bold m-0">Rp 20.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="y2k-necklace" data-name="Y2K Silver Necklace Series" data-price="20000" data-img="Kalung_rantai_silver.png">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 3 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-warning text-dark position-absolute m-2">Lucu & Unik</span>
+                    <img src="Gantungan_Kunci_Akrilik.png" class="card-img-top" alt="Gantungan Kunci" onerror="this.src='https://via.placeholder.com/250x200?text=Gantungan+Kunci'">
+                    <div class="card-body">
+                        <small class="text-muted">Craft Corner (DKV)</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Gantungan Kunci Maskot Kampus</h5>
+                        <p class="text-success fw-bold m-0">Rp 10.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="ganci-akrilik" data-name="Gantungan Kunci Maskot Kampus" data-price="10000" data-img="Gantungan_Kunci_Akrilik.png">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 4 -->
+            <div class="col-md-3 col-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <span class="badge bg-danger position-absolute m-2">Limited</span>
+                    <img src="piinpanel_broslogo.png" class="card-img-top" alt="Pin Enamel" onerror="this.src='https://via.placeholder.com/250x200?text=Pin+Enamel'">
+                    <div class="card-body">
+                        <small class="text-muted">Merch Hub (FEB)</small>
+                        <h5 class="card-title fs-6 fw-bold mt-1">Pin Enamel / Bros Logo Premium</h5>
+                        <p class="text-success fw-bold m-0">Rp 15.000</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="pin-enamel" data-name="Pin Enamel / Bros Logo Premium" data-price="15000" data-img="piinpanel_broslogo.png">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  
+  <!-- ===== LOOKBOOK / GALERI BAZAR & KAMPUS ===== -->
+<section class="py-5 bg-light" id="lookbook">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-success mb-2">Momen Kita</span>
+            <h2 class="fw-bold">Bazar & Suasana Pojok Kampus</h2>
+            <p class="text-muted">Keseruan tenant mahasiswa saat melayani pesanan dan meramaikan event kampus</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4 col-12">
+                <div class="card border-0 shadow-sm overflow-hidden h-100">
+                    <img src="img/lookbook1.jpg" class="card-img-top" alt="Bazar Mahasiswa" onerror="this.src='https://via.placeholder.com/400x300?text=Bazar+Kewirausahaan'" style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Stand Kuliner & Thrift</h5>
+                        <p class="card-text text-muted small">Suasana ramai stand mahasiswa di area selasar fakultas saat jam istirahat kuliah.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="card border-0 shadow-sm overflow-hidden h-100">
+                    <img src="img/lookbook2.jpg" class="card-img-top" alt="Merchandise Display" onerror="this.src='https://via.placeholder.com/400x300?text=Display+Aksesoris'" style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Pojok Aksesoris & OOTD</h5>
+                        <p class="card-text text-muted small">Pajangan cincin charm dan kalung estetik buatan tangan anak-anak DKV dan FIB.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="card border-0 shadow-sm overflow-hidden h-100">
+                    <img src="img/lookbook3.jpg" class="card-img-top" alt="Delivery Kampus" onerror="this.src='https://via.placeholder.com/400x300?text=Kurir+Kampus'" style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Kurir Kilat Antar Gedung</h5>
+                        <p class="card-text text-muted small">Layanan antar pesanan langsung ke depan pintu kelas atau gedung kuliahmu tanpa ribet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== NEWSLETTER / PROMO ===== -->
+<section class="py-5 bg-success text-white" id="promo">
+    <div class="container text-center py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <span class="badge bg-light text-success mb-2">Voucher Diskon & Jajan</span>
+                <h2 class="fw-bold mb-3">Jangan Sampai Kehabisan Promo Kantin!</h2>
+                <p class="mb-4 text-white-50">
+                    Masukkan email kampusmu untuk mendapatkan info diskon menu harian, promo bebas ongkir antar gedung, dan voucher khusus mahasiswa.
+                </p>
+                <form class="d-flex gap-2 justify-content-center flex-column flex-sm-row" onsubmit="event.preventDefault(); alert('Terdaftar! Voucher diskon telah dikirim ke email.');">
+                    <input type="email" class="form-control form-control-lg border-0" placeholder="Ketik email kampusmu..." required>
+                    <button type="submit" class="btn btn-dark btn-lg fw-bold text-nowrap">Dapatkan Voucher</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-dark text-white pt-5 pb-3">
+    <div class="container">
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <h3 class="fw-bold fs-4 text-white">CampusBite<span class="text-success">.</span></h3>
+                <p class="text-white-50 small mt-2">
+                    Platform marketplace dan kantin online untuk mahasiswa. Solusi praktis pesan makanan, minuman, dan aksesori tanpa harus keluar kampus.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h5 class="fw-bold fs-6 text-uppercase mb-3">Navigasi</h5>
+                <ul class="list-unstyled text-white-50 small">
+                    <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+                    <li class="mb-2"><a href="product.html" class="text-white-50 text-decoration-none">Culinary Menu</a></li>
+                    <li class="mb-2"><a href="accessories.html" class="text-white-50 text-decoration-none">Thrift & Accessories</a></li>
+                    <li class="mb-2"><a href="#" data-bs-toggle="modal" data-bs-target="#modalJualBarang" class="text-white-50 text-decoration-none">+ Jual Jajanan / Tenant</a></li>
+                    <li class="mb-2"><a href="login.html" class="text-white-50 text-decoration-none">Masuk / Daftar Akun</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5 class="fw-bold fs-6 text-uppercase mb-3">Pusat Bantuan & Tenant</h5>
+                <p class="text-white-50 small mb-1">WhatsApp Tenant: 0896-3008-7170</p>
+                <p class="text-white-50 small">Email: support@campusbite.ac.id</p>
+            </div>
+        </div>
+        <hr class="border-secondary">
+        <div class="text-center text-white-50 small pt-2">
+            <p class="mb-0">&copy; 2026 <strong>CampusBite</strong>. Dibuat untuk Tugas UTS Pemrograman Web.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== CART DRAWER (KERANJANG BELANJA) ===== -->
+<div class="scrim" id="cartScrim"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Keranjang Belanja">
+    <div class="cart-head d-flex justify-content-between align-items-center p-3 border-bottom">
+        <h2 class="fs-5 fw-bold m-0">Keranjang Jajanan <span class="qty-note text-muted" id="cartQtyNote">0 item</span></h2>
+        <button class="icon-btn" id="cartClose" aria-label="Tutup Keranjang">✕</button>
+    </div>
+
+    <div class="cart-free p-2 bg-light text-center small border-bottom">
+        <span id="cartFreeMsg">🚀 Bebas ongkir antar gedung khusus area kampus!</span>
+        <div class="cart-progress" style="height: 4px; background: #e6dccb; margin-top: 4px;"><span id="cartProgress" style="display: block; height: 100%; background: #7c2b3b; width: 100%;"></span></div>
+    </div>
+
+    <div class="cart-items p-3" id="cartItems" style="flex: 1; overflow-y: auto;">
+        <div class="cart-empty text-center py-5 text-muted" id="cartEmpty">
+            <p>Keranjang jajanmu masih kosong.<br>Yuk pilih menu favoritmu sekarang!</p>
+            <button class="btn btn-sm btn-outline-dark" id="cartEmptyShop">Mulai Pilih Jajanan</button>
+        </div>
+    </div>
+
+    <div class="cart-foot p-3 border-top bg-light" id="cartFoot" hidden>
+        <div class="d-flex justify-content-between mb-3 align-items-baseline">
+            <span class="fw-bold text-muted small text-uppercase">Subtotal</span>
+            <span class="fw-bold text-success fs-5" id="cartSubtotal">Rp 0</span>
+        </div>
+        <p class="text-muted small mb-3">Pengiriman diantar langsung ke depan kelasmu.</p>
+        <button class="btn btn-success w-100 fw-bold mb-2">Lanjut ke Pembayaran</button>
+        <div class="text-center"><button id="cartContinue" class="btn btn-link btn-sm text-dark text-decoration-underline">Tambah Jajanan Lain</button></div>
+    </div>
+</aside>
+
+<!-- ===== MODAL JUAL / TAMBAH PRODUK UNTUK USER ===== -->
+<div class="modal fade" id="modalJualBarang" tabindex="-1" aria-labelledby="modalJualLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title fs-6 fw-bold" id="modalJualLabel">🛍️ Mulai Jual Barang / Jajanan di CampusBite</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="userAddProductForm">
+          <div class="mb-2">
+            <label class="small fw-bold">Nama Makanan / Produk</label>
+            <input type="text" id="uProdName" class="form-control form-control-sm" placeholder="Cth: Risoles Mayo Kampus" required>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Kategori</label>
+            <select id="uProdCat" class="form-select form-select-sm">
+              <option value="makanan">Makanan Berat</option>
+              <option value="camilan">Camilan & Snack</option>
+              <option value="minuman">Minuman Segar</option>
+              <option value="aksesoris">Thrift & Aksesori</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Harga (Rp)</label>
+            <input type="number" id="uProdPrice" class="form-control form-control-sm" placeholder="10000" required>
+          </div>
+          <div class="mb-3">
+            <label class="small fw-bold">Nama File Gambar (Pastikan ada di folder img/)</label>
+            <input type="text" id="uProdImg" class="form-control form-control-sm" value="nasi_ayam_geprek.png" required>
+          </div>
+          <button type="submit" class="btn btn-success w-100 fw-bold btn-sm">Terbitkan Produk Jualanmu</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Toast (Notifikasi Berhasil Tambah ke Keranjang) ===== -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+    <span id="toastMsg">Berhasil masuk ke keranjang jajan!</span>
+</div>
+
+<script src="js/vendor/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('userAddProductForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var name = document.getElementById('uProdName').value;
+    alert('Hore! Produk "' + name + '" berhasil dipublikasikan dan sekarang tampil di katalog marketplace kampus!');
+    var modalEl = document.getElementById('modalJualBarang');
+    var modal = bootstrap.Modal.getInstance(modalEl);
+    modal.hide();
+    this.reset();
+  });
+</script>
+</body>
+</html>
