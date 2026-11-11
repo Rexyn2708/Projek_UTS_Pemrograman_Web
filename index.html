@@ -2,15 +2,15 @@
 <html lang="id">
 <head>
   <script>document.documentElement.classList.add("js")</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CampusBite — Kantin &amp; Marketplace Mahasiswa</title>
-<meta name="description" content="CampusBite adalah marketplace khusus mahasiswa untuk membeli makanan, minuman, thrift, dan aksesori kampus.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/vendor/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusBite — Kantin &amp; Marketplace Mahasiswa</title>
+  <meta name="description" content="CampusBite adalah marketplace khusus mahasiswa untuk membeli makanan, minuman, thrift, dan aksesori kampus.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -30,14 +30,19 @@
                 <ul class="nav-links">
                     <li><a href="index.html" aria-current="page">Home</a></li>
                     <li><a href="product.html">Culinary Menu</a></li>
-                    <li><a href="product.html">Thrift & Accessories</a></li>
+                    <li><a href="accessories.html">Thrift & Accessories</a></li>
                     <li><a href="#lookbook">Bazar & Kampus</a></li>
                     <li><a href="#promo" class="text-wine">Promo</a></li>
                 </ul>
             </nav>
 
-            <!-- Aksi Navigasi Kanan (Search, Akun, Keranjang, Toggle Mobile) -->
-            <div class="nav-actions">
+            <!-- Aksi Navigasi Kanan -->
+            <div class="nav-actions d-flex align-items-center gap-2">
+                <!-- Tombol Jual Barang -->
+                <button class="btn btn-sm btn-success fw-bold px-3 d-none d-md-inline-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalJualBarang" style="font-size: 0.8rem;">
+                    + Jual Barang
+                </button>
+
                 <!-- Tombol Search -->
                 <button class="icon-btn" id="searchToggle" aria-label="Cari produk" aria-expanded="false">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -88,8 +93,9 @@
     <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="product.html">Culinary Menu</a></li>
-        <li><a href="product.html">Thrift & Accessories</a></li>
+        <li><a href="accessories.html">Thrift & Accessories</a></li>
         <li><a href="#lookbook">Bazar & Kampus</a></li>
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Jual Barang / Buka Tenant</a></li>
         <li><a href="login.html">Masuk / Daftar Akun</a></li>
     </ul>
     <div class="mobile-nav-foot">
@@ -108,8 +114,9 @@
                 <span class="badge bg-danger mb-2">Khusus Warga Kampus</span>
                 <h1 class="display-5 fw-bold text-dark">Lapar di Jam Kosong? Pesan Jajanan Teman Sekampus!</h1>
                 <p class="lead text-muted">Solusi jajan praktis tanpa harus keluar gerbang. Mulai dari makanan berat, camilan, hingga kopi kekinian siap diantar ke gedung kuliahmu.</p>
-                <div class="d-flex gap-2">
+                <div class="d-flex gap-2 flex-wrap">
                     <a href="product.html" class="btn btn-success btn-lg">Pesan Sekarang</a>
+                    <button class="btn btn-outline-success btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Mulai Jualan</button>
                     <a href="#kategori" class="btn btn-outline-secondary btn-lg">Lihat Kategori</a>
                 </div>
             </div>
@@ -247,7 +254,7 @@
                 <h2 class="fw-bold m-0">Aksesori & Merchandise Kampus</h2>
                 <p class="text-muted m-0">Lengkapi atribut kuliahmu dengan produk keren buatan sesama mahasiswa</p>
             </div>
-            <a href="product.html" class="btn btn-outline-success">Lihat Semua</a>
+            <a href="accessories.html" class="btn btn-outline-success">Lihat Semua</a>
         </div>
 
         <div class="row g-4">
@@ -395,7 +402,8 @@
                 <ul class="list-unstyled text-white-50 small">
                     <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
                     <li class="mb-2"><a href="product.html" class="text-white-50 text-decoration-none">Culinary Menu</a></li>
-                    <li class="mb-2"><a href="product.html" class="text-white-50 text-decoration-none">Thrift & Accessories</a></li>
+                    <li class="mb-2"><a href="accessories.html" class="text-white-50 text-decoration-none">Thrift & Accessories</a></li>
+                    <li class="mb-2"><a href="#" data-bs-toggle="modal" data-bs-target="#modalJualBarang" class="text-white-50 text-decoration-none">+ Jual Jajanan / Tenant</a></li>
                     <li class="mb-2"><a href="login.html" class="text-white-50 text-decoration-none">Masuk / Daftar Akun</a></li>
                 </ul>
             </div>
@@ -443,6 +451,44 @@
     </div>
 </aside>
 
+<!-- ===== MODAL JUAL / TAMBAH PRODUK UNTUK USER ===== -->
+<div class="modal fade" id="modalJualBarang" tabindex="-1" aria-labelledby="modalJualLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title fs-6 fw-bold" id="modalJualLabel">🛍️ Mulai Jual Barang / Jajanan di CampusBite</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="userAddProductForm">
+          <div class="mb-2">
+            <label class="small fw-bold">Nama Makanan / Produk</label>
+            <input type="text" id="uProdName" class="form-control form-control-sm" placeholder="Cth: Risoles Mayo Kampus" required>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Kategori</label>
+            <select id="uProdCat" class="form-select form-select-sm">
+              <option value="makanan">Makanan Berat</option>
+              <option value="camilan">Camilan & Snack</option>
+              <option value="minuman">Minuman Segar</option>
+              <option value="aksesoris">Thrift & Aksesori</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Harga (Rp)</label>
+            <input type="number" id="uProdPrice" class="form-control form-control-sm" placeholder="10000" required>
+          </div>
+          <div class="mb-3">
+            <label class="small fw-bold">Nama File Gambar (Pastikan ada di folder img/)</label>
+            <input type="text" id="uProdImg" class="form-control form-control-sm" value="nasi_ayam_geprek.png" required>
+          </div>
+          <button type="submit" class="btn btn-success w-100 fw-bold btn-sm">Terbitkan Produk Jualanmu</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ===== Toast (Notifikasi Berhasil Tambah ke Keranjang) ===== -->
 <div class="toast" id="toast" role="status" aria-live="polite">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
@@ -451,5 +497,16 @@
 
 <script src="js/vendor/bootstrap.bundle.min.js"></script>
 <script src="js/main.js"></script>
+<script>
+  document.getElementById('userAddProductForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var name = document.getElementById('uProdName').value;
+    alert('Hore! Produk "' + name + '" berhasil dipublikasikan dan sekarang tampil di katalog marketplace kampus!');
+    var modalEl = document.getElementById('modalJualBarang');
+    var modal = bootstrap.Modal.getInstance(modalEl);
+    modal.hide();
+    this.reset();
+  });
+</script>
 </body>
 </html>
