@@ -30,28 +30,43 @@
                     <li><a href="kuliner.html">Culinary Menu</a></li>
                     <li><a href="accessories.html" aria-current="page">Thrift & Accessories</a></li>
                     <li><a href="index.html#lookbook">Bazar & Kampus</a></li>
-                    <nav aria-label="Primary">
-                      <ul class="nav-links">
-                          <li><a href="index.html">Home</a></li>
-                          <li><a href="kuliner.html">Culinary Menu</a></li>
-                          <li><a href="accessories.html">Thrift & Acc</a></li>
-                          <li><a href="index.html#lookbook">Bazar</a></li>
-        
-        <!-- ===== TAMBAHAN MENU DASHBOARD ===== -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-warning fw-bold" href="#" id="dashboardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dashboard ▾
-                        </a>
-                        <ul class="dropdown-menu shadow border-0" aria-labelledby="dashboardDropdown">
-                            <li><a class="dropdown-item fw-semibold" href="dashboard-seller.html">🏪 Dashboard Seller</a></li>
-                            <li><a class="dropdown-item fw-semibold text-danger" href="dashboard-admin.html">⚙️ Dashboard Admin</a></li>
-                        </ul>
-                    </li>
                 </ul>
             </nav>
             <div class="nav-actions d-flex align-items-center gap-2">
                 <button class="btn btn-sm btn-success fw-bold px-3 d-none d-md-inline-flex" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Jual Barang</button>
-                <a href="login.html" class="icon-btn" title="Masuk / Daftar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></a>
+                
+                <!-- ===== DROPDOWN INFO AKUN & DASHBOARD ===== -->
+                <div class="dropdown">
+                  <button class="icon-btn border-0 bg-transparent" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Info Akun & Panel">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="24" height="24" aria-hidden="true">
+                      <circle cx="12" cy="8" r="4"/>
+                      <path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>
+                    </svg>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="accountDropdown" style="min-width: 220px;">
+                    <li class="px-3 py-2 bg-light border-bottom">
+                      <div class="fw-bold text-dark small">Info Akun Saya</div>
+                      <div class="text-muted" style="font-size: 0.75rem;">Mahasiswa / Tenant</div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item py-2 fw-semibold text-dark" href="dashboard-seller.html">
+                        🏪 Dashboard Seller / Penjual
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item py-2 fw-semibold text-danger" href="dashboard-admin.html">
+                        ⚙️ Dashboard Admin Kampus
+                      </a>
+                    </li>
+                    <li><hr class="dropdown-divider m-0"></li>
+                    <li>
+                      <a class="dropdown-item py-2 text-muted small" href="login.html">
+                        🔑 Masuk / Ganti Akun
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
                 <button class="icon-btn cart-pill" id="cartOpen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-count" id="cartCount">0</span></button>
             </div>
         </div>
@@ -67,7 +82,7 @@
 
     <!-- Container Grid Produk Aksesoris -->
     <div class="row g-4" id="accessoriesGrid">
-        <!-- Produk Aksesoris Bawaan dari Index -->
+        <!-- Produk Aksesoris Bawaan 1 -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
                 <span class="badge bg-danger position-absolute m-2">Terlaris</span>
@@ -82,6 +97,7 @@
                 </div>
             </div>
         </div>
+        <!-- Produk Aksesoris Bawaan 2 -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
                 <span class="badge bg-info text-dark position-absolute m-2">New Arrival</span>
@@ -96,6 +112,7 @@
                 </div>
             </div>
         </div>
+        <!-- Produk Aksesoris Bawaan 3 -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
                 <span class="badge bg-warning text-dark position-absolute m-2">Lucu & Unik</span>
@@ -110,6 +127,7 @@
                 </div>
             </div>
         </div>
+        <!-- Produk Aksesoris Bawaan 4 -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
                 <span class="badge bg-danger position-absolute m-2">Limited</span>
@@ -124,7 +142,6 @@
                 </div>
             </div>
         </div>
-        <!-- Tempat Produk Hasil Jual Barang Pengguna Akan Muncul Secara Dinamis -->
     </div>
 </main>
 
@@ -148,4 +165,188 @@
               <option value="makanan">Makanan Berat</option>
               <option value="camilan">Camilan & Snack</option>
               <option value="minuman">Minuman Segar</option>
-              <option value="aksesoris" selected>Thrift & Aks
+              <option value="aksesoris" selected>Thrift & Aksesori</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Harga (Rp)</label>
+            <input type="number" id="uProdPrice" class="form-control form-control-sm" placeholder="10000" required>
+          </div>
+          <div class="mb-3">
+            <label class="small fw-bold">Nama File Gambar (Pastikan ada di folder img/)</label>
+            <input type="text" id="uProdImg" class="form-control form-control-sm" placeholder="cth: Modular_Charm_Ring.png">
+          </div>
+          <button type="submit" class="btn btn-success w-100 fw-bold btn-sm">Terbitkan Produk Jualanmu</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL EDIT PRODUK ===== -->
+<div class="modal fade" id="modalEditBarang" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title fs-6 fw-bold">✏️ Edit Produk Jualan</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="userEditProductForm">
+          <input type="hidden" id="editIndex">
+          <div class="mb-2">
+            <label class="small fw-bold">Nama Makanan / Produk</label>
+            <input type="text" id="editProdName" class="form-control form-control-sm" required>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Kategori</label>
+            <select id="editProdCat" class="form-select form-select-sm">
+              <option value="makanan">Makanan Berat</option>
+              <option value="camilan">Camilan & Snack</option>
+              <option value="minuman">Minuman Segar</option>
+              <option value="aksesoris">Thrift & Aksesori</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Harga (Rp)</label>
+            <input type="number" id="editProdPrice" class="form-control form-control-sm" required>
+          </div>
+          <div class="mb-3">
+            <label class="small fw-bold">Nama File Gambar (Pastikan di folder img/)</label>
+            <input type="text" id="editProdImg" class="form-control form-control-sm">
+          </div>
+          <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">Simpan Perubahan</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/vendor/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+  // Render ulang list produk jualan aksesoris di accessories.html
+  function refreshUserAcc() {
+    document.querySelectorAll('.user-acc-item').forEach(el => el.remove());
+
+    const grid = document.getElementById('accessoriesGrid');
+    if (!grid) return;
+
+    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+
+    saved.forEach((prod, index) => {
+      // Hanya tampilkan khusus kategori aksesoris
+      if (prod.kategori !== 'aksesoris') return;
+
+      const hargaFormatted = parseInt(prod.harga || 0).toLocaleString('id-ID');
+      const fallbackImg = `https://via.placeholder.com/250x200?text=${encodeURIComponent(prod.nama)}`;
+      const imgSrc = prod.gambar ? prod.gambar : fallbackImg;
+
+      const col = document.createElement('div');
+      col.className = 'col-md-3 col-6 user-acc-item';
+      col.innerHTML = `
+        <div class="card h-100 border-0 shadow-sm position-relative">
+          <span class="badge bg-primary position-absolute m-2">Produk Saya</span>
+          
+          <!-- Tombol Edit & Hapus -->
+          <div class="position-absolute top-0 end-0 m-2 d-flex gap-1 z-3">
+            <button class="btn btn-sm btn-light border shadow-sm px-2 py-0" onclick="openEditModal(${index})" title="Edit Produk">✏️</button>
+            <button class="btn btn-sm btn-danger shadow-sm px-2 py-0" onclick="deleteProduct(${index})" title="Hapus Produk">🗑️</button>
+          </div>
+
+          <img src="${imgSrc}" class="card-img-top" alt="${prod.nama}" onerror="this.src='${fallbackImg}'">
+          <div class="card-body">
+            <small class="text-muted">Merch Mahasiswa</small>
+            <h5 class="card-title fs-6 fw-bold mt-1">${prod.nama}</h5>
+            <p class="text-success fw-bold m-0">Rp ${hargaFormatted}</p>
+          </div>
+          <div class="card-footer bg-white border-0 pt-0">
+            <button class="btn btn-sm btn-outline-success w-100 js-add" 
+                    data-id="acc-${index}" 
+                    data-name="${prod.nama}" 
+                    data-price="${prod.harga}" 
+                    data-img="${imgSrc}">
+              + Tambah ke Keranjang
+            </button>
+          </div>
+        </div>
+      `;
+      grid.prepend(col);
+    });
+  }
+
+  // Buka Modal Edit
+  function openEditModal(index) {
+    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+    const item = saved[index];
+    if (!item) return;
+
+    document.getElementById('editIndex').value = index;
+    document.getElementById('editProdName').value = item.nama;
+    document.getElementById('editProdCat').value = item.kategori;
+    document.getElementById('editProdPrice').value = item.harga;
+    document.getElementById('editProdImg').value = item.gambar || '';
+
+    const modalEl = document.getElementById('modalEditBarang');
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+  }
+
+  // Hapus Produk
+  function deleteProduct(index) {
+    if (confirm('Apakah Anda yakin ingin menghapus barang jualan ini?')) {
+      const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+      saved.splice(index, 1);
+      localStorage.setItem('user_products', JSON.stringify(saved));
+      refreshUserAcc();
+    }
+  }
+
+  // Initial Load
+  document.addEventListener('DOMContentLoaded', refreshUserAcc);
+
+  // Submit Form Tambah Produk
+  document.getElementById('userAddProductForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('uProdName').value;
+    const cat = document.getElementById('uProdCat').value;
+    const price = document.getElementById('uProdPrice').value;
+    const img = document.getElementById('uProdImg').value;
+
+    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+    saved.push({ nama: name, kategori: cat, harga: price, gambar: img });
+    localStorage.setItem('user_products', JSON.stringify(saved));
+
+    refreshUserAcc();
+
+    alert('Hore! Produk "' + name + '" berhasil dipublikasikan!');
+    const modalEl = document.getElementById('modalJualBarang');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
+    this.reset();
+  });
+
+  // Submit Form Edit Produk
+  document.getElementById('userEditProductForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const index = document.getElementById('editIndex').value;
+    const name = document.getElementById('editProdName').value;
+    const cat = document.getElementById('editProdCat').value;
+    const price = document.getElementById('editProdPrice').value;
+    const img = document.getElementById('editProdImg').value;
+
+    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+    saved[index] = { nama: name, kategori: cat, harga: price, gambar: img };
+    localStorage.setItem('user_products', JSON.stringify(saved));
+
+    refreshUserAcc();
+
+    alert('Produk "' + name + '" berhasil diperbarui!');
+    const modalEl = document.getElementById('modalEditBarang');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
+  });
+</script>
+</body>
+</html>
