@@ -79,8 +79,8 @@
               <input type="number" id="prodPrice" class="form-control form-control-sm" placeholder="10000" required>
             </div>
             <div class="mb-3">
-              <label class="small fw-bold">Nama File Gambar (Pastikan di folder img/)</label>
-              <input type="text" id="prodImg" class="form-control form-control-sm" placeholder="cth: americano.png">
+              <label class="small fw-bold">Nama File Gambar (Pastikan ada di folder img/)</label>
+              <input type="text" id="prodImg" class="form-control form-control-sm" placeholder="cth: Americano.png">
             </div>
             <button type="submit" class="btn btn-success btn-sm w-100 fw-bold">Publikasikan Produk</button>
           </form>
@@ -147,6 +147,15 @@
       }
     }
 
+    // Normalisasi Jalur Gambar
+    function fixImagePath(imgName, defaultTitle) {
+      const fallback = `https://via.placeholder.com/150?text=${encodeURIComponent(defaultTitle)}`;
+      if (!imgName) return fallback;
+      if (imgName.startsWith('http://') || imgName.startsWith('https://')) return imgName;
+      if (imgName.startsWith('img/')) return imgName;
+      return 'img/' + imgName;
+    }
+
     // Membaca data 'user_products' dari localStorage
     function renderSellerTable() {
       const listContainer = document.getElementById('sellerProductList');
@@ -174,12 +183,7 @@
       saved.forEach((prod, index) => {
         const hargaFormatted = parseInt(prod.harga || 0).toLocaleString('id-ID');
         const fallbackImg = `https://via.placeholder.com/50?text=${encodeURIComponent(prod.nama)}`;
-        
-        // Pengecekan otomatis folder img/
-        let imgSrc = prod.gambar ? prod.gambar : fallbackImg;
-        if (prod.gambar && !prod.gambar.startsWith('img/') && !prod.gambar.startsWith('http')) {
-          imgSrc = 'img/' + prod.gambar;
-        }
+        const imgSrc = fixImagePath(prod.gambar, prod.nama);
 
         html += `
           <tr>
@@ -222,7 +226,7 @@
       localStorage.setItem('user_products', JSON.stringify(saved));
 
       renderSellerTable();
-      alert('Produk "' + name + '" berhasil dipublikasikan dan langsung tampil di marketplace!');
+      alert('Produk "' + name + '" berhasil dipublikasikan!');
       this.reset();
     });
 
