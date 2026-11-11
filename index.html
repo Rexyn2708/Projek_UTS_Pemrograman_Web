@@ -546,7 +546,7 @@
 <script src="js/main.js"></script>
 
 <script>
-  // Render Ulang Seluruh Produk Tambahan dari localStorage
+  // 1. Render Ulang Seluruh Produk Tambahan dari localStorage
   function refreshProductList() {
     document.querySelectorAll('.user-card-item').forEach(el => el.remove());
 
@@ -595,7 +595,36 @@
     });
   }
 
-  // Buka Modal Edit
+  // 2. Render Event Buatan Admin di Section Lookbook / Bazar
+  function refreshAdminEvents() {
+    document.querySelectorAll('.admin-event-card').forEach(el => el.remove());
+
+    const lookbookRow = document.querySelector('#lookbook .row');
+    if (!lookbookRow) return;
+
+    const events = JSON.parse(localStorage.getItem('campus_events')) || [];
+
+    events.forEach(ev => {
+      const fallbackImg = `https://via.placeholder.com/400x300?text=${encodeURIComponent(ev.judul)}`;
+      const imgSrc = ev.gambar ? ev.gambar : fallbackImg;
+
+      const col = document.createElement('div');
+      col.className = 'col-md-4 col-12 admin-event-card';
+      col.innerHTML = `
+        <div class="card border-0 shadow-sm overflow-hidden h-100 position-relative">
+          <span class="badge bg-danger position-absolute m-2 z-2">Event Baru</span>
+          <img src="${imgSrc}" class="card-img-top" alt="${ev.judul}" onerror="this.src='${fallbackImg}'" style="height: 250px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">${ev.judul}</h5>
+            <p class="card-text text-muted small">${ev.deskripsi}</p>
+          </div>
+        </div>
+      `;
+      lookbookRow.prepend(col);
+    });
+  }
+
+  // Buka Modal Edit Produk
   function openEditModal(index) {
     const saved = JSON.parse(localStorage.getItem('user_products')) || [];
     const item = saved[index];
@@ -623,7 +652,10 @@
   }
 
   // Inisialisasi saat Halaman Dimuat
-  document.addEventListener('DOMContentLoaded', refreshProductList);
+  document.addEventListener('DOMContentLoaded', function() {
+    refreshProductList();
+    refreshAdminEvents();
+  });
 
   // Submit Form Tambah Produk
   document.getElementById('userAddProductForm').addEventListener('submit', function(e) {
