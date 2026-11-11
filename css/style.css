@@ -1066,3 +1066,12 @@ p { margin: 0 0 1rem; }
     width: 100% !important;
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-actions .dropdown {
+    margin-right: -3px;
+}
