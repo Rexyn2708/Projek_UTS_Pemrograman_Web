@@ -147,18 +147,15 @@
       }
     }
 
-    // Helper penyesuaian jalur gambar yang aman (Mencegah duplikasi img/img/)
+    // Penanganan Gambar Sederhana & Aman
     function fixImagePath(imgName, defaultTitle) {
       const fallback = `https://via.placeholder.com/50?text=${encodeURIComponent(defaultTitle)}`;
       if (!imgName) return fallback;
       if (imgName.startsWith('http://') || imgName.startsWith('https://')) return imgName;
-      
-      // Hapus awalan img/ jika user terlanjur mengetikkan img/ di form
-      const cleanName = imgName.replace(/^img\//, '');
-      return 'img/' + cleanName;
+      if (imgName.startsWith('img/')) return imgName;
+      return 'img/' + imgName;
     }
 
-    // Membaca data 'user_products' dari localStorage
     function renderSellerTable() {
       const listContainer = document.getElementById('sellerProductList');
       const saved = JSON.parse(localStorage.getItem('user_products')) || [];
@@ -197,3 +194,95 @@
             <td class="text-success fw-bold">Rp ${hargaFormatted}</td>
             <td class="text-center">
               <button class="btn btn-sm btn-outline-primary py-0 px-2 me-1" onclick="openEditModal(${index})" title="Edit">✏️</button>
+              <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="deleteProduct(${index})" title="Hapus">🗑️</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += `
+          </tbody>
+        </table>
+      `;
+
+      listContainer.innerHTML = html;
+    }
+
+    // Submit Form Tambah Produk Baru
+    document.getElementById('addProductForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('prodName').value;
+      const cat = document.getElementById('prodCat').value;
+      const price = document.getElementById('prodPrice').value;
+      let img = document.getElementById('prodImg').value;
+
+      if (img && !img.startsWith('img/') && !img.startsWith('http')) {
+        img = 'img/' + img;
+      }
+
+      const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+      saved.push({ nama: name, kategori: cat, harga: price, gambar: img });
+      localStorage.setItem('user_products', JSON.stringify(saved));
+
+      renderSellerTable();
+      alert('Produk "' + name + '" berhasil dipublikasikan!');
+      this.reset();
+    });
+
+    // Buka Modal Edit
+    function openEditModal(index) {
+      const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+      const item = saved[index];
+      if (!item) return;
+
+      document.getElementById('editIndex').value = index;
+      document.getElementById('editProdName').value = item.nama;
+      document.getElementById('editProdCat').value = item.kategori;
+      document.getElementById('editProdPrice').value = item.harga;
+      document.getElementById('editProdImg').value = item.gambar || '';
+
+      const modalEl = document.getElementById('modalEditSeller');
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+    }
+
+    // Submit Edit Produk
+    document.getElementById('editProductForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const index = document.getElementById('editIndex').value;
+      const name = document.getElementById('editProdName').value;
+      const cat = document.getElementById('editProdCat').value;
+      const price = document.getElementById('editProdPrice').value;
+      let img = document.getElementById('editProdImg').value;
+
+      if (img && !img.startsWith('img/') && !img.startsWith('http')) {
+        img = 'img/' + img;
+      }
+
+      const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+      saved[index] = { nama: name, kategori: cat, harga: price, gambar: img };
+      localStorage.setItem('user_products', JSON.stringify(saved));
+
+      renderSellerTable();
+      alert('Produk "' + name + '" berhasil diperbarui!');
+
+      const modalEl = document.getElementById('modalEditSeller');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      if (modal) modal.hide();
+    });
+
+    // Hapus Produk
+    function deleteProduct(index) {
+      if (confirm('Apakah Anda yakin ingin menghapus produk ini?')) {
+        const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+        saved.splice(index, 1);
+        localStorage.setItem('user_products', JSON.stringify(saved));
+        renderSellerTable();
+      }
+    }
+
+    // Render Otomatis saat Halaman Dimuat
+    document.addEventListener('DOMContentLoaded', renderSellerTable);
+  </script>
+</body>
+</html>
