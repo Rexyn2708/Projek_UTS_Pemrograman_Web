@@ -9,11 +9,12 @@
 </head>
 <body class="bg-light">
 
-  <!-- ===== Header Navigasi Panel Admin (Warna Cokelat Khas Tema Web) ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark px-4 shadow-sm" style="background-color: #7c2b3b;">
+  <!-- ===== Header Navigasi Panel Admin (Warna Krem `#f5f0eb` Khas CampusBite) ===== -->
+  <nav class="navbar navbar-expand-lg px-4 border-bottom shadow-sm" style="background-color: #f5f0eb;">
     <div class="container-fluid p-0">
-      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
-        CampusBite <span class="badge bg-light text-dark fs-6">Panel Admin Kampus</span>
+      <a class="navbar-brand fw-bold text-dark d-flex align-items-center gap-2" href="index.html" style="font-family: 'Bodoni Moda', serif;">
+        CampusBite<span style="color: #7c2b3b;">.</span> 
+        <span class="badge bg-dark text-white fs-6 font-sans ms-1" style="font-family: sans-serif;">Panel Admin</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
@@ -23,22 +24,22 @@
       <div class="collapse navbar-collapse" id="adminNavbar">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3 gap-1">
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold" href="index.html">🏠 Lihat Website Utama</a>
+            <a class="nav-link text-dark fw-bold" href="index.html">🏠 Lihat Website Utama</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white-50" href="kuliner.html">Culinary Menu</a>
+            <a class="nav-link text-secondary" href="kuliner.html">Culinary Menu</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white-50" href="accessories.html">Thrift & Acc</a>
+            <a class="nav-link text-secondary" href="accessories.html">Thrift & Acc</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-warning fw-semibold" href="dashboard-seller.html">🏪 Dashboard Seller</a>
+            <a class="nav-link text-success fw-bold" href="dashboard-seller.html">🏪 Dashboard Seller</a>
           </li>
         </ul>
 
         <div class="d-flex align-items-center gap-2">
-          <span class="text-white-50 small d-none d-md-inline">Halo, Administrator</span>
-          <button class="btn btn-outline-light btn-sm fw-bold px-3" onclick="logout()">Keluar / Logout</button>
+          <span class="text-muted small d-none d-md-inline">Halo, Administrator</span>
+          <button class="btn btn-outline-dark btn-sm fw-bold px-3" onclick="logout()">Keluar / Logout</button>
         </div>
       </div>
     </div>
