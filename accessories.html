@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script>document.documentElement.classList.add("js")</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thrift & Accessories — CampusBite</title>
+  <meta name="description" content="Koleksi thrift, preloved outfit, dan aksesoris buatan mahasiswa di CampusBite.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== Announcement ===== -->
+<div class="announce">
+    Bebas ongkir antar gedung khusus area kampus &nbsp;·&nbsp; Pesan sekarang, siap antar jam istirahat!
+</div>
+
+<!-- ===== Header ===== -->
+<header class="site-header" id="siteHeader">
+    <div class="container-x">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">CampusBite<span class="dot">.</span></a>
+            <nav aria-label="Primary">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Culinary Menu</a></li>
+                    <li><a href="accessories.html" aria-current="page">Thrift & Accessories</a></li>
+                    <li><a href="index.html#lookbook">Bazar & Kampus</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-success fw-bold px-3 d-none d-md-inline-flex" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Jual Barang</button>
+                <a href="login.html" class="icon-btn" title="Masuk / Daftar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></a>
+                <button class="icon-btn cart-pill" id="cartOpen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-count" id="cartCount">0</span></button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container py-5">
+    <div class="text-center mb-5">
+        <span class="badge bg-danger mb-2">Merch & Preloved</span>
+        <h1 class="fw-bold display-6">Thrift & Accessories Kampus</h1>
+        <p class="text-muted">Lengkapi OOTD ngampusmu dengan atribut keren karya mahasiswa</p>
+    </div>
+
+    <div class="row g-4">
+        <!-- Produk 1 -->
+        <div class="col-md-3 col-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <span class="badge bg-danger position-absolute m-2">Terlaris</span>
+                <img src="Modular_Charm_Ring.png" class="card-img-top" alt="Cincin Charm" onerror="this.src='https://via.placeholder.com/250x200?text=Cincin+Charm'">
+                <div class="card-body">
+                    <small class="text-muted">Aksesoris Kampus (DKV)</small>
+                    <h5 class="card-title fs-6 fw-bold mt-1">Modular Charm Ring Stainless</h5>
+                    <p class="text-success fw-bold m-0">Rp 15.000</p>
+                </div>
+                <div class="card-footer bg-white border-0 pt-0">
+                    <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="charm-ring" data-name="Modular Charm Ring Stainless" data-price="15000" data-img="Modular_Charm_Ring.png">+ Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 2 -->
+        <div class="col-md-3 col-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <span class="badge bg-info text-dark position-absolute m-2">New Arrival</span>
+                <img src="Kalung_rantai_silver.png" class="card-img-top" alt="Kalung Estetik" onerror="this.src='https://via.placeholder.com/250x200?text=Kalung+Y2K'">
+                <div class="card-body">
+                    <small class="text-muted">Accessory Hub (FIB)</small>
+                    <h5 class="card-title fs-6 fw-bold mt-1">Y2K Silver Necklace Series</h5>
+                    <p class="text-success fw-bold m-0">Rp 20.000</p>
+                </div>
+                <div class="card-footer bg-white border-0 pt-0">
+                    <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="y2k-necklace" data-name="Y2K Silver Necklace Series" data-price="20000" data-img="Kalung_rantai_silver.png">+ Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 3 -->
+        <div class="col-md-3 col-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <span class="badge bg-warning text-dark position-absolute m-2">Lucu & Unik</span>
+                <img src="Gantungan_Kunci_Akrilik.png" class="card-img-top" alt="Gantungan Kunci" onerror="this.src='https://via.placeholder.com/250x200?text=Gantungan+Kunci'">
+                <div class="card-body">
+                    <small class="text-muted">Craft Corner (DKV)</small>
+                    <h5 class="card-title fs-6 fw-bold mt-1">Gantungan Kunci Maskot Kampus</h5>
+                    <p class="text-success fw-bold m-0">Rp 10.000</p>
+                </div>
+                <div class="card-footer bg-white border-0 pt-0">
+                    <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="ganci-akrilik" data-name="Gantungan Kunci Maskot Kampus" data-price="10000" data-img="Gantungan_Kunci_Akrilik.png">+ Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 4 -->
+        <div class="col-md-3 col-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <span class="badge bg-danger position-absolute m-2">Limited</span>
+                <img src="piinpanel_broslogo.png" class="card-img-top" alt="Pin Enamel" onerror="this.src='https://via.placeholder.com/250x200?text=Pin+Enamel'">
+                <div class="card-body">
+                    <small class="text-muted">Merch Hub (FEB)</small>
+                    <h5 class="card-title fs-6 fw-bold mt-1">Pin Enamel / Bros Logo Premium</h5>
+                    <p class="text-success fw-bold m-0">Rp 15.000</p>
+                </div>
+                <div class="card-footer bg-white border-0 pt-0">
+                    <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="pin-enamel" data-name="Pin Enamel / Bros Logo Premium" data-price="15000" data-img="piinpanel_broslogo.png">+ Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Cart Drawer & Script -->
+<div class="scrim" id="cartScrim"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Keranjang Belanja">
+    <div class="cart-head d-flex justify-content-between align-items-center p-3 border-bottom">
+        <h2 class="fs-5 fw-bold m-0">Keranjang Jajanan <span class="qty-note text-muted" id="cartQtyNote">0 item</span></h2>
+        <button class="icon-btn" id="cartClose">✕</button>
+    </div>
+    <div class="cart-free p-2 bg-light text-center small border-bottom">
+        <span>Bebas ongkir antar gedung khusus area kampus!</span>
+    </div>
+    <div class="cart-items p-3" id="cartItems" style="flex: 1; overflow-y: auto;">
+        <div class="cart-empty text-center py-5 text-muted" id="cartEmpty">
+            <p>Keranjang jajanmu masih kosong.</p>
+        </div>
+    </div>
+    <div class="cart-foot p-3 border-top bg-light" id="cartFoot" hidden>
+        <div class="d-flex justify-content-between mb-3 align-items-baseline">
+            <span class="fw-bold text-muted small text-uppercase">Subtotal</span>
+            <span class="fw-bold text-success fs-5" id="cartSubtotal">Rp 0</span>
+        </div>
+        <button class="btn btn-success w-100 fw-bold mb-2">Lanjut ke Pembayaran</button>
+    </div>
+</aside>
+
+<div class="toast" id="toast" role="status"><span id="toastMsg">Berhasil masuk keranjang!</span></div>
+
+<script src="js/vendor/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
