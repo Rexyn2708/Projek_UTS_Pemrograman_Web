@@ -1,365 +1,58 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <script>document.documentElement.classList.add("js")</script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CampusBite — Kantin &amp; Marketplace Mahasiswa</title>
-  <meta name="description" content="CampusBite adalah marketplace khusus mahasiswa untuk membeli makanan, minuman, thrift, dan aksesori kampus.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<a href="#main" class="skip-link">Skip to content</a>
+<div class="hero-button-group">
 
-<!-- ===== Announcement ===== -->
-<div class="announce">
-    Bebas ongkir antar gedung khusus area kampus &nbsp;·&nbsp; Pesan sekarang, siap antar jam istirahat!
+    <!-- Tombol Jelajahi Menu -->
+    <a href="kuliner.html" class="hero-button hero-button-menu">
+        <span class="hero-button-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 3v7a3 3 0 0 0 6 0V3"/>
+                <path d="M7 3v18M17 3v18"/>
+                <path d="M17 3c3 2 3 7 0 9"/>
+            </svg>
+        </span>
+        <span class="hero-button-divider"></span>
+        <span>Jelajahi Menu</span>
+        <span class="hero-button-arrow">→</span>
+    </a>
+
+    <!-- Tombol Mulai Jualan -->
+    <button type="button" class="hero-button hero-button-seller"
+        data-bs-toggle="modal"
+        data-bs-target="#modalJualBarang">
+
+        <span class="hero-button-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 10h18l-1.5 11h-15L3 10Z"/>
+                <path d="m4 10 2-6h12l2 6"/>
+                <path d="M9 10V7m6 3V7"/>
+            </svg>
+        </span>
+
+        <span class="hero-button-divider"></span>
+        <span>+ Buka Toko</span>
+        <span class="hero-button-accent">✦</span>
+    </button>
+
+    <!-- Tombol Jelajahi Kategori -->
+    <a href="#indexKulinerRow"
+        class="hero-button hero-button-category">
+
+        <span class="hero-button-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+        </span>
+
+        <span class="hero-button-divider"></span>
+        <span>Jelajahi Kategori</span>
+    </a>
+
 </div>
-
-<!-- ===== Header / Menu Bar ===== -->
-<header class="site-header" id="siteHeader">
-    <div class="container-x">
-        <div class="nav-inner">
-            <a href="index.html" class="brand">CampusBite<span class="dot">.</span></a>
-
-            <nav aria-label="Primary">
-                <ul class="nav-links">
-                    <li><a href="index.html" aria-current="page">Home</a></li>
-                    <li><a href="kuliner.html">Culinary Menu</a></li>
-                    <li><a href="accessories.html">Thrift & Accessories</a></li>
-                    <li><a href="#lookbook">Bazar</a></li>
-                    <li><a href="#promo" class="text-wine">Promo</a></li>
-                </ul>
-            </nav>
-
-            <div class="nav-actions d-flex align-items-center gap-2">
-                <button class="btn btn-sm btn-success fw-bold px-3 d-none d-md-inline-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalJualBarang" style="font-size: 0.8rem;">
-                    + Jual Barang
-                </button>
-
-                <button class="icon-btn" id="searchToggle" aria-label="Cari produk" aria-expanded="false">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-                </button>
-
-                <a href="login.html" class="icon-btn" aria-label="Masuk Akun" title="Masuk / Daftar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-                </a>
-
-                <button class="icon-btn cart-pill" id="cartOpen" aria-label="Buka Keranjang">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-                    <span class="cart-count" id="cartCount" aria-hidden="true">0</span>
-                </button>
-            </div>
-        </div>
-    </div>
-</header>
-
-<main id="main">
-  <!-- ===== Hero ===== -->
-  <section class="hero-section py-5 bg-light">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <span class="badge bg-danger mb-2">Khusus Warga Kampus</span>
-                <h1 class="display-5 fw-bold text-dark">Lapar di Jam Kosong? Pesan Jajanan Teman Sekampus!</h1>
-                <p class="lead text-muted">Solusi jajan praktis tanpa harus keluar gerbang. Mulai dari makanan berat, camilan, hingga kopi kekinian siap diantar ke gedung kuliahmu.</p>
-                <div class="d-flex gap-2 flex-wrap">
-                  <a href="kuliner.html" class="btn btn-success btn-lg">Pesan Sekarang</a>
-                  <button class="btn btn-dark btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Mulai Jualan</button>              
-              </div>
-            </div>
-            <div class="col-lg-6">
-                <div style="height: 380px; overflow: hidden;" class="rounded shadow-lg">
-                    <img src="img/cookies_yena.png" alt="Kuliner Kampus" class="w-100 h-100" style="object-fit: cover;" onerror="this.src='https://via.placeholder.com/600x400?text=CampusBite+Hero'">
-                </div>
-            </div>
-        </div>
-    </div>
-  </section>
-
-  <!-- ===== Featured Kuliner Grid ===== -->
-  <section class="py-5 bg-light">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h2 class="fw-bold m-0">Makanan & Minuman</h2>
-                <p class="text-muted m-0">Menu favorit buatan tenant mahasiswa minggu ini</p>
-            </div>
-            <a href="kuliner.html" class="btn btn-outline-success">Lihat Semua Menu</a>
-        </div>
-
-        <div class="row g-4" id="indexKulinerRow">
-            <!-- Produk bawaan -->
-            <div class="col-md-3 col-6">
-                <div class="card h-100 border-0 shadow-sm">
-                    <span class="badge bg-success position-absolute m-2">Ready Stock</span>
-                    <img src="nasi_ayam_geprek.png" class="card-img-top" alt="Nasi Ayam Geprek" onerror="this.src='https://via.placeholder.com/250x200?text=Ayam+Geprek'">
-                    <div class="card-body">
-                        <small class="text-muted">Kantin Gedung D</small>
-                        <h5 class="card-title fs-6 fw-bold mt-1">Nasi Ayam Geprek Sambal Ijo</h5>
-                        <p class="text-success fw-bold m-0">Rp 15.000</p>
-                    </div>
-                    <div class="card-footer bg-white border-0 pt-0">
-                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="ayam-geprek" data-name="Nasi Ayam Geprek Sambal Ijo" data-price="15000" data-img="nasi_ayam_geprek.png">+ Tambah ke Keranjang</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="card h-100 border-0 shadow-sm">
-                    <span class="badge bg-warning text-dark position-absolute m-2">PO</span>
-                    <img src="Kopi_Susu_Gula_Aren.png" class="card-img-top" alt="Kopi Susu Literan" onerror="this.src='https://via.placeholder.com/250x200?text=Kopi+Susu'">
-                    <div class="card-body">
-                        <small class="text-muted">Kopi Kantin BCA</small>
-                        <h5 class="card-title fs-6 fw-bold mt-1">Kopi Susu Gula Aren 500ml</h5>
-                        <p class="text-success fw-bold m-0">Rp 18.000</p>
-                    </div>
-                    <div class="card-footer bg-white border-0 pt-0">
-                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="kopi-aren" data-name="Kopi Susu Gula Aren 500ml" data-price="18000" data-img="Kopi_Susu_Gula_Aren.png">+ Tambah ke Keranjang</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </section>
-
-  <!-- ===== SECTION: AKSESORIS & MERCHANDISE KAMPUS ===== -->
-  <section class="py-5">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h2 class="fw-bold m-0">Aksesori & Merchandise Kampus</h2>
-                <p class="text-muted m-0">Lengkapi atribut kuliahmu dengan produk keren buatan sesama mahasiswa</p>
-            </div>
-            <a href="accessories.html" class="btn btn-outline-success">Lihat Semua</a>
-        </div>
-
-        <div class="row g-4" id="indexAccRow">
-            <div class="col-md-3 col-6">
-                <div class="card h-100 border-0 shadow-sm">
-                    <span class="badge bg-danger position-absolute m-2">Terlaris</span>
-                    <img src="Modular_Charm_Ring.png" class="card-img-top" alt="Cincin Charm" onerror="this.src='https://via.placeholder.com/250x200?text=Cincin+Charm'">
-                    <div class="card-body">
-                        <small class="text-muted">Aksesoris Kampus (DKV)</small>
-                        <h5 class="card-title fs-6 fw-bold mt-1">Modular Charm Ring Stainless</h5>
-                        <p class="text-success fw-bold m-0">Rp 15.000</p>
-                    </div>
-                    <div class="card-footer bg-white border-0 pt-0">
-                        <button class="btn btn-sm btn-outline-success w-100 js-add" data-id="charm-ring" data-name="Modular Charm Ring Stainless" data-price="15000" data-img="Modular_Charm_Ring.png">+ Tambah ke Keranjang</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </section>
-</main>
-
-<!-- ===== MODAL TAMBAH PRODUK ===== -->
-<div class="modal fade" id="modalJualBarang" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-success text-white">
-        <h5 class="modal-title fs-6 fw-bold">Mulai Jual Barang / Jajanan di CampusBite</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="userAddProductForm">
-          <div class="mb-2">
-            <label class="small fw-bold">Nama Makanan / Produk</label>
-            <input type="text" id="uProdName" class="form-control form-control-sm" placeholder="Cth: Risoles Mayo Kampus" required>
-          </div>
-          <div class="mb-2">
-            <label class="small fw-bold">Kategori</label>
-            <select id="uProdCat" class="form-select form-select-sm">
-              <option value="makanan">Makanan Berat</option>
-              <option value="camilan">Camilan & Snack</option>
-              <option value="minuman">Minuman Segar</option>
-              <option value="aksesoris">Thrift & Aksesori</option>
-            </select>
-          </div>
-          <div class="mb-2">
-            <label class="small fw-bold">Harga (Rp)</label>
-            <input type="number" id="uProdPrice" class="form-control form-control-sm" placeholder="10000" required>
-          </div>
-          <div class="mb-3">
-            <label class="small fw-bold">Nama File Gambar (Opsional/Pastikan di folder img/)</label>
-            <input type="text" id="uProdImg" class="form-control form-control-sm" placeholder="cth: nasi_ayam_geprek.png">
-          </div>
-          <button type="submit" class="btn btn-success w-100 fw-bold btn-sm">Terbitkan Produk Jualanmu</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== MODAL EDIT PRODUK ===== -->
-<div class="modal fade" id="modalEditBarang" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
-        <h5 class="modal-title fs-6 fw-bold">Edit Produk Jualan</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="userEditProductForm">
-          <input type="hidden" id="editIndex">
-          <div class="mb-2">
-            <label class="small fw-bold">Nama Makanan / Produk</label>
-            <input type="text" id="editProdName" class="form-control form-control-sm" required>
-          </div>
-          <div class="mb-2">
-            <label class="small fw-bold">Kategori</label>
-            <select id="editProdCat" class="form-select form-select-sm">
-              <option value="makanan">Makanan Berat</option>
-              <option value="camilan">Camilan & Snack</option>
-              <option value="minuman">Minuman Segar</option>
-              <option value="aksesoris">Thrift & Aksesori</option>
-            </select>
-          </div>
-          <div class="mb-2">
-            <label class="small fw-bold">Harga (Rp)</label>
-            <input type="number" id="editProdPrice" class="form-control form-control-sm" required>
-          </div>
-          <div class="mb-3">
-            <label class="small fw-bold">Nama File Gambar (Pastikan di folder img/)</label>
-            <input type="text" id="editProdImg" class="form-control form-control-sm">
-          </div>
-          <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">Simpan Perubahan</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="js/vendor/bootstrap.bundle.min.js"></script>
-<script src="js/main.js"></script>
-
-<script>
-  // Render Ulang Seluruh Produk Tambahan dari localStorage
-  function refreshProductList() {
-    // Hapus kartu produk buatan pengguna sebelumnya dari DOM
-    document.querySelectorAll('.user-card-item').forEach(el => el.remove());
-
-    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-
-    saved.forEach((prod, index) => {
-      const targetRow = (prod.kategori === 'aksesoris') 
-        ? document.getElementById('indexAccRow') 
-        : document.getElementById('indexKulinerRow');
-
-      if (!targetRow) return;
-
-      const hargaFormatted = parseInt(prod.harga || 0).toLocaleString('id-ID');
-      const fallbackImg = `https://via.placeholder.com/250x200?text=${encodeURIComponent(prod.nama)}`;
-      const imgSrc = prod.gambar ? prod.gambar : fallbackImg;
-
-      const col = document.createElement('div');
-      col.className = 'col-md-3 col-6 user-card-item';
-      col.innerHTML = `
-        <div class="card h-100 border-0 shadow-sm position-relative">
-          <span class="badge bg-primary position-absolute m-2">Jualan Saya</span>
-          
-          <!-- Tombol Aksi Edit & Hapus -->
-          <div class="position-absolute top-0 end-0 m-2 d-flex gap-1 z-3">
-            <button class="btn btn-sm btn-light border shadow-sm px-2 py-0" onclick="openEditModal(${index})" title="Edit Produk">✏️</button>
-            <button class="btn btn-sm btn-danger shadow-sm px-2 py-0" onclick="deleteProduct(${index})" title="Hapus Produk">🗑️</button>
-          </div>
-
-          <img src="${imgSrc}" class="card-img-top" alt="${prod.nama}" onerror="this.src='${fallbackImg}'">
-          <div class="card-body">
-            <small class="text-muted">Tenant Mahasiswa</small>
-            <h5 class="card-title fs-6 fw-bold mt-1">${prod.nama}</h5>
-            <p class="text-success fw-bold m-0">Rp ${hargaFormatted}</p>
-          </div>
-          <div class="card-footer bg-white border-0 pt-0">
-            <button class="btn btn-sm btn-outline-success w-100 js-add" 
-                    data-id="user-${index}" 
-                    data-name="${prod.nama}" 
-                    data-price="${prod.harga}" 
-                    data-img="${imgSrc}">
-              + Tambah ke Keranjang
-            </button>
-          </div>
-        </div>
-      `;
-      targetRow.prepend(col);
-    });
-  }
-
-  // Buka Modal Edit & Isi Data
-  function openEditModal(index) {
-    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-    const item = saved[index];
-    if (!item) return;
-
-    document.getElementById('editIndex').value = index;
-    document.getElementById('editProdName').value = item.nama;
-    document.getElementById('editProdCat').value = item.kategori;
-    document.getElementById('editProdPrice').value = item.harga;
-    document.getElementById('editProdImg').value = item.gambar || '';
-
-    const modalEl = document.getElementById('modalEditBarang');
-    const modal = new bootstrap.Modal(modalEl);
-    modal.show();
-  }
-
-  // Hapus Produk
-  function deleteProduct(index) {
-    if (confirm('Apakah Anda yakin ingin menghapus produk jualan ini?')) {
-      const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-      saved.splice(index, 1);
-      localStorage.setItem('user_products', JSON.stringify(saved));
-      refreshProductList();
-    }
-  }
-
-  // Inisialisasi saat Halaman Dimuat
-  document.addEventListener('DOMContentLoaded', refreshProductList);
-
-  // Submit Form Tambah Produk
-  document.getElementById('userAddProductForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('uProdName').value;
-    const cat = document.getElementById('uProdCat').value;
-    const price = document.getElementById('uProdPrice').value;
-    const img = document.getElementById('uProdImg').value;
-
-    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-    saved.push({ nama: name, kategori: cat, harga: price, gambar: img });
-    localStorage.setItem('user_products', JSON.stringify(saved));
-
-    refreshProductList();
-
-    alert('Hore! Produk "' + name + '" berhasil dipublikasikan!');
-    const modalEl = document.getElementById('modalJualBarang');
-    const modal = bootstrap.Modal.getInstance(modalEl);
-    if (modal) modal.hide();
-    this.reset();
-  });
-
-  // Submit Form Edit Produk
-  document.getElementById('userEditProductForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const index = document.getElementById('editIndex').value;
-    const name = document.getElementById('editProdName').value;
-    const cat = document.getElementById('editProdCat').value;
-    const price = document.getElementById('editProdPrice').value;
-    const img = document.getElementById('editProdImg').value;
-
-    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-    saved[index] = { nama: name, kategori: cat, harga: price, gambar: img };
-    localStorage.setItem('user_products', JSON.stringify(saved));
-
-    refreshProductList();
-
-    alert('Produk "' + name + '" berhasil diperbarui!');
-    const modalEl = document.getElementById('modalEditBarang');
-    const modal = bootstrap.Modal.getInstance(modalEl);
-    if (modal) modal.hide();
-  });
-</script>
-</body>
-</html>
