@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin — CampusBite</title>
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+
+  <nav class="navbar navbar-dark bg-danger px-4">
+    <a class="navbar-brand fw-bold" href="#">CampusBite <span class="badge bg-light text-danger">Panel Admin Kampus</span></a>
+    <button class="btn btn-outline-light btn-sm" onclick="logout()">Keluar</button>
+  </nav>
+
+  <div class="container my-5">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-3 text-center">
+          <h6 class="text-muted">Total Tenant Aktif</h6>
+          <h2 class="fw-bold text-success">12 Tenant</h2>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-3 text-center">
+          <h6 class="text-muted">Total Pesanan Hari Ini</h6>
+          <h2 class="fw-bold text-primary">48 Transaksi</h2>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-3 text-center">
+          <h6 class="text-muted">Status Pengiriman</h6>
+          <h2 class="fw-bold text-warning">Lancar (Antar Gedung)</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm p-4 mt-4">
+      <h5 class="fw-bold mb-3">Kontrol Sistem Marketplace</h5>
+      <p class="text-muted small">Admin dapat memantau seluruh transaksi kantin, memverifikasi akun mahasiswa yang mendaftar sebagai penjual, serta mengatur kebijakan bebas ongkir antar gedung.</p>
+      <button class="btn btn-outline-danger btn-sm w-25" onclick="alert('Pengaturan disimpan!')">Simpan Kebijakan Kampus</button>
+    </div>
+  </div>
+
+  <script>
+    function logout() {
+      localStorage.removeItem('campusbite_role');
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>
