@@ -28,13 +28,23 @@
 
             <nav aria-label="Primary">
                 <ul class="nav-links">
-                    <li><a href="index.html" aria-current="page">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="kuliner.html">Culinary Menu</a></li>
                     <li><a href="accessories.html">Thrift & Acc</a></li>
-                    <li><a href="#lookbook">Bazar</a></li>
-                    <li><a href="#promo" class="text-wine">Promo</a></li>
-                </ul>
-            </nav>
+                    <li><a href="index.html#lookbook">Bazar</a></li>
+        
+        <!-- ===== TAMBAHAN MENU DASHBOARD ===== -->
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle text-warning fw-bold" href="#" id="dashboardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Dashboard ▾
+                          </a>
+                          <ul class="dropdown-menu shadow border-0" aria-labelledby="dashboardDropdown">
+                              <li><a class="dropdown-item fw-semibold" href="dashboard-seller.html">🏪 Dashboard Seller</a></li>
+                              <li><a class="dropdown-item fw-semibold text-danger" href="dashboard-admin.html">⚙️ Dashboard Admin</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+              </nav>
 
             <div class="nav-actions d-flex align-items-center gap-2">
                 <button class="btn btn-sm btn-success fw-bold px-3 d-none d-md-inline-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalJualBarang" style="font-size: 0.8rem;">
