@@ -34,7 +34,39 @@
             </nav>
             <div class="nav-actions d-flex align-items-center gap-2">
                 <button class="btn btn-sm btn-success fw-bold px-3 d-none d-md-inline-flex" data-bs-toggle="modal" data-bs-target="#modalJualBarang">+ Jual Barang</button>
-                <a href="login.html" class="icon-btn" title="Masuk / Daftar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></a>
+
+                <!-- ===== DROPDOWN INFO AKUN & DASHBOARD ===== -->
+                <div class="dropdown">
+                  <button class="icon-btn border-0 bg-transparent" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Info Akun & Panel">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="24" height="24" aria-hidden="true">
+                      <circle cx="12" cy="8" r="4"/>
+                      <path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>
+                    </svg>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="accountDropdown" style="min-width: 220px;">
+                    <li class="px-3 py-2 bg-light border-bottom">
+                      <div class="fw-bold text-dark small">Info Akun Saya</div>
+                      <div class="text-muted" style="font-size: 0.75rem;">Mahasiswa / Tenant</div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item py-2 fw-semibold text-dark" href="dashboard-seller.html">
+                        🏪 Dashboard Seller / Penjual
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item py-2 fw-semibold text-danger" href="dashboard-admin.html">
+                        ⚙️ Dashboard Admin Kampus
+                      </a>
+                    </li>
+                    <li><hr class="dropdown-divider m-0"></li>
+                    <li>
+                      <a class="dropdown-item py-2 text-muted small" href="login.html">
+                        🔑 Masuk / Ganti Akun
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
                 <button class="icon-btn cart-pill" id="cartOpen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-count" id="cartCount">0</span></button>
             </div>
         </div>
@@ -49,7 +81,7 @@
     </div>
 
     <div class="row g-4" id="kulinerGrid">
-        <!-- Produk 1 -->
+        <!-- Produk Bawaan 1 -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
                 <span class="badge bg-success position-absolute m-2">Ready</span>
@@ -64,7 +96,7 @@
                 </div>
             </div>
         </div>
-        <!-- Produk 2 -->
+        <!-- Produk Bawaan 2 -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
                 <span class="badge bg-warning text-dark position-absolute m-2">PO</span>
@@ -79,7 +111,7 @@
                 </div>
             </div>
         </div>
-        <!-- Produk 3 -->
+        <!-- Produk Bawaan 3 -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
                 <span class="badge bg-success position-absolute m-2">Ready</span>
@@ -94,7 +126,7 @@
                 </div>
             </div>
         </div>
-        <!-- Produk 4 -->
+        <!-- Produk Bawaan 4 -->
         <div class="col-md-3 col-6">
             <div class="card h-100 border-0 shadow-sm">
                 <span class="badge bg-info text-dark position-absolute m-2">Ready</span>
@@ -109,10 +141,11 @@
                 </div>
             </div>
         </div>
+        <!-- Tempat Produk Hasil Jual Barang Pengguna Muncul Secara Dinamis -->
     </div>
 </main>
 
-<!-- ===== MODAL JUAL BARANG ===== -->
+<!-- ===== MODAL TAMBAH PRODUK ===== -->
 <div class="modal fade" id="modalJualBarang" tabindex="-1" aria-labelledby="modalJualLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -141,9 +174,48 @@
           </div>
           <div class="mb-3">
             <label class="small fw-bold">Nama File Gambar (Pastikan ada di folder img/)</label>
-            <input type="text" id="uProdImg" class="form-control form-control-sm" value="nasi_ayam_geprek.png" required>
+            <input type="text" id="uProdImg" class="form-control form-control-sm" placeholder="cth: nasi_ayam_geprek.png">
           </div>
           <button type="submit" class="btn btn-success w-100 fw-bold btn-sm">Terbitkan Produk Jualanmu</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL EDIT PRODUK ===== -->
+<div class="modal fade" id="modalEditBarang" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title fs-6 fw-bold">✏️ Edit Produk Jualan</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="userEditProductForm">
+          <input type="hidden" id="editIndex">
+          <div class="mb-2">
+            <label class="small fw-bold">Nama Makanan / Produk</label>
+            <input type="text" id="editProdName" class="form-control form-control-sm" required>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Kategori</label>
+            <select id="editProdCat" class="form-select form-select-sm">
+              <option value="makanan">Makanan Berat</option>
+              <option value="camilan">Camilan & Snack</option>
+              <option value="minuman">Minuman Segar</option>
+              <option value="aksesoris">Thrift & Aksesori</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="small fw-bold">Harga (Rp)</label>
+            <input type="number" id="editProdPrice" class="form-control form-control-sm" required>
+          </div>
+          <div class="mb-3">
+            <label class="small fw-bold">Nama File Gambar (Pastikan di folder img/)</label>
+            <input type="text" id="editProdImg" class="form-control form-control-sm">
+          </div>
+          <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">Simpan Perubahan</button>
         </form>
       </div>
     </div>
@@ -153,46 +225,87 @@
 <script src="js/vendor/bootstrap.bundle.min.js"></script>
 <script src="js/main.js"></script>
 <script>
-  function renderKulinerProduct(nama, kategori, harga, gambar) {
+  // Render ulang list produk jualan sendiri di kuliner.html
+  function refreshUserKuliner() {
+    document.querySelectorAll('.user-kuliner-item').forEach(el => el.remove());
+
     const grid = document.getElementById('kulinerGrid');
     if (!grid) return;
 
-    const hargaFormatted = parseInt(harga).toLocaleString('id-ID');
-    const col = document.createElement('div');
-    col.className = 'col-md-3 col-6';
-    col.innerHTML = `
-      <div class="card h-100 border-0 shadow-sm">
-        <span class="badge bg-primary position-absolute m-2">Menu Baru</span>
-        <img src="${gambar}" class="card-img-top" alt="${nama}" onerror="this.src='https://via.placeholder.com/250x200?text=${encodeURIComponent(nama)}'">
-        <div class="card-body">
-          <small class="text-muted">Tenant Mahasiswa</small>
-          <h5 class="card-title fs-6 fw-bold mt-1">${nama}</h5>
-          <p class="text-success fw-bold m-0">Rp ${hargaFormatted}</p>
+    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+
+    saved.forEach((prod, index) => {
+      // Hanya tampilkan selain kategori aksesoris
+      if (prod.kategori === 'aksesoris') return;
+
+      const hargaFormatted = parseInt(prod.harga || 0).toLocaleString('id-ID');
+      const fallbackImg = `https://via.placeholder.com/250x200?text=${encodeURIComponent(prod.nama)}`;
+      const imgSrc = prod.gambar ? prod.gambar : fallbackImg;
+
+      const col = document.createElement('div');
+      col.className = 'col-md-3 col-6 user-kuliner-item';
+      col.innerHTML = `
+        <div class="card h-100 border-0 shadow-sm position-relative">
+          <span class="badge bg-primary position-absolute m-2">Menu Saya</span>
+          
+          <!-- Tombol Edit & Hapus -->
+          <div class="position-absolute top-0 end-0 m-2 d-flex gap-1 z-3">
+            <button class="btn btn-sm btn-light border shadow-sm px-2 py-0" onclick="openEditModal(${index})" title="Edit Produk">✏️</button>
+            <button class="btn btn-sm btn-danger shadow-sm px-2 py-0" onclick="deleteProduct(${index})" title="Hapus Produk">🗑️</button>
+          </div>
+
+          <img src="${imgSrc}" class="card-img-top" alt="${prod.nama}" onerror="this.src='${fallbackImg}'">
+          <div class="card-body">
+            <small class="text-muted">Tenant Mahasiswa</small>
+            <h5 class="card-title fs-6 fw-bold mt-1">${prod.nama}</h5>
+            <p class="text-success fw-bold m-0">Rp ${hargaFormatted}</p>
+          </div>
+          <div class="card-footer bg-white border-0 pt-0">
+            <button class="btn btn-sm btn-outline-success w-100 js-add" 
+                    data-id="kul-${index}" 
+                    data-name="${prod.nama}" 
+                    data-price="${prod.harga}" 
+                    data-img="${imgSrc}">
+              + Tambah ke Keranjang
+            </button>
+          </div>
         </div>
-        <div class="card-footer bg-white border-0 pt-0">
-          <button class="btn btn-sm btn-outline-success w-100 js-add" 
-                  data-id="kul-${Date.now()}" 
-                  data-name="${nama}" 
-                  data-price="${harga}" 
-                  data-img="${gambar}">
-            + Tambah ke Keranjang
-          </button>
-        </div>
-      </div>
-    `;
-    grid.prepend(col);
+      `;
+      grid.prepend(col);
+    });
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
+  // Buka Modal Edit
+  function openEditModal(index) {
     const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-    saved.forEach(prod => {
-      // Hanya tampilkan produk selain aksesoris di kuliner.html
-      if (prod.kategori !== 'aksesoris') {
-        renderKulinerProduct(prod.nama, prod.kategori, prod.harga, prod.gambar);
-      }
-    });
-  });
+    const item = saved[index];
+    if (!item) return;
 
+    document.getElementById('editIndex').value = index;
+    document.getElementById('editProdName').value = item.nama;
+    document.getElementById('editProdCat').value = item.kategori;
+    document.getElementById('editProdPrice').value = item.harga;
+    document.getElementById('editProdImg').value = item.gambar || '';
+
+    const modalEl = document.getElementById('modalEditBarang');
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+  }
+
+  // Hapus Produk
+  function deleteProduct(index) {
+    if (confirm('Apakah Anda yakin ingin menghapus produk jualan ini?')) {
+      const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+      saved.splice(index, 1);
+      localStorage.setItem('user_products', JSON.stringify(saved));
+      refreshUserKuliner();
+    }
+  }
+
+  // Loaded event
+  document.addEventListener('DOMContentLoaded', refreshUserKuliner);
+
+  // Submit Form Tambah Produk
   document.getElementById('userAddProductForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const name = document.getElementById('uProdName').value;
@@ -204,15 +317,34 @@
     saved.push({ nama: name, kategori: cat, harga: price, gambar: img });
     localStorage.setItem('user_products', JSON.stringify(saved));
 
-    if (cat !== 'aksesoris') {
-      renderKulinerProduct(name, cat, price, img);
-    }
+    refreshUserKuliner();
 
     alert('Hore! Produk "' + name + '" berhasil dipublikasikan!');
     const modalEl = document.getElementById('modalJualBarang');
     const modal = bootstrap.Modal.getInstance(modalEl);
     if (modal) modal.hide();
     this.reset();
+  });
+
+  // Submit Form Edit Produk
+  document.getElementById('userEditProductForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const index = document.getElementById('editIndex').value;
+    const name = document.getElementById('editProdName').value;
+    const cat = document.getElementById('editProdCat').value;
+    const price = document.getElementById('editProdPrice').value;
+    const img = document.getElementById('editProdImg').value;
+
+    const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+    saved[index] = { nama: name, kategori: cat, harga: price, gambar: img };
+    localStorage.setItem('user_products', JSON.stringify(saved));
+
+    refreshUserKuliner();
+
+    alert('Produk "' + name + '" berhasil diperbarui!');
+    const modalEl = document.getElementById('modalEditBarang');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
   });
 </script>
 </body>
