@@ -93,14 +93,33 @@
               <label class="small fw-bold">Judul Event / Stand</label>
               <input type="text" id="evTitle" class="form-control form-control-sm" placeholder="Cth: Festival Kewirausahaan DKV" required>
             </div>
+            
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label class="small fw-bold">Hari / Tanggal</label>
+                <input type="text" id="evDay" class="form-control form-control-sm" placeholder="Cth: Kamis, 14 Nov" required>
+              </div>
+              <div class="col-6">
+                <label class="small fw-bold">Waktu</label>
+                <input type="text" id="evTime" class="form-control form-control-sm" placeholder="Cth: 09:00 - selesai" required>
+              </div>
+            </div>
+
+            <div class="mb-2">
+              <label class="small fw-bold">Lokasi / Gedung</label>
+              <input type="text" id="evLocation" class="form-control form-control-sm" placeholder="Cth: Auditorium Utama / Lapangan" required>
+            </div>
+
             <div class="mb-2">
               <label class="small fw-bold">Deskripsi Singkat</label>
-              <textarea id="evDesc" class="form-control form-control-sm" rows="3" placeholder="Deskripsi keseruan acara..." required></textarea>
+              <textarea id="evDesc" class="form-control form-control-sm" rows="2" placeholder="Deskripsi keseruan acara..." required></textarea>
             </div>
+
             <div class="mb-3">
               <label class="small fw-bold">Nama File Gambar (Pastikan di folder img/)</label>
               <input type="text" id="evImg" class="form-control form-control-sm" placeholder="Cth: lookbook1.jpg">
             </div>
+
             <button type="submit" class="btn btn-sm text-white fw-bold w-100" style="background-color: #8FA583;">Publikasikan Event ke Home</button>
           </form>
 
@@ -171,7 +190,6 @@
         const hargaFormatted = parseInt(prod.harga || 0).toLocaleString('id-ID');
         const fallbackImg = `https://via.placeholder.com/50?text=${encodeURIComponent(prod.nama)}`;
         
-        // Pengecekan jalur folder img/ otomatis
         let imgSrc = prod.gambar ? prod.gambar : fallbackImg;
         if (prod.gambar && !prod.gambar.startsWith('img/') && !prod.gambar.startsWith('http')) {
           imgSrc = 'img/' + prod.gambar;
@@ -227,13 +245,24 @@
 
       let html = '';
       events.forEach((ev, idx) => {
+        // Handle dukungan data lama (judul/deskripsi) dan data baru (title/desc/location/day/time)
+        const judulEv = ev.title || ev.judul || 'Event Kampus';
+        const deskEv = ev.desc || ev.deskripsi || '';
+        const lokEv = ev.location || 'Area Kampus';
+        const dayEv = ev.day || 'Segera';
+        const timeEv = ev.time || '';
+
         html += `
-          <div class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
-            <div>
-              <strong class="d-block text-dark">${ev.judul}</strong>
-              <small class="text-muted text-truncate d-inline-block" style="max-width: 200px;">${ev.deskripsi}</small>
+          <div class="list-group-item px-0 py-2 border-bottom">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <strong class="d-block text-dark">${judulEv}</strong>
+                <small class="text-muted d-block mb-1">${deskEv}</small>
+                <span class="badge bg-secondary mb-1" style="font-size: 10px;">📍 ${lokEv}</span>
+                <span class="badge bg-light text-dark border" style="font-size: 10px;">📅 ${dayEv} ${timeEv ? '| ⏰ ' + timeEv : ''}</span>
+              </div>
+              <button class="btn btn-sm btn-outline-danger py-0 px-2 ms-2" onclick="deleteEvent(${idx})">🗑️</button>
             </div>
-            <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="deleteEvent(${idx})">🗑️</button>
           </div>
         `;
       });
@@ -244,6 +273,9 @@
     document.getElementById('adminAddEventForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const title = document.getElementById('evTitle').value;
+      const day = document.getElementById('evDay').value;
+      const time = document.getElementById('evTime').value;
+      const location = document.getElementById('evLocation').value;
       const desc = document.getElementById('evDesc').value;
       let img = document.getElementById('evImg').value;
 
@@ -252,7 +284,17 @@
       }
 
       const events = JSON.parse(localStorage.getItem('campus_events')) || [];
-      events.push({ judul: title, deskripsi: desc, gambar: img });
+      
+      // Simpan lengkap dengan lokasi, hari, dan waktu
+      events.push({
+        title: title,
+        day: day,
+        time: time,
+        location: location,
+        desc: desc,
+        gambar: img
+      });
+
       localStorage.setItem('campus_events', JSON.stringify(events));
 
       renderAdminEvents();
