@@ -133,14 +133,15 @@
                 <tr>
                   <th>Waktu</th>
                   <th>Nama Pembeli</th>
+                  <th>Gedung / Lokasi Tujuan</th>
                   <th>Produk yang Dibeli</th>
-                  <th>Total Harga</th>
+                  <th>Total</th>
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody id="sellerOrdersTableBody">
                 <tr>
-                  <td colspan="5" class="text-center text-muted py-3">Belum ada pesanan masuk dari pembeli.</td>
+                  <td colspan="6" class="text-center text-muted py-3">Belum ada pesanan masuk dari pembeli.</td>
                 </tr>
               </tbody>
             </table>
@@ -214,7 +215,6 @@
       const promoTargetSelect = document.getElementById('promoTarget');
       const saved = JSON.parse(localStorage.getItem('user_products')) || [];
 
-      // Reset opsi dropdown promo
       promoTargetSelect.innerHTML = '<option value="">-- Pilih Produk Jualanmu --</option>';
 
       if (saved.length === 0) {
@@ -244,7 +244,6 @@
         const imgSrc = fixImagePath(prod.gambar, prod.nama);
         const promoBadge = prod.promo ? `<span class="badge bg-danger">${prod.promo}</span>` : `<span class="text-muted">-</span>`;
 
-        // Masukkan ke dropdown pilihan promo
         const opt = document.createElement('option');
         opt.value = index;
         opt.textContent = prod.nama;
@@ -276,12 +275,11 @@
       renderOrdersTable();
     }
 
-    // Render Tabel Pesanan Masuk dari Pembeli
+    // Render Tabel Pesanan Masuk dari Pembeli beserta Gedungnya
     function renderOrdersTable() {
       const ordersTableBody = document.getElementById('sellerOrdersTableBody');
       const orderCountBadge = document.getElementById('orderCountBadge');
       
-      // Ambil data transaksi/pesanan dari localStorage (disimpan saat checkout oleh pembeli)
       const orders = JSON.parse(localStorage.getItem('campus_orders')) || [];
 
       orderCountBadge.textContent = `${orders.length} Pesanan`;
@@ -289,7 +287,7 @@
       if (orders.length === 0) {
         ordersTableBody.innerHTML = `
           <tr>
-            <td colspan="5" class="text-center text-muted py-3">Belum ada pesanan masuk dari pembeli.</td>
+            <td colspan="6" class="text-center text-muted py-3">Belum ada pesanan masuk dari pembeli.</td>
           </tr>
         `;
         return;
@@ -297,7 +295,6 @@
 
       let html = '';
       orders.slice().reverse().forEach(order => {
-        // order.items diasumsikan berisi list produk yang dibeli
         let itemsList = '';
         if (order.items && Array.isArray(order.items)) {
           itemsList = order.items.map(i => `${i.name} (${i.qty}x)`).join(', ');
@@ -306,11 +303,14 @@
         }
 
         const totalFormatted = parseInt(order.total || 0).toLocaleString('id-ID');
+        // Ambil data gedung/lokasi dari data checkout pembeli (jika ada)
+        const lokasiGedung = order.gedung || order.lokasi || 'Gedung Kuliah Umum (GK於是)';
         
         html += `
           <tr>
             <td class="text-muted small">${order.waktu || 'Baru saja'}</td>
             <td class="fw-bold">${order.namaPembeli || 'Mahasiswa / Pembeli'}</td>
+            <td><span class="badge bg-info text-dark">${lokasiGedung}</span></td>
             <td>${itemsList}</td>
             <td class="text-success fw-bold">Rp ${totalFormatted}</td>
             <td><span class="badge bg-warning text-dark">Diproses</span></td>
