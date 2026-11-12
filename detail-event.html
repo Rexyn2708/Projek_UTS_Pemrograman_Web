@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Event — CampusBite</title>
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+
+  <!-- ===== Header Navigasi ===== -->
+  <nav class="navbar navbar-expand-lg px-4 border-bottom shadow-sm bg-white">
+    <div class="container-fluid p-0">
+      <a class="navbar-brand fw-bold text-dark d-flex align-items-center gap-2" href="index.html" style="font-family: 'Bodoni Moda', serif;">
+        CampusBite<span style="color: #7c2b3b;">.</span> 
+      </a>
+      <a href="index.html" class="btn btn-sm btn-outline-secondary">← Kembali ke Beranda</a>
+    </div>
+  </nav>
+
+  <!-- ===== Konten Detail Event ===== -->
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm overflow-hidden" id="eventDetailCard">
+          <!-- Konten detail akan dimuat dinamis lewat JavaScript -->
+          <div class="text-center py-5">
+            <div class="spinner-border text-success" role="status"></div>
+            <p class="text-muted small mt-2">Memuat detail event...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ambil parameter ?id= dari URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const eventId = urlParams.get('id');
+
+      const events = JSON.parse(localStorage.getItem('campus_events')) || [];
+      const cardContainer = document.getElementById('eventDetailCard');
+
+      if (eventId === null || !events[eventId]) {
+        cardContainer.innerHTML = `
+          <div class="card-body text-center py-5">
+            <h3 class="fw-bold text-danger">Event Tidak Ditemukan</h3>
+            <p class="text-muted">Maaf, event yang Anda cari mungkin sudah dihapus atau tidak tersedia.</p>
+            <a href="index.html" class="btn btn-dark btn-sm mt-3">Kembali ke Beranda</a>
+          </div>
+        `;
+        return;
+      }
+
+      const ev = events[eventId];
+      const judulEv = ev.title || ev.judul || 'Event Kampus';
+      const deskEv = ev.desc || ev.deskripsi || 'Tidak ada deskripsi.';
+      const lokEv = ev.location || 'Area Kampus';
+      const dayEv = ev.day || 'Segera';
+      const timeEv = ev.time || '-';
+      const statusEv = ev.status || 'Sedang Berlangsung';
+      
+      let fallbackImg = 'https://via.placeholder.com/800x400?text=' + encodeURIComponent(judulEv);
+      let imgSrc = ev.gambar || ev.img || fallbackImg;
+      if (imgSrc && !imgSrc.startsWith('img/') && !imgSrc.startsWith('http')) {
+        imgSrc = 'img/' + imgSrc;
+      }
+
+      let badgeColor = 'bg-success';
+      if (statusEv === 'Akan Berjalan') badgeColor = 'bg-warning text-dark';
+      if (statusEv === 'Telah Berakhir') badgeColor = 'bg-danger';
+
+      cardContainer.innerHTML = `
+        <img src="${imgSrc}" class="w-100 object-fit-cover" style="height: 350px;" alt="${judulEv}" onerror="this.src='https://via.placeholder.com/800x400?text=Event+CampusBite'">
+        <div class="card-body p-4 p-md-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="badge ${badgeColor} fs-6 px-3 py-2">📌 ${statusEv}</span>
+            <span class="text-muted small">📅 ${dayEv}</span>
+          </div>
+          
+          <h1 class="fw-bold text-dark mb-3">${judulEv}</h1>
+          
+          <div class="row g-3 mb-4 bg-light p-3 rounded border">
+            <div class="col-md-6">
+              <span class="text-muted small d-block fw-bold">📍 LOKASI / GEDUNG</span>
+              <span class="fw-semibold text-dark">${lokEv}</span>
+            </div>
+            <div class="col-md-6">
+              <span class="text-muted small d-block fw-bold">⏰ WAKTU PELAKSANAAN</span>
+              <span class="fw-semibold text-dark">${timeEv}</span>
+            </div>
+          </div>
+
+          <h5 class="fw-bold text-dark fs-6">Tentang Acara</h5>
+          <p class="text-secondary lh-lg mb-4">${deskEv}</p>
+
+          <div class="d-flex gap-2">
+            <a href="index.html" class="btn btn-dark btn-sm px-4 fw-bold">← Kembali ke Beranda</a>
+            <a href="kuliner.html" class="btn btn-outline-success btn-sm px-4 fw-bold">☕ Pesan Jajanan Kantin</a>
+          </div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
