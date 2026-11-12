@@ -105,9 +105,19 @@
               </div>
             </div>
 
-            <div class="mb-2">
-              <label class="small fw-bold">Lokasi / Gedung</label>
-              <input type="text" id="evLocation" class="form-control form-control-sm" placeholder="Cth: Auditorium Utama / Lapangan" required>
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label class="small fw-bold">Lokasi / Gedung</label>
+                <input type="text" id="evLocation" class="form-control form-control-sm" placeholder="Cth: Auditorium Utama" required>
+              </div>
+              <div class="col-6">
+                <label class="small fw-bold">Status Waktu Event</label>
+                <select id="evStatus" class="form-select form-select-sm" required>
+                  <option value="Akan Berjalan">⏳ Akan Berjalan</option>
+                  <option value="Sedang Berlangsung" selected>🟢 Sedang Berlangsung</option>
+                  <option value="Telah Berakhir">🔴 Telah Berakhir</option>
+                </select>
+              </div>
             </div>
 
             <div class="mb-2">
@@ -245,23 +255,34 @@
 
       let html = '';
       events.forEach((ev, idx) => {
-        // Handle dukungan data lama (judul/deskripsi) dan data baru (title/desc/location/day/time)
         const judulEv = ev.title || ev.judul || 'Event Kampus';
         const deskEv = ev.desc || ev.deskripsi || '';
         const lokEv = ev.location || 'Area Kampus';
         const dayEv = ev.day || 'Segera';
         const timeEv = ev.time || '';
+        const statusEv = ev.status || 'Sedang Berlangsung';
+
+        // Tentukan warna badge status
+        let badgeColor = 'bg-success';
+        if (statusEv === 'Akan Berjalan') badgeColor = 'bg-warning text-dark';
+        if (statusEv === 'Telah Berakhir') badgeColor = 'bg-danger';
 
         html += `
           <div class="list-group-item px-0 py-2 border-bottom">
             <div class="d-flex justify-content-between align-items-start">
               <div>
-                <strong class="d-block text-dark">${judulEv}</strong>
+                <!-- Judul Event bisa diklik menuju halaman detail (detail-event.html) -->
+                <a href="detail-event.html?id=${idx}" class="fw-bold text-dark text-decoration-none d-hover-underline">
+                  🔗 ${judulEv}
+                </a>
                 <small class="text-muted d-block mb-1">${deskEv}</small>
-                <span class="badge bg-secondary mb-1" style="font-size: 10px;">📍 ${lokEv}</span>
-                <span class="badge bg-light text-dark border" style="font-size: 10px;">📅 ${dayEv} ${timeEv ? '| ⏰ ' + timeEv : ''}</span>
+                <div class="d-flex flex-wrap gap-1 mt-1">
+                  <span class="badge bg-secondary" style="font-size: 10px;">📍 ${lokEv}</span>
+                  <span class="badge bg-light text-dark border" style="font-size: 10px;">📅 ${dayEv} ${timeEv ? '| ⏰ ' + timeEv : ''}</span>
+                  <span class="badge ${badgeColor}" style="font-size: 10px;">📌 ${statusEv}</span>
+                </div>
               </div>
-              <button class="btn btn-sm btn-outline-danger py-0 px-2 ms-2" onclick="deleteEvent(${idx})">🗑️</button>
+              <button class="btn btn-sm btn-outline-danger py-0 px-2 ms-2" onclick="deleteEvent(${idx})" title="Hapus Event">🗑️</button>
             </div>
           </div>
         `;
@@ -276,6 +297,7 @@
       const day = document.getElementById('evDay').value;
       const time = document.getElementById('evTime').value;
       const location = document.getElementById('evLocation').value;
+      const status = document.getElementById('evStatus').value;
       const desc = document.getElementById('evDesc').value;
       let img = document.getElementById('evImg').value;
 
@@ -285,12 +307,12 @@
 
       const events = JSON.parse(localStorage.getItem('campus_events')) || [];
       
-      // Simpan lengkap dengan lokasi, hari, dan waktu
       events.push({
         title: title,
         day: day,
         time: time,
         location: location,
+        status: status,
         desc: desc,
         gambar: img
       });
@@ -298,7 +320,7 @@
       localStorage.setItem('campus_events', JSON.stringify(events));
 
       renderAdminEvents();
-      alert('Event "' + title + '" berhasil ditambahkan dan langsung tampil di halaman Home!');
+      alert('Event "' + title + '" berhasil ditambahkan!');
       this.reset();
     });
 
