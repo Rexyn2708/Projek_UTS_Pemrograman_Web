@@ -87,6 +87,27 @@
         </div>
       </div>
 
+      <!-- KARTU TERPISAH KHUSUS PROMO -->
+  <div class="card border-0 shadow-sm p-3 bg-light">
+    <h5 class="fw-bold mb-2 fs-6 text-danger">Buat Promo Diskon Toko</h5>
+    <p class="text-muted small mb-3">Pasang label diskon khusus untuk menarik perhatian pembeli di beranda.</p>
+    <form id="addPromoForm">
+      <div class="mb-2">
+        <label class="small fw-bold">Pilih Produk Tenant</label>
+        <select id="promoTarget" class="form-select form-select-sm">
+          <option value="">-- Pilih Produk Jualanmu --</option>
+          <!-- Nanti bisa diisi otomatis atau manual -->
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="small fw-bold">Keterangan Promo</label>
+        <input type="text" id="promoLabel" class="form-control form-control-sm" placeholder="Cth: Diskon 20% / Flash Sale" required>
+      </div>
+      <button type="submit" class="btn btn-outline-danger btn-sm w-100 fw-bold">Terapkan Promo</button>
+    </form>
+  </div>
+</div>
+
       <!-- Tabel Daftar Jualan -->
       <div class="col-lg-8 col-md-7">
         <div class="card border-0 shadow-sm p-3">
