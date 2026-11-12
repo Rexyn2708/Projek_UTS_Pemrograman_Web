@@ -27,7 +27,6 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="card border-0 shadow-sm overflow-hidden" id="eventDetailCard">
-          <!-- Konten detail akan dimuat dinamis lewat JavaScript -->
           <div class="text-center py-5">
             <div class="spinner-border text-success" role="status"></div>
             <p class="text-muted small mt-2">Memuat detail event...</p>
@@ -44,7 +43,6 @@
     document.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       currentEventId = urlParams.get('id');
-
       renderEventDetail();
     });
 
@@ -65,8 +63,8 @@
 
       const ev = events[currentEventId];
       const judulEv = ev.title || ev.judul || 'Event Kampus';
-      const deskEv = ev.desc || ev.deskripsi || 'Tidak ada deskripsi.';
-      const lokEv = ev.location || 'Area Kampus';
+      const deskEv = ev.desc || ev.deskripsi || '-';
+      const lokEv = ev.location || ev.tempat || 'Area Kampus';
       const dayEv = ev.day || 'Segera';
       const timeEv = ev.time || '-';
       const statusEv = ev.status || 'Sedang Berlangsung';
@@ -85,17 +83,16 @@
         <img src="${imgSrc}" class="w-100 object-fit-cover" style="height: 350px;" alt="${judulEv}" onerror="this.src='https://via.placeholder.com/800x400?text=Event+CampusBite'">
         <div class="card-body p-4 p-md-5">
           
-          <!-- Bagian Status & Tombol Ubah Status -->
-          <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 bg-light p-3 rounded border">
+          <!-- Status & Dropdown Ubah Status -->
+          <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 bg-light p-3 rounded border">
             <div class="d-flex align-items-center gap-2">
-              <span class="text-muted small fw-bold">STATUS EVENT:</span>
-              <span class="badge ${badgeColor} fs-6 px-3 py-2" id="statusBadgeDisplay">📌 ${statusEv}</span>
+              <span class="text-muted small fw-bold">KETERANGAN EVENT:</span>
+              <span class="badge ${badgeColor} fs-6 px-3 py-2">📌 ${statusEv}</span>
             </div>
             
-            <!-- Tombol Interaktif Ubah Status -->
             <div class="dropdown">
               <button class="btn btn-sm btn-outline-dark dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown">
-                🔄 Ubah Status Event
+                🔄 Ubah Keterangan
               </button>
               <ul class="dropdown-menu shadow">
                 <li><a class="dropdown-item small text-warning fw-semibold" href="#" onclick="changeEventStatus('Akan Berjalan')">⏳ Akan Berjalan</a></li>
@@ -105,22 +102,35 @@
             </div>
           </div>
           
-          <h1 class="fw-bold text-dark mb-3">${judulEv}</h1>
-          <span class="text-muted small d-block mb-3">📅 Hari/Tanggal: <strong>${dayEv}</strong></span>
+          <h1 class="fw-bold text-dark mb-4">${judulEv}</h1>
           
-          <div class="row g-3 mb-4 bg-light p-3 rounded border">
-            <div class="col-md-6">
-              <span class="text-muted small d-block fw-bold">📍 LOKASI / GEDUNG</span>
-              <span class="fw-semibold text-dark">${lokEv}</span>
+          <!-- Informasi Utama: Tempat, Hari, Waktu (Menonjol) -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <div class="p-3 bg-light rounded border h-100 text-center">
+                <span class="text-muted small d-block fw-bold mb-1">📍 TEMPAT / LOKASI</span>
+                <span class="fw-bold text-dark fs-6">${lokEv}</span>
+              </div>
             </div>
-            <div class="col-md-6">
-              <span class="text-muted small d-block fw-bold">⏰ WAKTU PELAKSANAAN</span>
-              <span class="fw-semibold text-dark">${timeEv}</span>
+            <div class="col-md-4">
+              <div class="p-3 bg-light rounded border h-100 text-center">
+                <span class="text-muted small d-block fw-bold mb-1">📅 HARI / TANGGAL</span>
+                <span class="fw-bold text-dark fs-6">${dayEv}</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 bg-light rounded border h-100 text-center">
+                <span class="text-muted small d-block fw-bold mb-1">⏰ WAKTU</span>
+                <span class="fw-bold text-dark fs-6">${timeEv}</span>
+              </div>
             </div>
           </div>
 
-          <h5 class="fw-bold text-dark fs-6">Tentang Acara</h5>
-          <p class="text-secondary lh-lg mb-4">${deskEv}</p>
+          <!-- Catatan / Deskripsi Singkat (Opsional di bawah) -->
+          <div class="mb-4">
+            <h6 class="fw-bold text-dark small text-uppercase">Keterangan Tambahan</h6>
+            <p class="text-secondary small mb-0">${deskEv}</p>
+          </div>
 
           <div class="d-flex gap-2">
             <a href="index.html" class="btn btn-dark btn-sm px-4 fw-bold">← Kembali ke Beranda</a>
@@ -130,17 +140,13 @@
       `;
     }
 
-    // Fungsi untuk memperbarui status event secara real-time ke localStorage
     function changeEventStatus(newStatus) {
       const events = JSON.parse(localStorage.getItem('campus_events')) || [];
-      
       if (currentEventId !== null && events[currentEventId]) {
         events[currentEventId].status = newStatus;
         localStorage.setItem('campus_events', JSON.stringify(events));
-        
-        // Refresh tampilan halaman detail secara instan
         renderEventDetail();
-        alert('Status event berhasil diubah menjadi: "' + newStatus + '"!');
+        alert('Keterangan event berhasil diubah menjadi: "' + newStatus + '"!');
       }
     }
   </script>
