@@ -49,16 +49,19 @@
     
     <div class="d-flex justify-content-between align-items-center mb-4">
       <div>
-        <h4 class="fw-bold m-0 text-dark">Kelola Lapak Jualan</h4>
-        <p class="text-muted m-0 small">Tambah, edit, dan hapus produk jualanmu di marketplace kampus</p>
+        <h4 class="fw-bold m-0 text-dark">Kelola Lapak Jualan & Pesanan</h4>
+        <p class="text-muted m-0 small">Tambah produk, atur promo diskon, dan pantau pesanan yang masuk dari pembeli</p>
       </div>
       <a href="index.html" class="btn btn-sm btn-outline-secondary">← Kembali ke Beranda</a>
     </div>
 
     <div class="row g-4">
-      <!-- Form Tambah Produk -->
-      <div class="col-lg-4 col-md-5">
-        <div class="card border-0 shadow-sm p-3">
+      
+      <!-- KOLOM KIRI: Form Tambah Produk & Form Buat Promo -->
+      <div class="col-lg-4">
+        
+        <!-- 1. Form Tambah Produk -->
+        <div class="card border-0 shadow-sm p-3 mb-4">
           <h5 class="fw-bold mb-3 fs-6">Tambah Jajanan / Barang Baru</h5>
           <form id="addProductForm">
             <div class="mb-2">
@@ -79,44 +82,73 @@
               <input type="number" id="prodPrice" class="form-control form-control-sm" placeholder="10000" required>
             </div>
             <div class="mb-3">
-              <label class="small fw-bold">Nama File Gambar (Pastikan ada di folder img/)</label>
+              <label class="small fw-bold">Nama File Gambar (di folder img/)</label>
               <input type="text" id="prodImg" class="form-control form-control-sm" placeholder="cth: Americano.png">
             </div>
             <button type="submit" class="btn btn-success btn-sm w-100 fw-bold">Publikasikan Produk</button>
           </form>
         </div>
+
+        <!-- 2. Form Buat Promo Diskon Toko -->
+        <div class="card border-0 shadow-sm p-3 bg-light">
+          <h5 class="fw-bold mb-2 fs-6 text-danger">Buat Promo Diskon Toko</h5>
+          <p class="text-muted small mb-3">Pasang label diskon khusus untuk produk jualanmu.</p>
+          <form id="addPromoForm">
+            <div class="mb-2">
+              <label class="small fw-bold">Pilih Produk Tenant</label>
+              <select id="promoTarget" class="form-select form-select-sm" required>
+                <option value="">-- Pilih Produk --</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="small fw-bold">Keterangan Promo</label>
+              <input type="text" id="promoLabel" class="form-control form-control-sm" placeholder="Cth: Diskon 20% / Flash Sale" required>
+            </div>
+            <button type="submit" class="btn btn-outline-danger btn-sm w-100 fw-bold">Terapkan Promo</button>
+          </form>
+        </div>
+
       </div>
 
-      <!-- KARTU TERPISAH KHUSUS PROMO -->
-  <div class="card border-0 shadow-sm p-3 bg-light">
-    <h5 class="fw-bold mb-2 fs-6 text-danger">Buat Promo Diskon Toko</h5>
-    <p class="text-muted small mb-3">Pasang label diskon khusus untuk menarik perhatian pembeli di beranda.</p>
-    <form id="addPromoForm">
-      <div class="mb-2">
-        <label class="small fw-bold">Pilih Produk Tenant</label>
-        <select id="promoTarget" class="form-select form-select-sm">
-          <option value="">-- Pilih Produk Jualanmu --</option>
-          <!-- Nanti bisa diisi otomatis atau manual -->
-        </select>
-      </div>
-      <div class="mb-3">
-        <label class="small fw-bold">Keterangan Promo</label>
-        <input type="text" id="promoLabel" class="form-control form-control-sm" placeholder="Cth: Diskon 20% / Flash Sale" required>
-      </div>
-      <button type="submit" class="btn btn-outline-danger btn-sm w-100 fw-bold">Terapkan Promo</button>
-    </form>
-  </div>
-</div>
-
-      <!-- Tabel Daftar Jualan -->
-      <div class="col-lg-8 col-md-7">
-        <div class="card border-0 shadow-sm p-3">
+      <!-- KOLOM KANAN: Tabel Daftar Jualan & Tabel Pesanan Masuk Pembeli -->
+      <div class="col-lg-8">
+        
+        <!-- 1. Tabel Daftar Jualan Saya -->
+        <div class="card border-0 shadow-sm p-3 mb-4">
           <h5 class="fw-bold mb-3 fs-6">Daftar Jualan Saya</h5>
           <div id="sellerProductList" class="table-responsive">
             <!-- Tabel otomatis di-render via JavaScript -->
           </div>
         </div>
+
+        <!-- 2. Tabel Pesanan Masuk Pembeli -->
+        <div class="card border-0 shadow-sm p-3">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold m-0 fs-6 text-success">Daftar Pesanan Masuk Pembeli</h5>
+            <span class="badge bg-success" id="orderCountBadge">0 Pesanan</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped align-middle small mb-0">
+              <thead class="table-dark">
+                <tr>
+                  <th>Waktu</th>
+                  <th>Nama Pembeli</th>
+                  <th>Produk yang Dibeli</th>
+                  <th>Total Harga</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="sellerOrdersTableBody">
+                <tr>
+                  <td colspan="5" class="text-center text-muted py-3">Belum ada pesanan masuk dari pembeli.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
+
     </div>
   </div>
 
@@ -168,7 +200,6 @@
       }
     }
 
-    // Penanganan Gambar Sederhana & Aman
     function fixImagePath(imgName, defaultTitle) {
       const fallback = `https://via.placeholder.com/50?text=${encodeURIComponent(defaultTitle)}`;
       if (!imgName) return fallback;
@@ -177,12 +208,18 @@
       return 'img/' + imgName;
     }
 
+    // Render Tabel Jualan & Perbarui Pilihan Dropdown Promo
     function renderSellerTable() {
       const listContainer = document.getElementById('sellerProductList');
+      const promoTargetSelect = document.getElementById('promoTarget');
       const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+
+      // Reset opsi dropdown promo
+      promoTargetSelect.innerHTML = '<option value="">-- Pilih Produk Jualanmu --</option>';
 
       if (saved.length === 0) {
         listContainer.innerHTML = '<p class="text-muted small m-0 py-3 text-center">Belum ada produk yang ditambahkan. Yuk isi form di samping untuk mulai berjualan!</p>';
+        renderOrdersTable();
         return;
       }
 
@@ -194,6 +231,7 @@
               <th>Nama Produk</th>
               <th>Kategori</th>
               <th>Harga</th>
+              <th>Promo</th>
               <th class="text-center">Aksi</th>
             </tr>
           </thead>
@@ -204,15 +242,23 @@
         const hargaFormatted = parseInt(prod.harga || 0).toLocaleString('id-ID');
         const fallbackImg = `https://via.placeholder.com/50?text=${encodeURIComponent(prod.nama)}`;
         const imgSrc = fixImagePath(prod.gambar, prod.nama);
+        const promoBadge = prod.promo ? `<span class="badge bg-danger">${prod.promo}</span>` : `<span class="text-muted">-</span>`;
+
+        // Masukkan ke dropdown pilihan promo
+        const opt = document.createElement('option');
+        opt.value = index;
+        opt.textContent = prod.nama;
+        promoTargetSelect.appendChild(opt);
 
         html += `
           <tr>
             <td>
-              <img src="${imgSrc}" width="45" height="45" class="rounded object-fit-cover" alt="${prod.nama}" onerror="this.src='${fallbackImg}'">
+              <img src="${imgSrc}" width="40" height="40" class="rounded object-fit-cover" alt="${prod.nama}" onerror="this.src='${fallbackImg}'">
             </td>
             <td class="fw-bold text-dark">${prod.nama}</td>
             <td><span class="badge bg-secondary text-capitalize">${prod.kategori}</span></td>
             <td class="text-success fw-bold">Rp ${hargaFormatted}</td>
+            <td>${promoBadge}</td>
             <td class="text-center">
               <button class="btn btn-sm btn-outline-primary py-0 px-2 me-1" onclick="openEditModal(${index})" title="Edit">✏️</button>
               <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="deleteProduct(${index})" title="Hapus">🗑️</button>
@@ -227,6 +273,52 @@
       `;
 
       listContainer.innerHTML = html;
+      renderOrdersTable();
+    }
+
+    // Render Tabel Pesanan Masuk dari Pembeli
+    function renderOrdersTable() {
+      const ordersTableBody = document.getElementById('sellerOrdersTableBody');
+      const orderCountBadge = document.getElementById('orderCountBadge');
+      
+      // Ambil data transaksi/pesanan dari localStorage (disimpan saat checkout oleh pembeli)
+      const orders = JSON.parse(localStorage.getItem('campus_orders')) || [];
+
+      orderCountBadge.textContent = `${orders.length} Pesanan`;
+
+      if (orders.length === 0) {
+        ordersTableBody.innerHTML = `
+          <tr>
+            <td colspan="5" class="text-center text-muted py-3">Belum ada pesanan masuk dari pembeli.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      let html = '';
+      orders.slice().reverse().forEach(order => {
+        // order.items diasumsikan berisi list produk yang dibeli
+        let itemsList = '';
+        if (order.items && Array.isArray(order.items)) {
+          itemsList = order.items.map(i => `${i.name} (${i.qty}x)`).join(', ');
+        } else {
+          itemsList = order.produk || 'Produk Makanan / Barang';
+        }
+
+        const totalFormatted = parseInt(order.total || 0).toLocaleString('id-ID');
+        
+        html += `
+          <tr>
+            <td class="text-muted small">${order.waktu || 'Baru saja'}</td>
+            <td class="fw-bold">${order.namaPembeli || 'Mahasiswa / Pembeli'}</td>
+            <td>${itemsList}</td>
+            <td class="text-success fw-bold">Rp ${totalFormatted}</td>
+            <td><span class="badge bg-warning text-dark">Diproses</span></td>
+          </tr>
+        `;
+      });
+
+      ordersTableBody.innerHTML = html;
     }
 
     // Submit Form Tambah Produk Baru
@@ -242,12 +334,33 @@
       }
 
       const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-      saved.push({ nama: name, kategori: cat, harga: price, gambar: img });
+      saved.push({ nama: name, kategori: cat, harga: price, gambar: img, promo: '' });
       localStorage.setItem('user_products', JSON.stringify(saved));
 
       renderSellerTable();
       alert('Produk "' + name + '" berhasil dipublikasikan!');
       this.reset();
+    });
+
+    // Submit Form Terapkan Promo
+    document.getElementById('addPromoForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const targetIndex = document.getElementById('promoTarget').value;
+      const promoLabel = document.getElementById('promoLabel').value;
+
+      if (targetIndex === '') {
+        alert('Silakan pilih produk terlebih dahulu!');
+        return;
+      }
+
+      const saved = JSON.parse(localStorage.getItem('user_products')) || [];
+      if (saved[targetIndex]) {
+        saved[targetIndex].promo = promoLabel;
+        localStorage.setItem('user_products', JSON.stringify(saved));
+        renderSellerTable();
+        alert('Promo berhasil diterapkan pada produk "' + saved[targetIndex].nama + '"!');
+        this.reset();
+      }
     });
 
     // Buka Modal Edit
@@ -281,7 +394,9 @@
       }
 
       const saved = JSON.parse(localStorage.getItem('user_products')) || [];
-      saved[index] = { nama: name, kategori: cat, harga: price, gambar: img };
+      const existingPromo = saved[index] ? saved[index].promo : '';
+      
+      saved[index] = { nama: name, kategori: cat, harga: price, gambar: img, promo: existingPromo };
       localStorage.setItem('user_products', JSON.stringify(saved));
 
       renderSellerTable();
