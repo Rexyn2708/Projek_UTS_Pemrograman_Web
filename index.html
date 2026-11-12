@@ -489,7 +489,7 @@
     });
   }
 
-  // 2. Render Event Buatan Admin di Section Lookbook / Bazar
+  // 2. Render Event Buatan Admin di Section Lookbook / Bazar (Dilengkapi Status & Link Detail)
   function refreshAdminEvents() {
     document.querySelectorAll('.admin-event-card').forEach(el => el.remove());
 
@@ -498,19 +498,32 @@
 
     const events = JSON.parse(localStorage.getItem('campus_events')) || [];
 
-    events.forEach(ev => {
-      const fallbackImg = `https://via.placeholder.com/400x300?text=${encodeURIComponent(ev.judul)}`;
-      const imgSrc = fixDynamicImagePath(ev.gambar, ev.judul);
+    events.forEach((ev, index) => {
+      const fallbackImg = `https://via.placeholder.com/400x300?text=${encodeURIComponent(ev.title || ev.judul)}`;
+      const imgSrc = fixDynamicImagePath(ev.gambar || ev.img, ev.title || ev.judul);
+
+      const judulEv = ev.title || ev.judul || 'Event Kampus';
+      const lokEv = ev.location || 'Area Kampus';
+      const dayEv = ev.day || 'Segera';
+      const statusEv = ev.status || 'Sedang Berlangsung';
+
+      // Warna badge status dinamis
+      let badgeBg = 'bg-success';
+      if (statusEv === 'Akan Berjalan') badgeBg = 'bg-warning text-dark';
+      if (statusEv === 'Telah Berakhir') badgeBg = 'bg-danger';
 
       const col = document.createElement('div');
       col.className = 'col-md-4 col-12 admin-event-card';
       col.innerHTML = `
         <div class="card border-0 shadow-sm overflow-hidden h-100 position-relative">
-          <span class="badge bg-danger position-absolute m-2 z-2">Event Baru</span>
-          <img src="${imgSrc}" class="card-img-top" alt="${ev.judul}" onerror="this.src='${fallbackImg}'" style="height: 250px; object-fit: cover;">
+          <span class="badge ${badgeBg} position-absolute m-2 z-2">${statusEv}</span>
+          <img src="${imgSrc}" class="card-img-top" alt="${judulEv}" onerror="this.src='${fallbackImg}'" style="height: 250px; object-fit: cover;">
           <div class="card-body text-center">
-            <h5 class="card-title fw-bold">${ev.judul}</h5>
-            <p class="card-text text-muted small">${ev.deskripsi}</p>
+            <!-- Judul Event diklik menuju halaman detail-event.html -->
+            <h5 class="card-title fw-bold mb-2">
+              <a href="detail-event.html?id=${index}" class="text-dark text-decoration-none stretched-link">${judulEv}</a>
+            </h5>
+            <p class="card-text text-muted small mb-0">Tempat: ${lokEv} | Hari: ${dayEv}</p>
           </div>
         </div>
       `;
